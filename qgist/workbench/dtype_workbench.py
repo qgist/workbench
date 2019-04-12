@@ -56,13 +56,13 @@ class dtype_workbench_class:
 
         main_window.restoreState(self._state_mainwindow)
 
-    def asdict(self):
+    def as_dict(self):
 
         return dict(
             name = self._name,
             state_mainwindow = base64.encodebytes(self._state_mainwindow).decode('ASCII'),
-            list_toolbars = [item.asdict() for item in self._list_toolbars],
-            list_dockwidgets = [item.asdict() for item in self._list_toolbars],
+            list_toolbars = [item.as_dict() for item in self._list_toolbars],
+            list_dockwidgets = [item.as_dict() for item in self._list_toolbars],
             )
 
     @staticmethod

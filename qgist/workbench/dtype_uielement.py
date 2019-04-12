@@ -33,11 +33,21 @@ class dtype_uielement_class:
 
         pass
 
-    def asdict(self):
+    def as_dict(self):
 
         return dict(
             name_internal = self._name_internal,
             name_translated = self._name_translated,
             visibility = self._visibility,
             existence = self._existence,
+            )
+
+    @staticmethod
+    def from_uielement(self, uielement):
+
+        return dtype_uielement_class(
+            name_internal = uielement.objectName(),
+            name_translated = uielement.windowTitle(),
+            visibility = uielement.isVisible(),
+            existence = True,
             )

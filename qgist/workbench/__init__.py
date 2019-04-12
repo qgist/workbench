@@ -1,6 +1,14 @@
 
 """
 
+# Only those are enable which are having "QGistApp" as prent
+# i.e. only toolbars from QGIS main window and not from sub widgets.
+currentToolBarWidget = [
+    toolbar for toolbar in self.mMainWindow.findChildren(
+        QToolBar, toolBarName
+    ) if toolbar.parent().objectName() == 'QgisApp'
+]
+
 mw = iface.mainWindow()
 tb_list = mw.findChildren(QToolBar)
 dw_list = mw.findChildren(QDockWidget)
