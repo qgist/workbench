@@ -3,5 +3,5 @@
 # EXCEPTIONS
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-class QgistUnnamedUiELement(Exception):
-    pass
+# class QgistUnnamedUiELement(Exception):
+#     pass

@@ -1,12 +1,12 @@
 
 import base64
 
+from .dtype_uielement import dtype_uielement_class
+
 from PyQt5.QtWidgets import (
     QDockWidget,
     QToolBar,
     )
-
-from .dtype_uielement import dtype_uielement_class
 
 class dtype_workbench_class:
 
@@ -54,10 +54,22 @@ class dtype_workbench_class:
 
     def activate(self, main_window):
 
-        tb_list = self._get_toolbars_from_mainwindow(main_window)
-        dw_list = self._get_dockwidgets_from_mainwindow(main_window)
+        qtoolbar_list = self._get_toolbars_from_mainwindow(main_window)
+        qdockwidget_list = self._get_dockwidgets_from_mainwindow(main_window)
 
-        # 
+        _dict_toolbars = {item.name_internal: item for item in self._list_toolbars}
+        _dict_dockwidgets = {item.name_internal: item for item in self._list_dockwidgets}
+
+        for qtoolbar_item in qtoolbar_list:
+            try:
+                _dict_toolbars[qtoolbar_item.objectName()].update_state(qtoolbar_item)
+            except KeyError:
+                self._list_toolbars.append(dtype_uielement_class.from_uielement(qtoolbar_item))
+        for qdockwidget_item in qdockwidget_list:
+            try:
+                _dict_toolbars[qdockwidget_item.objectName()].update_state(qdockwidget_item)
+            except KeyError:
+                self._list_toolbars.append(dtype_uielement_class.from_uielement(qdockwidget_item))
 
         main_window.restoreState(self._state_mainwindow)
 

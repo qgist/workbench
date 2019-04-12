@@ -1,5 +1,5 @@
 
-from .error import QgistUnnamedUiELement
+# from .error import QgistUnnamedUiELement
 
 class dtype_uielement_class:
 
@@ -13,25 +13,23 @@ class dtype_uielement_class:
 
         if not isinstance(name_internal, str):
             raise TypeError('internal name must be str')
+        if len(name_internal) == 0:
+            raise ValueError('unnamed UI element')
+        self._name_internal = name_internal
+
         if not isinstance(name_translated, str):
             raise TypeError('translated name must be str')
+        self._name_translated = name_translated
+
         if not isinstance(visibility, bool):
             raise TypeError('visibility must be bool')
+        self._visibility = visibility
+
         if not isinstance(existence, bool):
             raise TypeError('existence must be bool')
-
-        if len(name_internal) == 0:
-            QgistUnnamedUiELement('Unnamed UI element: "%s" / "%s"' % (name_internal, name_translated))
-
-        self._name_internal = name_internal
-        self._name_translated = name_translated
-        self._visibility = visibility
         self._existence = existence
+
         # self._handle = handle # Handle on actual object
-
-    def set_state(self, object_handle):
-
-        pass
 
     def as_dict(self):
 
@@ -41,6 +39,20 @@ class dtype_uielement_class:
             visibility = self._visibility,
             existence = self._existence,
             )
+
+    def update_state(self, object_handle):
+
+        pass
+
+    @property
+    def name_internal(self):
+
+        return self._name_internal
+
+    @name_internal.setter
+    def name_internal(self, value):
+
+        raise SyntaxError('name_internal must not be changed')
 
     @staticmethod
     def from_uielement(self, uielement):
