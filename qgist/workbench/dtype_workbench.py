@@ -1,6 +1,11 @@
 
 import base64
 
+from PyQt5.QtWidgets import (
+    QDockWidget,
+    QToolBar,
+    )
+
 from .dtype_uielement import dtype_uielement_class
 
 class dtype_workbench_class:
@@ -49,10 +54,10 @@ class dtype_workbench_class:
 
     def activate(self, main_window):
 
-        tb_list = main_window.findChildren(QToolBar)
-        dw_list = main_window.findChildren(QDockWidget)
+        tb_list = self._get_toolbars_from_mainwindow(main_window)
+        dw_list = self._get_dockwidgets_from_mainwindow(main_window)
 
-
+        # 
 
         main_window.restoreState(self._state_mainwindow)
 
@@ -64,6 +69,24 @@ class dtype_workbench_class:
             list_toolbars = [item.as_dict() for item in self._list_toolbars],
             list_dockwidgets = [item.as_dict() for item in self._list_toolbars],
             )
+
+    @staticmethod
+    def _get_toolbars_from_mainwindow(main_window):
+
+        return [
+            toolbar
+            for toolbar in main_window.findChildren(QToolBar)
+            if toolbar.parent().objectName() == 'QgisApp'
+            ]
+
+    @staticmethod
+    def _get_dockwidgets_from_mainwindow(main_window):
+
+        return [
+            toolbar
+            for toolbar in main_window.findChildren(QDockWidget)
+            if toolbar.parent().objectName() == 'QgisApp'
+            ]
 
     @staticmethod
     def from_data(
