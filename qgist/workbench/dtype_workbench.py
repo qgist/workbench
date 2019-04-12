@@ -52,7 +52,7 @@ class dtype_workbench_class:
         tb_list = main_window.findChildren(QToolBar)
         dw_list = main_window.findChildren(QDockWidget)
 
-        
+
 
         main_window.restoreState(self._state_mainwindow)
 
@@ -64,3 +64,21 @@ class dtype_workbench_class:
             list_toolbars = [item.asdict() for item in self._list_toolbars],
             list_dockwidgets = [item.asdict() for item in self._list_toolbars],
             )
+
+    @staticmethod
+    def from_data(
+        name = '',
+        state_mainwindow = None,
+        list_toolbars = None,
+        list_dockwidgets = None,
+        ):
+
+        return dtype_workbench_class(name, state_mainwindow, list_toolbars, list_dockwidgets)
+
+    @staticmethod
+    def from_mainwindow(
+        name = '',
+        main_window = None,
+        ):
+
+        return dtype_workbench_class(name, main_window = main_window)
