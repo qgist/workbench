@@ -70,7 +70,7 @@ def setupTranslation(translationsPath):
             translationsPath, 'qgist_%s.qm' % language
         )
         if not os.path.exists(outPath):
-            raise QgistTranslationError(outPath)
+            raise QgistTranslationError('Translation not found: %s' % outPath)
         return outPath
 
     userLocale = QSettings().value('locale/userLocale')
