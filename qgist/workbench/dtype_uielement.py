@@ -24,9 +24,7 @@ class dtype_uielement_class:
             raise TypeError('visibility must be bool')
         self._visibility = visibility
 
-        if not isinstance(existence, bool):
-            raise TypeError('existence must be bool')
-        self._existence = existence
+        self.existence = existence # type check in setter
 
     def as_dict(self):
 
@@ -37,9 +35,24 @@ class dtype_uielement_class:
             existence = self._existence,
             )
 
-    def update_state(self, object_handle):
+    def update_state(self, uiobject):
 
-        pass
+        self.existence = True
+
+        # TODO
+
+    @property
+    def existence(self):
+
+        return self._existence
+
+    @existence.setter
+    def existence(self, value):
+
+        if not isinstance(value, bool):
+            raise TypeError('existence must be bool')
+
+        self._existence = value
 
     @property
     def name_internal(self):
@@ -52,7 +65,7 @@ class dtype_uielement_class:
         raise AttributeError('name_internal must not be changed')
 
     @staticmethod
-    def from_uielement(self, uielement):
+    def from_uiobject(self, uielement):
 
         return dtype_uielement_class(
             name_internal = uielement.objectName(),

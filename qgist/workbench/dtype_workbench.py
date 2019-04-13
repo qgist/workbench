@@ -13,8 +13,8 @@ class dtype_workbench_class:
     def __init__(self,
         name = '',
         mainwindow_state = None,
-        list_toolbars = None,
-        list_dockwidgets = None,
+        toolbars_list = None,
+        dockwidgets_list = None,
         main_window = None, # OPTIONAL
         ):
 
@@ -26,10 +26,10 @@ class dtype_workbench_class:
 
         if main_window is not None and any([
             mainwindow_state is not None,
-            list_toolbars is not None,
-            list_dockwidgets is not None,
+            toolbars_list is not None,
+            dockwidgets_list is not None,
             ]):
-            raise ValueError('provide main_window OR mainwindow_state,list_toolbars,list_dockwidgets')
+            raise ValueError('provide main_window OR mainwindow_state,toolbars_list,dockwidgets_list')
 
         if main_window is not None:
             self._state_mainwindow = bytes(main_window.saveState())
@@ -42,73 +42,71 @@ class dtype_workbench_class:
 
         if main_window is not None:
             pass # TODO add defaults
-        elif isinstance(list_toolbars, list) and isinstance(list_dockwidgets, list):
-            if any([not isinstance(item, dict) for item in list_toolbars])
-                raise TypeError('items in list_toolbars must be dicts')
-            if any([not isinstance(item, dict) for item in list_dockwidgets])
-                raise TypeError('items in list_dockwidgets must be dicts')
-            self._list_toolbars = [dtype_uielement_class(**item) for item in list_toolbars]
-            self._list_dockwidgets = [dtype_uielement_class(**item) for item in list_dockwidgets]
+        elif isinstance(toolbars_list, list) and isinstance(dockwidgets_list, list):
+            if any([not isinstance(item, dict) for item in toolbars_list]):
+                raise TypeError('items in toolbars_list must be dicts')
+            if any([not isinstance(item, dict) for item in dockwidgets_list]):
+                raise TypeError('items in dockwidgets_list must be dicts')
+            self._toolbars_dict = {
+                b.name_internal: b
+                for b in (dtype_uielement_class(**a) for a in toolbars_list)
+                }
+            self._dockwidgets_dict = {
+                b.name_internal: b
+                for b in (dtype_uielement_class(**a) for a in dockwidgets_list)
+                }
         else:
-            raise TypeError('list_toolbars and list_dockwidgets must be lists')
+            raise TypeError('toolbars_list and dockwidgets_list must be lists')
 
     def activate(self, main_window):
 
-        qtoolbar_list = self._get_toolbars_from_mainwindow(main_window)
-        qdockwidget_list = self._get_dockwidgets_from_mainwindow(main_window)
+        qtoolbars_dict = self._get_uielements_from_mainwindow(main_window, QToolBar)
+        qdockwidgets_dict = self._get_uielements_from_mainwindow(main_window, QDockWidget)
 
-        _dict_toolbars = {item.name_internal: item for item in self._list_toolbars}
-        _dict_dockwidgets = {item.name_internal: item for item in self._list_dockwidgets}
+        self._activate_uielements(qtoolbars_dict, self._toolbars_dict)
+        self._activate_uielements(qdockwidgets_dict, self._dockwidgets_dict)
 
-        for qtoolbar_item in qtoolbar_list:
-            try:
-                _dict_toolbars[qtoolbar_item.objectName()].update_state(qtoolbar_item)
-            except KeyError:
-                self._list_toolbars.append(dtype_uielement_class.from_uielement(qtoolbar_item))
-        for qdockwidget_item in qdockwidget_list:
-            try:
-                _dict_toolbars[qdockwidget_item.objectName()].update_state(qdockwidget_item)
-            except KeyError:
-                self._list_toolbars.append(dtype_uielement_class.from_uielement(qdockwidget_item))
-
-        main_window.restoreState(self._state_mainwindow)
+        main_window.restoreState(self._state_mainwindow) # TODO ... check!
 
     def as_dict(self):
 
         return dict(
             name = self._name,
             mainwindow_state = base64.encodebytes(self._state_mainwindow).decode('ASCII'),
-            list_toolbars = [item.as_dict() for item in self._list_toolbars],
-            list_dockwidgets = [item.as_dict() for item in self._list_toolbars],
+            toolbars_list = [item.as_dict() for item in self._toolbars_dict.values()],
+            dockwidgets_list = [item.as_dict() for item in self._dockwidgets_dict.values()],
             )
 
     @staticmethod
-    def _get_toolbars_from_mainwindow(main_window):
+    def _activate_uielements(uiobjects_dict, uielements_dict)
 
-        return [
-            toolbar
-            for toolbar in main_window.findChildren(QToolBar)
-            if toolbar.parent().objectName() == 'QgisApp'
-            ]
+        for name_internal, uiobject in uiobjects_dict:
+            try:
+                uielements_dict[name_internal].update_state(uiobject)
+            except KeyError:
+                uielement = dtype_uielement_class.from_uiobject(uiobject)
+                uielements_dict[uielement.name_internal] = uielement
+        for name_internal in (uielements_dict.keys() - uiobjects_dict.keys()):
+            uielements_dict[name_internal].existence = False
 
     @staticmethod
-    def _get_dockwidgets_from_mainwindow(main_window):
+    def _get_uielements_from_mainwindow(main_window, uielement_type):
 
-        return [
-            toolbar
-            for toolbar in main_window.findChildren(QDockWidget)
+        return {
+            toolbar.objectName(): toolbar
+            for toolbar in main_window.findChildren(uielement_type)
             if toolbar.parent().objectName() == 'QgisApp'
-            ]
+            }
 
     @staticmethod
     def from_data(
         name = '',
         mainwindow_state = None,
-        list_toolbars = None,
-        list_dockwidgets = None,
+        toolbars_list = None,
+        dockwidgets_list = None,
         ):
 
-        return dtype_workbench_class(name, mainwindow_state, list_toolbars, list_dockwidgets)
+        return dtype_workbench_class(name, mainwindow_state, toolbars_list, dockwidgets_list)
 
     @staticmethod
     def from_mainwindow(
