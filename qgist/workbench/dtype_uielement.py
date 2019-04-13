@@ -49,7 +49,7 @@ class dtype_uielement_class:
     @name_internal.setter
     def name_internal(self, value):
 
-        raise SyntaxError('name_internal must not be changed')
+        raise AttributeError('name_internal must not be changed')
 
     @staticmethod
     def from_uielement(self, uielement):
