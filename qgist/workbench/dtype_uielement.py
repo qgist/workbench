@@ -8,7 +8,6 @@ class dtype_uielement_class:
         name_translated = '',
         visibility = True,
         existence = True,
-        # handle = None,
         ):
 
         if not isinstance(name_internal, str):
@@ -28,8 +27,6 @@ class dtype_uielement_class:
         if not isinstance(existence, bool):
             raise TypeError('existence must be bool')
         self._existence = existence
-
-        # self._handle = handle # Handle on actual object
 
     def as_dict(self):
 
