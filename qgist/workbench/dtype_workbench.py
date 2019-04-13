@@ -12,7 +12,7 @@ class dtype_workbench_class:
 
     def __init__(self,
         name = '',
-        state_mainwindow = None,
+        mainwindow_state = None,
         list_toolbars = None,
         list_dockwidgets = None,
         main_window = None, # OPTIONAL
@@ -25,20 +25,20 @@ class dtype_workbench_class:
         self._name = name
 
         if main_window is not None and any([
-            state_mainwindow is not None,
+            mainwindow_state is not None,
             list_toolbars is not None,
             list_dockwidgets is not None,
             ]):
-            raise ValueError('provide main_window OR state_mainwindow,list_toolbars,list_dockwidgets')
+            raise ValueError('provide main_window OR mainwindow_state,list_toolbars,list_dockwidgets')
 
         if main_window is not None:
             self._state_mainwindow = bytes(main_window.saveState())
-        elif isinstance(state_mainwindow, str):
-            self._state_mainwindow = base64.decodebytes(state_mainwindow.encode('ASCII'))
-        elif isinstance(state_mainwindow, bytes):
-            self._state_mainwindow = base64.decodebytes(state_mainwindow)
+        elif isinstance(mainwindow_state, str):
+            self._state_mainwindow = base64.decodebytes(mainwindow_state.encode('ASCII'))
+        elif isinstance(mainwindow_state, bytes):
+            self._state_mainwindow = base64.decodebytes(mainwindow_state)
         else:
-            raise TypeError('state_mainwindow must either be str or bytes')
+            raise TypeError('mainwindow_state must either be str or bytes')
 
         if main_window is not None:
             pass # TODO add defaults
@@ -77,7 +77,7 @@ class dtype_workbench_class:
 
         return dict(
             name = self._name,
-            state_mainwindow = base64.encodebytes(self._state_mainwindow).decode('ASCII'),
+            mainwindow_state = base64.encodebytes(self._state_mainwindow).decode('ASCII'),
             list_toolbars = [item.as_dict() for item in self._list_toolbars],
             list_dockwidgets = [item.as_dict() for item in self._list_toolbars],
             )
@@ -103,12 +103,12 @@ class dtype_workbench_class:
     @staticmethod
     def from_data(
         name = '',
-        state_mainwindow = None,
+        mainwindow_state = None,
         list_toolbars = None,
         list_dockwidgets = None,
         ):
 
-        return dtype_workbench_class(name, state_mainwindow, list_toolbars, list_dockwidgets)
+        return dtype_workbench_class(name, mainwindow_state, list_toolbars, list_dockwidgets)
 
     @staticmethod
     def from_mainwindow(
