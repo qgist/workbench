@@ -59,14 +59,20 @@ class dtype_workbench_class:
         dtype_workbench_class._activate_uielements(qtoolbars_dict, self._toolbars_dict)
         dtype_workbench_class._activate_uielements(qdockwidgets_dict, self._dockwidgets_dict)
 
-        mainwindow.restoreState(self._mainwindow_state) # TODO ... check!
+        mainwindow.restoreState(self._mainwindow_state)
 
     def save(self, mainwindow):
 
         if not isinstance(mainwindow, QMainWindow):
             raise TypeError('mainwindow must be a QGis mainwindow')
 
-        self._mainwindow_state = mainwindow.saveState() # TODO ... check!
+        qtoolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
+        qdockwidgets_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
+
+        dtype_workbench_class._save_uielements(qtoolbars_dict, self._toolbars_dict)
+        dtype_workbench_class._save_uielements(qdockwidgets_dict, self._dockwidgets_dict)
+
+        self._mainwindow_state = mainwindow.saveState()
 
     def as_dict(self):
 
@@ -97,6 +103,18 @@ class dtype_workbench_class:
             for toolbar in mainwindow.findChildren(uielement_type)
             if toolbar.parent().objectName() == 'QgisApp'
             }
+
+    @staticmethod
+    def _save_uielements(uiobjects_dict, uielements_dict):
+
+        for name_internal, uiobject in uiobjects_dict:
+            try:
+                uielements_dict[name_internal].pull_state_from_uiobject(uiobject)
+            except KeyError:
+                uielement = dtype_uielement_class.from_uiobject(uiobject)
+                uielements_dict[uielement.name_internal] = uielement
+        for name_internal in (uielements_dict.keys() - uiobjects_dict.keys()):
+            uielements_dict[name_internal].existence = False
 
     @staticmethod
     def from_mainwindow(

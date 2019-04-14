@@ -1,5 +1,8 @@
 
-# from .error import QgistUnnamedUiELement
+from PyQt5.QtWidgets import (
+    QDockWidget,
+    QToolBar,
+    )
 
 class dtype_uielement_class:
 
@@ -35,7 +38,18 @@ class dtype_uielement_class:
             existence = self._existence,
             )
 
+    def pull_state_from_uiobject(self, uiobject):
+
+        if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
+            raise TypeError('uiobject must be either QToolBar or QDockWidget')
+
+        self.existence = True # type check in setter
+        self._visibility = uiobject.isVisible()
+
     def push_state_to_uiobject(self, uiobject):
+
+        if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
+            raise TypeError('uiobject must be either QToolBar or QDockWidget')
 
         self.existence = True # type check in setter
         uiobject.setVisible(self._visibility)
@@ -64,11 +78,14 @@ class dtype_uielement_class:
         raise AttributeError('name_internal must not be changed')
 
     @staticmethod
-    def from_uiobject(self, uielement):
+    def from_uiobject(self, uiobject):
+
+        if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
+            raise TypeError('uiobject must be either QToolBar or QDockWidget')
 
         return dtype_uielement_class(
-            name_internal = uielement.objectName(),
-            name_translated = uielement.windowTitle(),
-            visibility = uielement.isVisible(),
+            name_internal = uiobject.objectName(),
+            name_translated = uiobject.windowTitle(),
+            visibility = uiobject.isVisible(),
             existence = True,
             )
