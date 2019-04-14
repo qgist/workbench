@@ -61,7 +61,7 @@ class dtype_workbench_class:
 
         mainwindow.restoreState(self._mainwindow_state) # TODO ... check!
 
-    def deactivate(self, mainwindow):
+    def save(self, mainwindow):
 
         if not isinstance(mainwindow, QMainWindow):
             raise TypeError('mainwindow must be a QGis mainwindow')
