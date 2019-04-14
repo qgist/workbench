@@ -82,7 +82,7 @@ class dtype_workbench_class:
 
         for name_internal, uiobject in uiobjects_dict:
             try:
-                uielements_dict[name_internal].update_state(uiobject)
+                uielements_dict[name_internal].push_state_to_uiobject(uiobject)
             except KeyError:
                 uielement = dtype_uielement_class.from_uiobject(uiobject)
                 uielements_dict[uielement.name_internal] = uielement

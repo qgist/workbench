@@ -35,11 +35,10 @@ class dtype_uielement_class:
             existence = self._existence,
             )
 
-    def update_state(self, uiobject):
+    def push_state_to_uiobject(self, uiobject):
 
-        self.existence = True
-
-        # TODO
+        self.existence = True # type check in setter
+        uiobject.setVisible(self._visibility)
 
     @property
     def existence(self):
