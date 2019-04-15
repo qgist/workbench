@@ -1,5 +1,23 @@
 
+import os
+
+from PyQt5.QtCore import (
+    QSize,
+    Qt,
+    )
+from PyQt5.QtGui import (
+    QIcon,
+    )
+from PyQt5.QtWidgets import (
+    QDialog,
+    QHBoxLayout,
+    QListWidget,
+    QToolButton,
+    QVBoxLayout,
+    )
+
 from ..const import ICON_FLD
+from ..util import translate
 
 class manager_ui_base_class(QDialog):
 
