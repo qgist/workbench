@@ -56,9 +56,9 @@ class manager_ui_base_class(QDialog):
         toolbar_layout.setContentsMargins(0, 0, 0, 0)
 
         for name, title, text in [
-            ('new', translate('global', 'New work bench'), 'new.png'),
-            ('delete', translate('global', 'Delete work bench'), 'delete.png'),
-            ('save', translate('global', 'Save work benches'), 'save.png'),
+            ('new', translate('global', 'New work bench'), 'FileNew.svg'),
+            ('delete', translate('global', 'Delete work bench'), 'Delete.svg'),
+            ('save', translate('global', 'Save work benches'), 'Save.svg'),
             ]:
 
             toolbutton = QToolButton()
