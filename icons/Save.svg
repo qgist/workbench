@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" width="16px" height="16px" viewBox="0 0.025 16 16" enable-background="new 0 0.025 16 16" xml:space="preserve">
+<defs>
+</defs>
+<path fill="#007D7D" d="M1.333,0.525c0,0,1.333,3.5,6.667,3.5c5.333,0,6.667-3.5,6.667-3.5H1.333z"/>
+<g>
+	<path fill="#CCCCCC" d="M0.375,15.65V0.4h0.709c0.42,0.92,2.18,4,6.916,4c4.735,0,6.496-3.08,6.917-4h0.708v15.25H0.375z"/>
+	<path fill="#FFFFFF" d="M15.25,0.775v14.5H0.75v-14.5h0.092c0.588,1.188,2.477,4,7.158,4c4.681,0,6.57-2.813,7.158-4H15.25
+		 M16,0.025h-1.333c0,0-1.334,4-6.667,4c-5.333,0-6.667-4-6.667-4H0v16h16V0.025L16,0.025z"/>
+</g>
+<line fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" x1="0" y1="0.375" x2="16" y2="0.375"/>
+<line fill="none" stroke="#007D7D" stroke-miterlimit="10" x1="2" y1="6.525" x2="14" y2="6.525"/>
+<line fill="none" stroke="#007D7D" stroke-miterlimit="10" x1="2" y1="8.525" x2="14" y2="8.525"/>
+</svg>

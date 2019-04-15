@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" width="16px" height="16px" viewBox="-2.5 0.05 16 16" enable-background="new -2.5 0.05 16 16"
+	 xml:space="preserve">
+<defs>
+</defs>
+<g>
+	<polygon fill="#CCCCCC" points="0.375,15.675 0.375,0.425 7.446,0.425 5.041,6.438 11.054,4.032 11.054,15.675 	"/>
+	<path fill="#FFFFFF" d="M6.893,0.8L5.018,5.486L4.368,7.11l1.625-0.65l4.686-1.874V15.3H0.75V0.8H6.893 M8,0.05H0v16h11.429V3.479
+		L5.714,5.764L8,0.05L8,0.05z"/>
+</g>
+<g>
+	<polygon fill="#007D7D" points="7.771,0.621 5.714,5.764 10.857,3.707 	"/>
+</g>
+<line fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" x1="7.811" y1="0.264" x2="11.239" y2="3.717"/>
+<line fill="none" stroke="#007D7D" stroke-miterlimit="10" x1="1.958" y1="9.55" x2="9.479" y2="9.55"/>
+<line fill="none" stroke="#007D7D" stroke-miterlimit="10" x1="1.958" y1="11.55" x2="9.479" y2="11.55"/>
+<line fill="none" stroke="#007D7D" stroke-miterlimit="10" x1="1.958" y1="13.55" x2="9.479" y2="13.55"/>
+</svg>
