@@ -70,7 +70,7 @@ class manager_ui_base_class(QDialog):
             toolbutton.setAutoRaise(True)
             toolbutton.setFocusPolicy(Qt.NoFocus)
 
-            ui_dict['toolbutton_{NAME:s}'.format(name)] = toolbutton
+            ui_dict['toolbutton_{NAME:s}'.format(NAME = name)] = toolbutton
 
             toolbar_layout.addWidget(toolbutton)
 
