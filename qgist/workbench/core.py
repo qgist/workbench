@@ -72,6 +72,8 @@ class workbench:
             self._plugin_root_fld, TRANSLATION_FLD
         ))
 
+        # self.mIface.addPluginToMenu(text, action)
+
     def unload(self):
         """
         QGis Plugin Interface Routine
