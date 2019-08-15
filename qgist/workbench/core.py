@@ -39,4 +39,26 @@ class workbench:
 
     def __init__(self, iface, plugin_root_fld):
 
+        if not hasattr(iface, 'mainWindow'):
+            raise TypeError('iface must be a QGIS iface object')
+        if not isinstance(plugin_root_fld, str):
+            raise TypeError('plugin_root_fld must be str')
+
+        self._iface = iface
+        self._plugin_root_fld = plugin_root_fld
+
         self._system = platform.system()
+
+    def initGui(self):
+        """
+        QGis Plugin Interface Routine
+        """
+
+        pass
+
+    def unload(self):
+        """
+        QGis Plugin Interface Routine
+        """
+
+        pass
