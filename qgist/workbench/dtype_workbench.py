@@ -170,12 +170,12 @@ class dtype_workbench_class:
             raise TypeError('mainwindow must be a QGis mainwindow')
 
         toolbars_list = [
-            dtype_uielement_class.from_uiobject(uiobject)
+            dtype_uielement_class.from_uiobject(uiobject).as_dict()
             for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
             ]
 
         dockwidgets_list = [
-            dtype_uielement_class.from_uiobject(uiobject)
+            dtype_uielement_class.from_uiobject(uiobject).as_dict()
             for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
             ]
 
