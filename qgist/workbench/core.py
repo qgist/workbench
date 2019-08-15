@@ -33,6 +33,14 @@ import platform
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# IMPORT (Internal)
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+from ..const import TRANSLATION_FLD
+from ..util import setupTranslation
+
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # CLASS: WORKBENCH CORE
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -59,7 +67,9 @@ class workbench:
         QGis Plugin Interface Routine
         """
 
-        pass
+        setupTranslation(os.path.join(
+            self._plugin_root_fld, TRANSLATION_FLD
+        ))
 
     def unload(self):
         """
