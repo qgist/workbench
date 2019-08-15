@@ -25,10 +25,18 @@ specific language governing rights and limitations under the License.
 """
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# IMPORT (Python Standard Library)
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+import platform
+
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # CLASS: WORKBENCH CORE
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 class workbench:
 
-    def __init__(self, iface, plugin_root_fld, os_name):
-        pass
+    def __init__(self, iface, plugin_root_fld):
+
+        self._system = platform.system()

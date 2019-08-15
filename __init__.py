@@ -29,7 +29,6 @@ specific language governing rights and limitations under the License.
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 import os
-import platform
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -50,6 +49,5 @@ def classFactory(iface):
 
     return workbench(
         iface,
-        os.path.dirname(__file__),
-        platform.system()
+        os.path.dirname(__file__)
     )
