@@ -60,6 +60,7 @@ class workbench:
         self._iface = iface
         self._plugin_root_fld = plugin_root_fld
 
+        self._mainwindow = self._iface.mainWindow()
         self._system = platform.system()
 
     def initGui(self):
