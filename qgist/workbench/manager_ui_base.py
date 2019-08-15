@@ -55,6 +55,7 @@ from PyQt5.QtWidgets import (
 # IMPORT (Internal)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+from .const import WORKBENCH_WIDGET_WIDTH
 from ..const import ICON_FLD
 from ..util import translate
 
@@ -90,7 +91,7 @@ class manager_ui_base_class(QDialog):
         self._ui_dict['layout_1_h_lists'].addLayout(self._ui_dict['layout_2_v_uielements'])
 
         manager_ui_base_class._init_dialogtoolbar(
-            self._ui_dict, self._ui_dict['layout_1_h_toolbar']
+            self._ui_dict, self._ui_dict['layout_1_h_toolbar'], plugin_fld
             )
 
     @staticmethod
@@ -99,7 +100,7 @@ class manager_ui_base_class(QDialog):
         toolbar_layout.setSpacing(0)
         toolbar_layout.setContentsMargins(0, 0, 0, 0)
 
-        for name, title, text in [
+        for name, title, icon in [
             ('new', translate('global', 'New work bench'), 'FileNew.svg'),
             ('delete', translate('global', 'Delete work bench'), 'Delete.svg'),
             ('save', translate('global', 'Save work benches'), 'Save.svg'),

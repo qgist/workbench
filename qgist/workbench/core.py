@@ -57,6 +57,7 @@ from .const import (
     PLUGIN_NAME,
     WORKBENCH_WIDGET_WIDTH,
     )
+from .manager_ui import manager_ui_class
 from ..const import (
     ICON_FLD,
     TRANSLATION_FLD,
@@ -117,6 +118,11 @@ class workbench:
         )))
         self._ui_dict['toolbutton_manage'].setToolTip(translate('global', 'Manage workbenches'))
         # self._ui_dict['toolbutton_manage'].clicked.connect(self.workBenchManagementDialog)
+
+        # HACK
+        self._ui_dict['toolbutton_manage'].clicked.connect(
+            lambda: manager_ui_class(self._plugin_root_fld).exec_()
+            )
 
         self._ui_dict['combobox_workbench'] = QComboBox()
         self._ui_dict['combobox_workbench'].setMaximumWidth(WORKBENCH_WIDGET_WIDTH)
