@@ -80,7 +80,7 @@ def _genQgistTranslationFiles_():
 
 def _runCommand_(commandList):
     proc = subprocess.Popen(
-        commandList, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        commandList, stdout = subprocess.PIPE, stderr = subprocess.PIPE
     )
     outs, errs = proc.communicate()
     print(outs.decode('utf-8'), errs.decode('utf-8'))
@@ -89,7 +89,7 @@ def _runCommand_(commandList):
 def _writeProjectFile_(fn):
     seperator = ' \\\n\t'
 
-    with open(fn, 'w') as f:
+    with open(fn, 'w', encoding = 'utf-8') as f:
         f.write(
             'SOURCES = %s\n\nTRANSLATIONS = %s\n' % (
                 seperator.join(list(_genQgistPythonFiles_())),
