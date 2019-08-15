@@ -45,10 +45,10 @@ TRANSLATION_FLD = 'i18n'
 def translate():
     tmpProFileName = 'qgist.pro'
 
-    __writeProjectFile__(tmpProFileName)
+    _writeProjectFile_(tmpProFileName)
 
-    __runCommand__(['pylupdate5', '-noobsolete', '-verbose', tmpProFileName])
-    __runCommand__(['lrelease-qt5', tmpProFileName])
+    _runCommand_(['pylupdate5', '-noobsolete', '-verbose', tmpProFileName])
+    _runCommand_(['lrelease-qt5', tmpProFileName])
 
     os.remove(tmpProFileName)
 
@@ -57,7 +57,7 @@ def translate():
 # INTERNAL ROUTINES
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-def __genQgistPythonFiles__():
+def _genQgistPythonFiles_():
     for path, _, filesList in os.walk('qgist'):
         for fileName in filesList:
             if not fileName.endswith('.py'):
@@ -68,7 +68,7 @@ def __genQgistPythonFiles__():
             yield pythonFilePath
 
 
-def __genQgistTranslationFiles__():
+def _genQgistTranslationFiles_():
     for fileName in os.listdir(TRANSLATION_FLD):
         if not fileName.endswith('.ts'):
             continue
@@ -78,7 +78,7 @@ def __genQgistTranslationFiles__():
         yield translationPath
 
 
-def __runCommand__(commandList):
+def _runCommand_(commandList):
     proc = subprocess.Popen(
         commandList, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
@@ -86,13 +86,13 @@ def __runCommand__(commandList):
     print(outs.decode('utf-8'), errs.decode('utf-8'))
 
 
-def __writeProjectFile__(fn):
+def _writeProjectFile_(fn):
     seperator = ' \\\n\t'
 
     with open(fn, 'w') as f:
         f.write(
             'SOURCES = %s\n\nTRANSLATIONS = %s\n' % (
-                seperator.join(list(__genQgistPythonFiles__())),
-                seperator.join(list(__genQgistTranslationFiles__()))
+                seperator.join(list(_genQgistPythonFiles_())),
+                seperator.join(list(_genQgistTranslationFiles_()))
             )
         )
