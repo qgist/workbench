@@ -24,6 +24,10 @@ specific language governing rights and limitations under the License.
 
 """
 
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# CLASS: WORKBENCH CORE
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 class workbench:
 
     def __init__(self, iface, plugin_root_fld, os_name):
