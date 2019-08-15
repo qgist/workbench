@@ -53,4 +53,6 @@ class qgis_ui_base_class:
 
     def __init__(self, plugin_fld):
 
-        pass
+        self._ui_dict = {
+            'layout_0_v_root': QVBoxLayout(), # dialog
+            }
