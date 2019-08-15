@@ -28,6 +28,7 @@ specific language governing rights and limitations under the License.
 # IMPORT (Python Standard Library)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+import os
 import platform
 
 
@@ -43,6 +44,10 @@ class workbench:
             raise TypeError('iface must be a QGIS iface object')
         if not isinstance(plugin_root_fld, str):
             raise TypeError('plugin_root_fld must be str')
+        if not os.path.exists(plugin_root_fld):
+            raise TypeError('plugin_root_fld must exists')
+        if not os.path.isdir(plugin_root_fld):
+            raise TypeError('plugin_root_fld must be a directory')
 
         self._iface = iface
         self._plugin_root_fld = plugin_root_fld
