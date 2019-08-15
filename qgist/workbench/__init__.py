@@ -1,7 +1,7 @@
 
 """
 
-# Only those are enable which are having "QGistApp" as prent
+# Only those are enable which are having "QGistApp" as parent
 # i.e. only toolbars from QGIS main window and not from sub widgets.
 currentToolBarWidget = [
     toolbar for toolbar in self.mMainWindow.findChildren(
