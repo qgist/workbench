@@ -36,8 +36,15 @@ import platform
 # IMPORT (External Dependencies)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+from PyQt5.QtGui import (
+    QIcon,
+    )
 from PyQt5.QtWidgets import (
     QAction,
+    QComboBox,
+    QHBoxLayout,
+    QToolButton,
+    QWidget,
     )
 
 
@@ -45,8 +52,19 @@ from PyQt5.QtWidgets import (
 # IMPORT (Internal)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from ..const import TRANSLATION_FLD
-from ..util import translate, setupTranslation
+from .const import (
+    PLUGIN_ICON_FN,
+    PLUGIN_NAME,
+    WORKBENCH_WIDGET_WIDTH,
+    )
+from ..const import (
+    ICON_FLD,
+    TRANSLATION_FLD,
+    )
+from ..util import (
+    translate,
+    setupTranslation,
+    )
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -93,50 +111,29 @@ class workbench:
             lambda: self._iface.removePluginMenu(workBenchMenuText, self._ui_dict['action_management'])
             )
 
+        self._ui_dict['toolbutton_manage'] = QToolButton()
+        self._ui_dict['toolbutton_manage'].setIcon(QIcon(os.path.join(
+            self._plugin_root_fld, ICON_FLD, PLUGIN_ICON_FN
+        )))
+        self._ui_dict['toolbutton_manage'].setToolTip(translate('global', 'Manage workbenches'))
+        # self._ui_dict['toolbutton_manage'].clicked.connect(self.workBenchManagementDialog)
+
+        self._ui_dict['combobox_workbench'] = QComboBox()
+        self._ui_dict['combobox_workbench'].setMaximumWidth(WORKBENCH_WIDGET_WIDTH)
+        self._ui_dict['combobox_workbench'].setToolTip(PLUGIN_NAME)
+        # self.fillWorkBenchComboBox()
+        # self._ui_dict['combobox_workbench'].activated.connect(self.changeWorkBench)
+        # self._ui_dict['combobox_workbench'].setCurrentIndex(self.mConfigData['lastIndex'])
+
+        self._ui_dict['layout_0_v_root'] = QHBoxLayout()
+        self._ui_dict['layout_0_v_root'].setContentsMargins(0, 0, 10, 0) # 10 px margin on right side
+        self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['combobox_workbench'])
+        self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['toolbutton_manage'])
+
+        self._ui_dict['widget_corner'] = QWidget()
+        self._ui_dict['widget_corner'].setLayout(self._ui_dict['layout_0_v_root'])
+
         """
-        # Create Workbench management toolbutton to hold a reference management dialog
-        self.mManageToolButton = QToolButton(self.mMainWindow)
-        self.mManageToolButton.setIcon(QIcon(os.path.join(
-            self.mPluginDirectory, ICON_FLD, PLUGIN_ICON_FN
-        )))
-        self.mManageToolButton.setToolTip(
-            translate('global', 'Manage workbenches')
-        )
-        self.mManageToolButton.setIconSize(QSize(20, 20))
-        self.mManageToolButton.clicked.connect(self.workBenchManagementDialog)
-
-        # Create Confguration toolbutton to hold a reference to call Configuration GUI
-        self.mConfigureToolButton = QToolButton(self.mMainWindow)
-        self.mConfigureToolButton.setIcon(QIcon(os.path.join(
-            self.mPluginDirectory, ICON_FLD, PLUGIN_CONFIG_ICON_FN
-        )))
-        self.mConfigureToolButton.setToolTip(
-            translate('global', 'Configure workbenches')
-        )
-        self.mConfigureToolButton.setIconSize(QSize(20, 20))
-        self.mConfigureToolButton.clicked.connect(self.workbenchConfigurationsDialog)
-
-        # Create Workbench dropdown list and fill it with values from Config file.
-        self.mWorkBenchCombobox = QComboBox(self.mMainWindow)
-        self.mWorkBenchCombobox.setMaximumWidth(WORKBENCH_WIDGET_WIDTH)
-        self.mWorkBenchCombobox.setToolTip(PLUGIN_NAME)
-        self.fillWorkBenchComboBox()
-
-        # Activate Current workbench which was save during the last QGIS session (if available)
-        # self.mWorkBenchCombobox.currentIndexChanged.connect(self.changeWorkBench)
-        self.mWorkBenchCombobox.activated.connect(self.changeWorkBench)
-        self.mWorkBenchCombobox.setCurrentIndex(self.mConfigData['lastIndex'])
-
-        # Prepare corner widget to be added in QGIS Top right corner
-        # add previously created workbench dropdown list and setting widget to cornerwidget
-        self.mCornerWidget = QWidget()
-        cornerLayout = QHBoxLayout()
-        cornerLayout.setContentsMargins(0, 0, 10, 0)  # 10 pix margen on right side
-        cornerLayout.addWidget(self.mWorkBenchCombobox)
-        cornerLayout.addWidget(self.mManageToolButton)
-        cornerLayout.addWidget(self.mConfigureToolButton)
-        self.mCornerWidget.setLayout(cornerLayout)
-
         # Check whether user want to add it as corner widget or as toolbar
         # On windows/Linux default is corner widget
         # TODO: Check current OS before setting as Corner widget- FP. 29.09.2018
