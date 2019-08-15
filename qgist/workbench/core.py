@@ -100,14 +100,14 @@ class workbench:
         ))
 
         self._ui_dict = {}
-        self._cleanup_actions = []
+        self._ui_cleanup = []
 
         self._ui_dict['action_management'] = QAction(translate('global', '&Workbench Management'))
         # self._ui_dict['action_management'].triggered.connect(self.workBenchManagementDialog)
 
         workBenchMenuText = translate('global', 'Qgist Work&Bench')
         self._iface.addPluginToMenu(workBenchMenuText, self._ui_dict['action_management'])
-        self._cleanup_actions.append(
+        self._ui_cleanup.append(
             lambda: self._iface.removePluginMenu(workBenchMenuText, self._ui_dict['action_management'])
             )
 
@@ -136,7 +136,7 @@ class workbench:
         # TODO handle Darwin, allow widget_corner to become a toolbar
         self._mainwindow.menuBar().setCornerWidget(self._ui_dict['widget_corner'])
         self._ui_dict['widget_corner'].setVisible(True)
-        self._cleanup_actions.extend([
+        self._ui_cleanup.extend([
             lambda: self._mainwindow.menuBar().setCornerWidget(QWidget()),
             lambda: self._ui_dict['widget_corner'].setVisible(False)
             ])
@@ -148,5 +148,5 @@ class workbench:
 
         # save config to disk
 
-        for cleanup_action in self._cleanup_actions:
+        for cleanup_action in self._ui_cleanup:
             cleanup_action()
