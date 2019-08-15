@@ -133,29 +133,13 @@ class workbench:
         self._ui_dict['widget_corner'] = QWidget()
         self._ui_dict['widget_corner'].setLayout(self._ui_dict['layout_0_v_root'])
 
-        """
-        # Check whether user want to add it as corner widget or as toolbar
-        # On windows/Linux default is corner widget
-        # TODO: Check current OS before setting as Corner widget- FP. 29.09.2018
-        # if its macos then always add as toolbar
-        self.mIsCornerWidget = False  # QUICK FIX:
-        if self.mCurrentOS != "Darwin" and self.mConfigData['asCornerWidget']:
-            self.mMainWindow.menuBar().setCornerWidget(self.mCornerWidget)
-            self.mCornerWidget.setVisible(True)
-            self.mIsCornerWidget = True
-        else:
-            self.mWorkBenchToolBar = self.mIface.addToolBar(
-                translate('global', 'Qgist Work&Bench')
-            )
-            # Set autoraise and NO Fcous to match QGIS toolbar styles.
-            self.mConfigureToolButton.setAutoRaise(True)
-            self.mConfigureToolButton.setFocusPolicy(Qt.NoFocus)
-            self.mManageToolButton.setAutoRaise(True)
-            self.mManageToolButton.setFocusPolicy(Qt.NoFocus)
-            self.mWorkBenchToolBar.setObjectName(WORKBENCHTOOLBAR_NAME)
-            self.mWorkBenchToolBar.addWidget(self.mCornerWidget)
-            self.mIsCornerWidget = False
-        """
+        # TODO handle Darwin, allow widget_corner to become a toolbar
+        self._mainwindow.menuBar().setCornerWidget(self._ui_dict['widget_corner'])
+        self._ui_dict['widget_corner'].setVisible(True)
+        self._cleanup_actions.extend([
+            lambda: self._mainwindow.menuBar().setCornerWidget(QWidget()),
+            lambda: self._ui_dict['widget_corner'].setVisible(False)
+            ])
 
     def unload(self):
         """
