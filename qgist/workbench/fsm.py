@@ -139,7 +139,26 @@ class fsm_class:
 
     def rename_workbench(self, old_name, new_name, mainwindow):
 
-        pass # TODO
+        if not isinstance(old_name, str):
+            raise TypeError('old_name must be str')
+        if not isinstance(new_name, str):
+            raise TypeError('new_name must be str')
+        if not isinstance(mainwindow, QMainWindow):
+            raise TypeError('mainwindow must be a QGis mainwindow')
+        if old_name not in self._workbench_dict.keys():
+            raise ValueError('old_name is not a known workbench')
+        if new_name in self._workbench_dict.keys():
+            raise ValueError('new_name is a known workbench, i.e. already exists')
+        if len(new_name) == 0:
+            raise ValueError('new_name is empty')
+        if old_name == new_name:
+            return
+
+        self._workbench_dict[new_name] = self._workbench_dict.pop(old_name)
+        self._workbench_dict[new_name].name = new_name
+
+        if self._active_workbench == old_name:
+            self._active_workbench = new_name
 
     def save_workbench(self, name, mainwindow):
 

@@ -160,6 +160,21 @@ class dtype_workbench_class:
         for name_internal in (uielements_dict.keys() - uiobjects_dict.keys()):
             uielements_dict[name_internal].existence = False
 
+    @property
+    def name(self):
+
+        return self._name
+
+    @name.setter
+    def name(self, value):
+
+        if not isinstance(name, str):
+            raise TypeError('new value of name must be a str')
+        if len(name) == 0:
+            raise ValueError('new value of name is empty')
+
+        self._name = value
+
     @staticmethod
     def from_mainwindow(
         name = '',
