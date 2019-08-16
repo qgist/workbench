@@ -6,7 +6,7 @@ QGIST WORK BENCH
 QGis Plugin for Organizing Toolbars
 https://github.com/qgist/workbench
 
-    qgist/workbench/fsm.py: finite state machine
+    qgist/workbench/dtype_fsm.py: finite state machine
 
     Copyright (C) 2017-2019 QGIST project <info@qgist.org>
 
@@ -53,7 +53,7 @@ from ..util import translate
 # CLASS
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-class fsm_class:
+class dtype_fsm_class:
 
     def __init__(self, workbench_list, mainwindow, last_workbench = None):
 
