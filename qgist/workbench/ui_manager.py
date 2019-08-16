@@ -90,7 +90,23 @@ class ui_manager_class(ui_manager_base_class):
                 getattr(self, '_toolbutton_{NAME:s}_clicked'.format(NAME = item))
                 )
 
+        self._ui_dict['list_workbenches'].currentRowChanged.connect(self._list_workbenches_currentrowchanged)
+
         self._update_content()
+
+    def _list_workbenches_currentrowchanged(self):
+
+        if not bool(self._ui_dict['list_workbenches'].isEnabled()):
+            return
+
+        new_name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
+
+        if new_name == self._fsm.active_workbench:
+            return
+
+        self._fsm.activate_workbench(new_name, self._mainwindow)
+        self._combobox_workbench.setCurrentText(self._fsm.active_workbench)
+        # self._update_content()
 
     def _toolbutton_new_clicked(self):
 
@@ -122,13 +138,14 @@ class ui_manager_class(ui_manager_base_class):
 
     def _update_content(self):
 
+        self._ui_dict['list_workbenches'].setEnabled(False)
         self._ui_dict['list_workbenches'].clear()
         for item in sorted(self._fsm.keys()):
             self._ui_dict['list_workbenches'].addItem(item)
-
         self._ui_dict['list_workbenches'].setCurrentRow(
             self._workbench_name_to_index(self._fsm.active_workbench)
             )
+        self._ui_dict['list_workbenches'].setEnabled(True)
 
         self._combobox_workbench_update()
 
