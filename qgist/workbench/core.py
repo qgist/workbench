@@ -101,7 +101,7 @@ class workbench:
 
         setupTranslation(os.path.join(
             self._plugin_root_fld, TRANSLATION_FLD
-        ))
+            ))
 
         self._ui_dict = {}
         self._ui_cleanup = []
@@ -117,7 +117,7 @@ class workbench:
         self._ui_dict['toolbutton_manage'] = QToolButton()
         self._ui_dict['toolbutton_manage'].setIcon(QIcon(os.path.join(
             self._plugin_root_fld, ICON_FLD, PLUGIN_ICON_FN
-        )))
+            )))
         self._ui_dict['toolbutton_manage'].setToolTip(translate('global', 'Manage workbenches'))
 
         self._ui_dict['combobox_workbench'] = QComboBox()
