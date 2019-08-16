@@ -108,7 +108,10 @@ class ui_manager_class(ui_manager_base_class):
 
     def _toolbutton_delete_clicked(self):
 
-        pass
+        name = list(sorted(self._fsm.keys()))[self._ui_dict['list_workbenches'].currentRow()]
+
+        self._fsm.delete_workbench(name, self._mainwindow)
+        self._update_content()
 
     def _toolbutton_save_clicked(self):
 
