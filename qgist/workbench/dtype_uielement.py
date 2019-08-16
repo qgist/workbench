@@ -40,7 +40,7 @@ from PyQt5.QtWidgets import (
 
 class dtype_uielement_class:
 
-    def __init__(self
+    def __init__(self,
         name_internal = '',
         name_translated = '',
         visibility = True,

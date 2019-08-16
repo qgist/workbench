@@ -116,7 +116,7 @@ class dtype_workbench_class:
         dtype_workbench_class._save_uielements(qtoolbars_dict, self._toolbars_dict)
         dtype_workbench_class._save_uielements(qdockwidgets_dict, self._dockwidgets_dict)
 
-        self._mainwindow_state = mainwindow.saveState()
+        self._mainwindow_state = bytes(mainwindow.saveState())
 
     def as_dict(self):
 
@@ -194,7 +194,7 @@ class dtype_workbench_class:
             for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
             ]
 
-        mainwindow_state = mainwindow.saveState()
+        mainwindow_state = base64.encodebytes(bytes(mainwindow.saveState())).decode('ASCII')
 
         return dtype_workbench_class(
             name = name,

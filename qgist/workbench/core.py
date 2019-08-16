@@ -57,6 +57,7 @@ from .const import (
     PLUGIN_NAME,
     WORKBENCH_WIDGET_WIDTH,
     )
+from .dtype_fsm import dtype_fsm_class
 from .manager_ui import manager_ui_class
 from ..const import (
     ICON_FLD,
@@ -90,6 +91,8 @@ class workbench:
 
         self._mainwindow = self._iface.mainWindow()
         self._system = platform.system()
+
+        self._fsm = dtype_fsm_class(list(), self._mainwindow) # TODO load from config
 
     def initGui(self):
         """
