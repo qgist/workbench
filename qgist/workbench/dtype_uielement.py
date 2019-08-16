@@ -112,7 +112,7 @@ class dtype_uielement_class:
         raise AttributeError('name_internal must not be changed')
 
     @staticmethod
-    def from_uiobject(self, uiobject):
+    def from_uiobject(uiobject):
 
         if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
             raise TypeError('uiobject must be either QToolBar or QDockWidget')

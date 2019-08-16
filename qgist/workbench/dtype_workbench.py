@@ -130,7 +130,7 @@ class dtype_workbench_class:
     @staticmethod
     def _activate_uielements(uiobjects_dict, uielements_dict):
 
-        for name_internal, uiobject in uiobjects_dict:
+        for name_internal, uiobject in uiobjects_dict.items():
             try:
                 uielements_dict[name_internal].push_state_to_uiobject(uiobject)
             except KeyError:
@@ -151,7 +151,7 @@ class dtype_workbench_class:
     @staticmethod
     def _save_uielements(uiobjects_dict, uielements_dict):
 
-        for name_internal, uiobject in uiobjects_dict:
+        for name_internal, uiobject in uiobjects_dict.items():
             try:
                 uielements_dict[name_internal].pull_state_from_uiobject(uiobject)
             except KeyError:
@@ -186,12 +186,16 @@ class dtype_workbench_class:
 
         toolbars_list = [
             dtype_uielement_class.from_uiobject(uiobject).as_dict()
-            for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
+            for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(
+                mainwindow, QToolBar
+                ).items()
             ]
 
         dockwidgets_list = [
             dtype_uielement_class.from_uiobject(uiobject).as_dict()
-            for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
+            for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(
+                mainwindow, QDockWidget
+                ).items()
             ]
 
         mainwindow_state = base64.encodebytes(bytes(mainwindow.saveState())).decode('ASCII')

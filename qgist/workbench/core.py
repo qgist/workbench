@@ -154,12 +154,7 @@ class workbench:
 
     def _connect_ui(self):
 
-        self._ui_dict['combobox_workbench'].clear()
-        for name in sorted(self._fsm.keys()):
-            self._ui_dict['combobox_workbench'].addItem(name)
-        self._ui_dict['combobox_workbench'].setCurrentText(self._fsm.active_workbench)
-
-        self._ui_dict['combobox_workbench'].setEnabled(True)
+        self._combobox_workbench_updade()
         self._ui_dict['combobox_workbench'].activated.connect(self._combobox_workbench_activated)
 
         self._ui_dict['action_manage'].triggered.connect(self._open_manager)
@@ -174,6 +169,21 @@ class workbench:
         if new_name != self._fsm.active_workbench:
             self._fsm.activate_workbench(new_name, self._mainwindow)
 
+    def _combobox_workbench_updade(self):
+
+        enabled = bool(self._ui_dict['combobox_workbench'].isEnabled())
+
+        if enabled:
+            self._ui_dict['combobox_workbench'].setEnabled(False)
+
+        self._ui_dict['combobox_workbench'].clear()
+        for name in sorted(self._fsm.keys()):
+            self._ui_dict['combobox_workbench'].addItem(name)
+        self._ui_dict['combobox_workbench'].setCurrentText(self._fsm.active_workbench)
+
+        if enabled:
+            self._ui_dict['combobox_workbench'].setEnabled(True)
+
     def _open_manager(self):
 
         self._ui_dict['combobox_workbench'].setEnabled(False)
@@ -183,6 +193,7 @@ class workbench:
                 self._plugin_root_fld,
                 self._mainwindow,
                 self._ui_dict['combobox_workbench'],
+                self._combobox_workbench_updade,
                 self._fsm,
                 ).exec_()
         finally:
