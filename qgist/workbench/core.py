@@ -92,7 +92,7 @@ class workbench:
         self._mainwindow = self._iface.mainWindow()
         self._system = platform.system()
 
-        self._fsm = dtype_fsm_class(list(), self._mainwindow) # TODO load from config
+        self._fsm = dtype_fsm_class(list(), self._mainwindow) # TODO load from config, zero-init issue ...
 
     def initGui(self):
         """
