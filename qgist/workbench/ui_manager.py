@@ -120,4 +120,8 @@ class ui_manager_class(ui_manager_base_class):
         for item in sorted(self._fsm.keys()):
             self._ui_dict['list_workbenches'].addItem(item)
 
+        self._ui_dict['list_workbenches'].setCurrentRow(
+            list(sorted(self._fsm.keys())).index(self._fsm.active_workbench)
+            )
+
         self._combobox_workbench_update()
