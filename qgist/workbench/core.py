@@ -140,7 +140,7 @@ class workbench:
             lambda: self._ui_dict['widget_corner'].setVisible(False)
             ])
 
-        self._connect_fsm()
+        self._connect_ui()
 
     def unload(self):
         """
@@ -152,7 +152,7 @@ class workbench:
         for cleanup_action in self._ui_cleanup:
             cleanup_action()
 
-    def _connect_fsm(self):
+    def _connect_ui(self):
 
         self._ui_dict['combobox_workbench'].clear()
         for name in sorted(self._fsm.keys()):
@@ -162,16 +162,18 @@ class workbench:
         self._combobox_workbench_active = True
         self._ui_dict['combobox_workbench'].activated.connect(self._combobox_workbench_activated)
 
-        # HACK
-        self._ui_dict['toolbutton_manage'].clicked.connect(
-            lambda: ui_manager_class(self._plugin_root_fld).exec_()
-            )
-        # self._ui_dict['action_manage'].triggered.connect(self.workBenchManagementDialog)
-        # self._ui_dict['toolbutton_manage'].clicked.connect(self.workBenchManagementDialog)
+        self._ui_dict['action_manage'].triggered.connect(self._open_manager)
+        self._ui_dict['toolbutton_manage'].clicked.connect(self._open_manager)
 
     def _combobox_workbench_activated(self):
 
         if not self._combobox_workbench_active:
             return
 
-        # TODO
+        new_name = str(self._ui_dict['combobox_workbench'].currentText())
+        if new_name != self._fsm.active_workbench:
+            self._fsm.activate_workbench(new_name, self._mainwindow)
+
+    def _open_manager(self):
+
+        ui_manager_class(self._plugin_root_fld).exec_()
