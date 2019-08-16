@@ -6,7 +6,7 @@ QGIST WORK BENCH
 QGis Plugin for Organizing Toolbars
 https://github.com/qgist/workbench
 
-    qgist/workbench/manager_ui.py: workbench manager ui class
+    qgist/workbench/ui_manager.py: workbench manager ui class
 
     Copyright (C) 2017-2019 QGIST project <info@qgist.org>
 
@@ -24,9 +24,9 @@ specific language governing rights and limitations under the License.
 
 """
 
-from .manager_ui_base import manager_ui_base_class
+from .ui_manager_base import ui_manager_base_class
 
-class manager_ui_class(manager_ui_base_class):
+class ui_manager_class(ui_manager_base_class):
 
     def __init__(self, plugin_fld):
 

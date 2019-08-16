@@ -58,7 +58,7 @@ from .const import (
     WORKBENCH_WIDGET_WIDTH,
     )
 from .dtype_fsm import dtype_fsm_class
-from .manager_ui import manager_ui_class
+from .ui_manager import ui_manager_class
 from ..const import (
     ICON_FLD,
     TRANSLATION_FLD,
@@ -124,7 +124,7 @@ class workbench:
 
         # HACK
         self._ui_dict['toolbutton_manage'].clicked.connect(
-            lambda: manager_ui_class(self._plugin_root_fld).exec_()
+            lambda: ui_manager_class(self._plugin_root_fld).exec_()
             )
 
         self._ui_dict['combobox_workbench'] = QComboBox()

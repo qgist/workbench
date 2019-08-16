@@ -6,7 +6,7 @@ QGIST WORK BENCH
 QGis Plugin for Organizing Toolbars
 https://github.com/qgist/workbench
 
-    qgist/workbench/manager_ui_base.py: workbench manager ui base class
+    qgist/workbench/ui_manager_base.py: workbench manager ui base class
 
     Copyright (C) 2017-2019 QGIST project <info@qgist.org>
 
@@ -64,7 +64,7 @@ from ..util import translate
 # CLASS
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-class manager_ui_base_class(QDialog):
+class ui_manager_base_class(QDialog):
 
     def __init__(self, plugin_fld):
 
@@ -82,15 +82,15 @@ class manager_ui_base_class(QDialog):
         self._ui_dict['layout_0_v_root'].addLayout(self._ui_dict['layout_1_h_toolbar'])
         self._ui_dict['layout_0_v_root'].addLayout(self._ui_dict['layout_1_h_lists'])
 
-        self._ui_dict['list_workbenches'] = manager_ui_base_class._get_workbenchlist()
+        self._ui_dict['list_workbenches'] = ui_manager_base_class._get_workbenchlist()
         self._ui_dict['layout_1_h_lists'].addWidget(self._ui_dict['list_workbenches'])
-        self._ui_dict['list_toolbars'] = manager_ui_base_class._get_toolbarlist()
+        self._ui_dict['list_toolbars'] = ui_manager_base_class._get_toolbarlist()
         self._ui_dict['layout_2_v_uielements'].addWidget(self._ui_dict['list_toolbars'])
-        self._ui_dict['list_dockwidgets'] = manager_ui_base_class._get_dockwidgetlist()
+        self._ui_dict['list_dockwidgets'] = ui_manager_base_class._get_dockwidgetlist()
         self._ui_dict['layout_2_v_uielements'].addWidget(self._ui_dict['list_dockwidgets'])
         self._ui_dict['layout_1_h_lists'].addLayout(self._ui_dict['layout_2_v_uielements'])
 
-        manager_ui_base_class._init_dialogtoolbar(
+        ui_manager_base_class._init_dialogtoolbar(
             self._ui_dict, self._ui_dict['layout_1_h_toolbar'], plugin_fld
             )
 
