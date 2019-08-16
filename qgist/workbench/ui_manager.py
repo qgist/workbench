@@ -75,3 +75,27 @@ class ui_manager_class(ui_manager_base_class):
         self._mainwindow = mainwindow
         self._combobox_workbench = combobox_workbench
         self._fsm = fsm
+
+        self._connect_ui()
+
+    def _connect_ui(self):
+
+        for item in sorted(self._fsm.keys()):
+            self._ui_dict['list_workbenches'].addItem(item)
+
+        for item in ('new', 'delete', 'save'):
+            self._ui_dict['toolbutton_{NAME:s}'.format(NAME = item)].clicked.connect(
+                getattr(self, '_toolbutton_{NAME:s}_clicked'.format(NAME = item))
+                )
+
+    def _toolbutton_new_clicked(self):
+
+        pass
+
+    def _toolbutton_delete_clicked(self):
+
+        pass
+
+    def _toolbutton_save_clicked(self):
+
+        pass
