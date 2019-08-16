@@ -107,7 +107,6 @@ class workbench:
         self._ui_cleanup = []
 
         self._ui_dict['action_management'] = QAction(translate('global', '&Workbench Management'))
-        # self._ui_dict['action_management'].triggered.connect(self.workBenchManagementDialog)
 
         workBenchMenuText = translate('global', 'Qgist Work&Bench')
         self._iface.addPluginToMenu(workBenchMenuText, self._ui_dict['action_management'])
@@ -120,17 +119,10 @@ class workbench:
             self._plugin_root_fld, ICON_FLD, PLUGIN_ICON_FN
         )))
         self._ui_dict['toolbutton_manage'].setToolTip(translate('global', 'Manage workbenches'))
-        # self._ui_dict['toolbutton_manage'].clicked.connect(self.workBenchManagementDialog)
-
-        # HACK
-        self._ui_dict['toolbutton_manage'].clicked.connect(
-            lambda: ui_manager_class(self._plugin_root_fld).exec_()
-            )
 
         self._ui_dict['combobox_workbench'] = QComboBox()
         self._ui_dict['combobox_workbench'].setMaximumWidth(WORKBENCH_WIDGET_WIDTH)
         self._ui_dict['combobox_workbench'].setToolTip(PLUGIN_NAME)
-        self._combobox_workbench_init()
 
         self._ui_dict['layout_0_v_root'] = QHBoxLayout()
         self._ui_dict['layout_0_v_root'].setContentsMargins(0, 0, 10, 0) # 10 px margin on right side
@@ -148,6 +140,8 @@ class workbench:
             lambda: self._ui_dict['widget_corner'].setVisible(False)
             ])
 
+        self._connect_fsm()
+
     def unload(self):
         """
         QGis Plugin Interface Routine
@@ -158,7 +152,7 @@ class workbench:
         for cleanup_action in self._ui_cleanup:
             cleanup_action()
 
-    def _combobox_workbench_init(self):
+    def _connect_fsm(self):
 
         self._ui_dict['combobox_workbench'].clear()
         for name in sorted(self._fsm.keys()):
@@ -168,6 +162,13 @@ class workbench:
 
         self._combobox_workbench_active = True
         self._ui_dict['combobox_workbench'].activated.connect(self._combobox_workbench_activated)
+
+        # HACK
+        self._ui_dict['toolbutton_manage'].clicked.connect(
+            lambda: ui_manager_class(self._plugin_root_fld).exec_()
+            )
+        # self._ui_dict['action_management'].triggered.connect(self.workBenchManagementDialog)
+        # self._ui_dict['toolbutton_manage'].clicked.connect(self.workBenchManagementDialog)
 
     def _combobox_workbench_activated(self):
 
