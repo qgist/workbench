@@ -130,9 +130,7 @@ class workbench:
         self._ui_dict['combobox_workbench'] = QComboBox()
         self._ui_dict['combobox_workbench'].setMaximumWidth(WORKBENCH_WIDGET_WIDTH)
         self._ui_dict['combobox_workbench'].setToolTip(PLUGIN_NAME)
-        # self.fillWorkBenchComboBox()
-        # self._ui_dict['combobox_workbench'].activated.connect(self.changeWorkBench)
-        # self._ui_dict['combobox_workbench'].setCurrentIndex(self.mConfigData['lastIndex'])
+        self._combobox_workbench_init()
 
         self._ui_dict['layout_0_v_root'] = QHBoxLayout()
         self._ui_dict['layout_0_v_root'].setContentsMargins(0, 0, 10, 0) # 10 px margin on right side
@@ -155,7 +153,25 @@ class workbench:
         QGis Plugin Interface Routine
         """
 
-        # save config to disk
+        # TODO save config to disk
 
         for cleanup_action in self._ui_cleanup:
             cleanup_action()
+
+    def _combobox_workbench_init(self):
+
+        self._ui_dict['combobox_workbench'].clear()
+        for name in sorted(self._fsm.keys()):
+            self._ui_dict['combobox_workbench'].addItem(name)
+
+        self._ui_dict['combobox_workbench'].setCurrentText(self._fsm.active_workbench)
+
+        self._combobox_workbench_active = True
+        self._ui_dict['combobox_workbench'].activated.connect(self._combobox_workbench_activated)
+
+    def _combobox_workbench_activated(self):
+
+        if not self._combobox_workbench_active:
+            return
+
+        # TODO
