@@ -106,12 +106,12 @@ class workbench:
         self._ui_dict = {}
         self._ui_cleanup = []
 
-        self._ui_dict['action_management'] = QAction(translate('global', '&Workbench Management'))
+        self._ui_dict['action_manage'] = QAction(translate('global', '&Workbench Management'))
 
         workBenchMenuText = translate('global', 'Qgist Work&Bench')
-        self._iface.addPluginToMenu(workBenchMenuText, self._ui_dict['action_management'])
+        self._iface.addPluginToMenu(workBenchMenuText, self._ui_dict['action_manage'])
         self._ui_cleanup.append(
-            lambda: self._iface.removePluginMenu(workBenchMenuText, self._ui_dict['action_management'])
+            lambda: self._iface.removePluginMenu(workBenchMenuText, self._ui_dict['action_manage'])
             )
 
         self._ui_dict['toolbutton_manage'] = QToolButton()
@@ -157,7 +157,6 @@ class workbench:
         self._ui_dict['combobox_workbench'].clear()
         for name in sorted(self._fsm.keys()):
             self._ui_dict['combobox_workbench'].addItem(name)
-
         self._ui_dict['combobox_workbench'].setCurrentText(self._fsm.active_workbench)
 
         self._combobox_workbench_active = True
@@ -167,7 +166,7 @@ class workbench:
         self._ui_dict['toolbutton_manage'].clicked.connect(
             lambda: ui_manager_class(self._plugin_root_fld).exec_()
             )
-        # self._ui_dict['action_management'].triggered.connect(self.workBenchManagementDialog)
+        # self._ui_dict['action_manage'].triggered.connect(self.workBenchManagementDialog)
         # self._ui_dict['toolbutton_manage'].clicked.connect(self.workBenchManagementDialog)
 
     def _combobox_workbench_activated(self):
