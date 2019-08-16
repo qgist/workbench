@@ -108,14 +108,17 @@ class ui_manager_class(ui_manager_base_class):
 
     def _toolbutton_delete_clicked(self):
 
-        name = list(sorted(self._fsm.keys()))[self._ui_dict['list_workbenches'].currentRow()]
+        name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
 
         self._fsm.delete_workbench(name, self._mainwindow)
         self._update_content()
 
     def _toolbutton_save_clicked(self):
 
-        pass
+        name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
+
+        self._fsm.save_workbench(name, self._mainwindow)
+        self._update_content()
 
     def _update_content(self):
 
@@ -124,7 +127,15 @@ class ui_manager_class(ui_manager_base_class):
             self._ui_dict['list_workbenches'].addItem(item)
 
         self._ui_dict['list_workbenches'].setCurrentRow(
-            list(sorted(self._fsm.keys())).index(self._fsm.active_workbench)
+            self._workbench_name_to_index(self._fsm.active_workbench)
             )
 
         self._combobox_workbench_update()
+
+    def _workbench_index_to_name(self, index):
+
+        return list(sorted(self._fsm.keys()))[index]
+
+    def _workbench_name_to_index(self, name):
+
+        return list(sorted(self._fsm.keys())).index(name)
