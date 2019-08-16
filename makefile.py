@@ -43,6 +43,7 @@ TRANSLATION_FLD = 'i18n'
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 def translate():
+
     tmpProFileName = 'qgist.pro'
 
     _writeProjectFile_(tmpProFileName)
@@ -58,6 +59,7 @@ def translate():
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 def _genQgistPythonFiles_():
+
     for path, _, filesList in os.walk('qgist'):
         for fileName in filesList:
             if not fileName.endswith('.py'):
@@ -67,8 +69,8 @@ def _genQgistPythonFiles_():
                 continue
             yield pythonFilePath
 
-
 def _genQgistTranslationFiles_():
+
     for fileName in os.listdir(TRANSLATION_FLD):
         if not fileName.endswith('.ts'):
             continue
@@ -77,16 +79,16 @@ def _genQgistTranslationFiles_():
             continue
         yield translationPath
 
-
 def _runCommand_(commandList):
+
     proc = subprocess.Popen(
         commandList, stdout = subprocess.PIPE, stderr = subprocess.PIPE
-    )
+        )
     outs, errs = proc.communicate()
     print(outs.decode('utf-8'), errs.decode('utf-8'))
 
-
 def _writeProjectFile_(fn):
+
     seperator = ' \\\n\t'
 
     with open(fn, 'w', encoding = 'utf-8') as f:
@@ -94,5 +96,5 @@ def _writeProjectFile_(fn):
             'SOURCES = %s\n\nTRANSLATIONS = %s\n' % (
                 seperator.join(list(_genQgistPythonFiles_())),
                 seperator.join(list(_genQgistTranslationFiles_()))
+                )
             )
-        )
