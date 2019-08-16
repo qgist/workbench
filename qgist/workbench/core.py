@@ -176,4 +176,9 @@ class workbench:
 
     def _open_manager(self):
 
-        ui_manager_class(self._plugin_root_fld).exec_()
+        self._combobox_workbench_active = False
+
+        try:
+            ui_manager_class(self._plugin_root_fld).exec_()
+        finally:
+            self._combobox_workbench_active = True
