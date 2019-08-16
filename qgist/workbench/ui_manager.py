@@ -25,9 +25,26 @@ specific language governing rights and limitations under the License.
 """
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# IMPORT (Python Standard Library)
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+import os
+
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# IMPORT (External Dependencies)
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+from PyQt5.QtWidgets import (
+    QComboBox,
+    QMainWindow,
+    )
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # IMPORT (Internal)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+from .dtype_fsm import dtype_fsm_class
 from .ui_manager_base import ui_manager_base_class
 
 
@@ -37,6 +54,24 @@ from .ui_manager_base import ui_manager_base_class
 
 class ui_manager_class(ui_manager_base_class):
 
-    def __init__(self, plugin_fld):
+    def __init__(self, plugin_root_fld, mainwindow, combobox_workbench, fsm):
 
-        super().__init__(plugin_fld)
+        if not isinstance(plugin_root_fld, str):
+            raise TypeError('plugin_root_fld must be str')
+        if not os.path.exists(plugin_root_fld):
+            raise ValueError('plugin_root_fld must exists')
+        if not os.path.isdir(plugin_root_fld):
+            raise ValueError('plugin_root_fld must be a directory')
+        if not isinstance(mainwindow, QMainWindow):
+            raise TypeError('mainwindow must be a QGis mainwindow')
+        if not isinstance(combobox_workbench, QComboBox):
+            raise TypeError('combobox_workbench must be a QGis mainwindow')
+        if not isinstance(fsm, dtype_fsm_class):
+            raise TypeError('fsm must be a workbench finite state machine')
+
+        super().__init__(plugin_root_fld)
+
+        self._plugin_root_fld = plugin_root_fld
+        self._mainwindow = mainwindow
+        self._combobox_workbench = combobox_workbench
+        self._fsm = fsm

@@ -66,7 +66,7 @@ from ..util import translate
 
 class ui_manager_base_class(QDialog):
 
-    def __init__(self, plugin_fld):
+    def __init__(self, plugin_root_fld):
 
         super().__init__()
 
@@ -91,11 +91,11 @@ class ui_manager_base_class(QDialog):
         self._ui_dict['layout_1_h_lists'].addLayout(self._ui_dict['layout_2_v_uielements'])
 
         ui_manager_base_class._init_dialogtoolbar(
-            self._ui_dict, self._ui_dict['layout_1_h_toolbar'], plugin_fld
+            self._ui_dict, self._ui_dict['layout_1_h_toolbar'], plugin_root_fld
             )
 
     @staticmethod
-    def _init_dialogtoolbar(ui_dict, toolbar_layout, plugin_fld):
+    def _init_dialogtoolbar(ui_dict, toolbar_layout, plugin_root_fld):
 
         toolbar_layout.setSpacing(0)
         toolbar_layout.setContentsMargins(0, 0, 0, 0)
@@ -109,7 +109,7 @@ class ui_manager_base_class(QDialog):
             toolbutton = QToolButton()
             toolbutton.setToolTip(title)
             toolbutton.setIcon(QIcon(os.path.join(
-                plugin_fld, ICON_FLD, icon
+                plugin_root_fld, ICON_FLD, icon
             )))
             toolbutton.setIconSize(QSize(24, 24))  # TODO get icon size from QGis!!!
             toolbutton.setAutoRaise(True)

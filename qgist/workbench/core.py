@@ -159,7 +159,7 @@ class workbench:
             self._ui_dict['combobox_workbench'].addItem(name)
         self._ui_dict['combobox_workbench'].setCurrentText(self._fsm.active_workbench)
 
-        self._combobox_workbench_active = True
+        self._ui_dict['combobox_workbench'].setEnabled(True)
         self._ui_dict['combobox_workbench'].activated.connect(self._combobox_workbench_activated)
 
         self._ui_dict['action_manage'].triggered.connect(self._open_manager)
@@ -167,7 +167,7 @@ class workbench:
 
     def _combobox_workbench_activated(self):
 
-        if not self._combobox_workbench_active:
+        if not bool(self._ui_dict['combobox_workbench'].isEnabled()):
             return
 
         new_name = str(self._ui_dict['combobox_workbench'].currentText())
@@ -176,9 +176,14 @@ class workbench:
 
     def _open_manager(self):
 
-        self._combobox_workbench_active = False
+        self._ui_dict['combobox_workbench'].setEnabled(False)
 
         try:
-            ui_manager_class(self._plugin_root_fld).exec_()
+            ui_manager_class(
+                self._plugin_root_fld,
+                self._mainwindow,
+                self._ui_dict['combobox_workbench'],
+                self._fsm,
+                ).exec_()
         finally:
-            self._combobox_workbench_active = True
+            self._ui_dict['combobox_workbench'].setEnabled(True)
