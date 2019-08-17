@@ -3,7 +3,7 @@
 Core developers, in alphabetical order:
 
 - Sebastian M. Ernst <ernst@pleiszenburg.de>
-- Maria Müller <>
+- Maria Müller <maria.georgia.mueller@gmail.com>
 - Friedrich Prinz <prinz@pleiszenburg.de>
 
 # QGIST Work Bench
