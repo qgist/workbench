@@ -112,6 +112,12 @@ class workbench:
             lambda: self._iface.removePluginMenu(workBenchMenuText, self._ui_dict['action_manage'])
             )
 
+        self._ui_dict['toolbutton_save'] = QToolButton()
+        self._ui_dict['toolbutton_save'].setIcon(QIcon(os.path.join(
+            self._plugin_root_fld, ICON_FLD, 'Save.svg'
+            )))
+        self._ui_dict['toolbutton_save'].setToolTip(translate('global', 'Save work benche'))
+
         self._ui_dict['toolbutton_manage'] = QToolButton()
         self._ui_dict['toolbutton_manage'].setIcon(QIcon(os.path.join(
             self._plugin_root_fld, ICON_FLD, PLUGIN_ICON_FN
@@ -125,6 +131,7 @@ class workbench:
         self._ui_dict['layout_0_v_root'] = QHBoxLayout()
         self._ui_dict['layout_0_v_root'].setContentsMargins(0, 0, 10, 0) # 10 px margin on right side
         self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['combobox_workbench'])
+        self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['toolbutton_save'])
         self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['toolbutton_manage'])
 
         self._ui_dict['widget_corner'] = QWidget()
