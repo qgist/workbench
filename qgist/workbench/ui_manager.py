@@ -159,7 +159,12 @@ class ui_manager_class(ui_manager_base_class):
 
         def make_widgetitems(source, target):
             for uielement in source:
-                item_checkbox = QCheckBox(uielement.name_translated)
+                item_checkbox = QCheckBox(
+                    '{TRANSLATED:s} ({INTERNAL:s})'.format(
+                        TRANSLATED = uielement.name_translated,
+                        INTERNAL = uielement.name_internal,
+                        )
+                    )
                 item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)
                 item_checkbox.setEnabled(uielement.existence)
                 target.setItemWidget(QListWidgetItem(target), item_checkbox)
