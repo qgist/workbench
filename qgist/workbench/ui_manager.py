@@ -157,30 +157,26 @@ class ui_manager_class(ui_manager_base_class):
 
     def _uptdate_items(self):
 
+        def make_widgetitems(source, target):
+            for uielement in source:
+                item_checkbox = QCheckBox(uielement.name_translated)
+                item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)
+                item_checkbox.setEnabled(uielement.existence)
+                target.setItemWidget(QListWidgetItem(target), item_checkbox)
+
         self._ui_dict['list_dockwidgets'].setEnabled(False)
         self._ui_dict['list_toolbars'].setEnabled(False)
         self._ui_dict['list_dockwidgets'].clear()
         self._ui_dict['list_toolbars'].clear()
 
-        for uielement in self._fsm[self._fsm.active_workbench].dockwidgets():
-
-            item_checkbox = QCheckBox(uielement.name_translated)
-            item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)
-            item_checkbox.setEnabled(uielement.existence)
-
-            self._ui_dict['list_dockwidgets'].setItemWidget(
-                QListWidgetItem(self._ui_dict['list_dockwidgets']), item_checkbox
-                )
-
-        for uielement in self._fsm[self._fsm.active_workbench].toolbars():
-
-            item_checkbox = QCheckBox(uielement.name_translated)
-            item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)
-            item_checkbox.setEnabled(uielement.existence)
-
-            self._ui_dict['list_toolbars'].setItemWidget(
-                QListWidgetItem(self._ui_dict['list_toolbars']), item_checkbox
-                )
+        make_widgetitems(
+            source = self._fsm[self._fsm.active_workbench].dockwidgets(),
+            target = self._ui_dict['list_dockwidgets'],
+            )
+        make_widgetitems(
+            source = self._fsm[self._fsm.active_workbench].toolbars(),
+            target = self._ui_dict['list_toolbars'],
+            )
 
         self._ui_dict['list_dockwidgets'].setEnabled(True)
         self._ui_dict['list_toolbars'].setEnabled(True)
