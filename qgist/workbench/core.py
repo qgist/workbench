@@ -138,11 +138,10 @@ class workbench:
             lambda: self._ui_dict['widget_corner'].setVisible(False)
             ])
 
-        # self._wait_for_mainwindow = True
-        # self._ui_dict['action_manage'].setEnabled(False)
-        # self._ui_dict['combobox_workbench'].setEnabled(False)
-        # delay_on_load(self._connect_ui, self._mainwindow)
-        self._connect_ui()
+        self._wait_for_mainwindow = True
+        self._ui_dict['action_manage'].setEnabled(False)
+        self._ui_dict['combobox_workbench'].setEnabled(False)
+        self._iface.initializationCompleted.connect(self._connect_ui)
 
     def unload(self):
         """
@@ -156,11 +155,12 @@ class workbench:
 
     def _connect_ui(self):
 
-        # if not self._wait_for_mainwindow:
-        #     return
-        # self._wait_for_mainwindow = False
-        # self._ui_dict['action_manage'].setEnabled(True)
-        # self._ui_dict['combobox_workbench'].setEnabled(True)
+        if not self._wait_for_mainwindow:
+            return
+        self._wait_for_mainwindow = False
+        self._ui_dict['action_manage'].setEnabled(True)
+        self._ui_dict['combobox_workbench'].setEnabled(True)
+        self._iface.initializationCompleted.disconnect(self._connect_ui)
 
         self._fsm = dtype_fsm_class(list(), self._mainwindow) # TODO load from config, zero-init issue ...
 
@@ -208,32 +208,3 @@ class workbench:
                 ).exec_()
         finally:
             self._ui_dict['combobox_workbench'].setEnabled(True)
-
-
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# ROUTINES
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-# def delay_on_load(func, qt_widget):
-#
-#     from PyQt5.QtCore import QObject, QEvent
-#     from PyQt5.QtWidgets import QMessageBox
-#
-#     QMessageBox.warning(None, 'TEST', 'Installing filter ...')
-#
-#     def wrapper():
-#         qt_widget.removeEventFilter(filter_obj)
-#         func()
-#
-#     class filter_class(QObject):
-#         def eventFilter(self, obj, event):
-#             QMessageBox.warning(None, 'TEST', 'Got event type "%s"' % str(event.type()))
-#             if event.type() == QEvent.Polish: # and obj is qt_widget:
-#                 wrapper()
-#                 return True
-#             return QObject.eventFilter(obj, event)
-#
-#     filter_obj = filter_class()
-#     qt_widget.installEventFilter(filter_obj)
-#
-#     QMessageBox.warning(None, 'TEST', '... install done.')
