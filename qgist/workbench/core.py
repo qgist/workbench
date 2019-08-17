@@ -112,11 +112,17 @@ class workbench:
             lambda: self._iface.removePluginMenu(workBenchMenuText, self._ui_dict['action_manage'])
             )
 
+        self._ui_dict['toolbutton_reset'] = QToolButton()
+        # self._ui_dict['toolbutton_reset'].setIcon(QIcon(os.path.join(
+        #     self._plugin_root_fld, ICON_FLD, 'Save.svg'
+        #     )))
+        self._ui_dict['toolbutton_reset'].setToolTip(translate('global', 'Reset workbench'))
+
         self._ui_dict['toolbutton_save'] = QToolButton()
         self._ui_dict['toolbutton_save'].setIcon(QIcon(os.path.join(
             self._plugin_root_fld, ICON_FLD, 'Save.svg'
             )))
-        self._ui_dict['toolbutton_save'].setToolTip(translate('global', 'Save work benche'))
+        self._ui_dict['toolbutton_save'].setToolTip(translate('global', 'Save workbenche'))
 
         self._ui_dict['toolbutton_manage'] = QToolButton()
         self._ui_dict['toolbutton_manage'].setIcon(QIcon(os.path.join(
@@ -131,6 +137,7 @@ class workbench:
         self._ui_dict['layout_0_v_root'] = QHBoxLayout()
         self._ui_dict['layout_0_v_root'].setContentsMargins(0, 0, 10, 0) # 10 px margin on right side
         self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['combobox_workbench'])
+        self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['toolbutton_reset'])
         self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['toolbutton_save'])
         self._ui_dict['layout_0_v_root'].addWidget(self._ui_dict['toolbutton_manage'])
 
@@ -177,6 +184,7 @@ class workbench:
         self._ui_dict['action_manage'].triggered.connect(self._open_manager)
         self._ui_dict['toolbutton_manage'].clicked.connect(self._open_manager)
         self._ui_dict['toolbutton_save'].clicked.connect(self._save_workbench)
+        self._ui_dict['toolbutton_reset'].clicked.connect(self._reset_workbench)
 
     def _combobox_workbench_activated(self):
 
@@ -216,6 +224,10 @@ class workbench:
                 ).exec_()
         finally:
             self._ui_dict['combobox_workbench'].setEnabled(True)
+
+    def _reset_workbench(self):
+
+        self._fsm.activate_workbench(self._fsm.active_workbench, self._mainwindow, force = True)
 
     def _save_workbench(self):
 
