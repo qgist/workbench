@@ -35,9 +35,14 @@ import os
 # IMPORT (External Dependencies)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+from PyQt5.QtCore import (
+    Qt,
+    )
 from PyQt5.QtWidgets import (
+    QCheckBox,
     QComboBox,
     QInputDialog,
+    QListWidgetItem,
     QMainWindow,
     )
 
@@ -92,7 +97,7 @@ class ui_manager_class(ui_manager_base_class):
 
         self._ui_dict['list_workbenches'].currentRowChanged.connect(self._list_workbenches_currentrowchanged)
 
-        self._update_content()
+        self._update_workbenches()
 
     def _list_workbenches_currentrowchanged(self):
 
@@ -106,7 +111,8 @@ class ui_manager_class(ui_manager_base_class):
 
         self._fsm.activate_workbench(new_name, self._mainwindow)
         self._combobox_workbench.setCurrentText(self._fsm.active_workbench)
-        # self._update_content()
+        # self._update_workbenches()
+        self._uptdate_items()
 
     def _toolbutton_new_clicked(self):
 
@@ -120,23 +126,23 @@ class ui_manager_class(ui_manager_base_class):
             return
 
         self._fsm.new_workbench(new_name, self._mainwindow)
-        self._update_content()
+        self._update_workbenches()
 
     def _toolbutton_delete_clicked(self):
 
         name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
 
         self._fsm.delete_workbench(name, self._mainwindow)
-        self._update_content()
+        self._update_workbenches()
 
     def _toolbutton_save_clicked(self):
 
         name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
 
         self._fsm.save_workbench(name, self._mainwindow)
-        self._update_content()
+        self._update_workbenches()
 
-    def _update_content(self):
+    def _update_workbenches(self):
 
         self._ui_dict['list_workbenches'].setEnabled(False)
         self._ui_dict['list_workbenches'].clear()
@@ -156,11 +162,29 @@ class ui_manager_class(ui_manager_base_class):
         self._ui_dict['list_dockwidgets'].clear()
         self._ui_dict['list_toolbars'].clear()
 
-        for item in self._fsm[self._fsm.active_workbench].dockwidgets_keys():
-            pass
+        for name in self._fsm[self._fsm.active_workbench].dockwidgets_keys():
 
-        for item in self._fsm[self._fsm.active_workbench].toolbars_keys():
-            pass
+            uielement = self._fsm[self._fsm.active_workbench]['dockwidgets', name]
+
+            item_checkbox = QCheckBox(uielement.name_translated)
+            item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)
+            item_checkbox.setEnabled(uielement.existence)
+
+            self._ui_dict['list_dockwidgets'].setItemWidget(
+                QListWidgetItem(self._ui_dict['list_dockwidgets']), item_checkbox
+                )
+
+        for name in self._fsm[self._fsm.active_workbench].toolbars_keys():
+
+            uielement = self._fsm[self._fsm.active_workbench]['toolbars', name]
+
+            item_checkbox = QCheckBox(uielement.name_translated)
+            item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)
+            item_checkbox.setEnabled(uielement.existence)
+
+            self._ui_dict['list_toolbars'].setItemWidget(
+                QListWidgetItem(self._ui_dict['list_toolbars']), item_checkbox
+                )
 
         self._ui_dict['list_dockwidgets'].setEnabled(True)
         self._ui_dict['list_toolbars'].setEnabled(True)

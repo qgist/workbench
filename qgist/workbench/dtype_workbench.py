@@ -108,11 +108,11 @@ class dtype_workbench_class:
             raise TypeError('item_type must be str')
         if item_type not in ('toolbars', 'dockwidgets'):
             raise ValueError('unknown item_type')
+
+        target_dict = getattr(self, '_{NAME:s}_dict'.format(NAME = item_type))
+
         if not isinstance(item_name, str):
             raise TypeError('item_name must be str')
-
-        target_dict = getattr(self, '_{NAME:s}_dict'.format(NAME = item_name))
-
         if item_name not in target_dict.keys():
             raise ValueError('item_name is not a known item')
 

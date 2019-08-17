@@ -111,6 +111,29 @@ class dtype_uielement_class:
 
         raise AttributeError('name_internal must not be changed')
 
+    @property
+    def name_translated(self):
+
+        return self._name_translated
+
+    @name_translated.setter
+    def name_translated(self, value):
+
+        raise AttributeError('name_translated must not be changed')
+
+    @property
+    def visibility(self):
+
+        return self._visibility
+
+    @visibility.setter
+    def visibility(self, value):
+
+        if not isinstance(value, bool):
+            raise TypeError('visibility must be bool')
+
+        self._visibility = value
+
     @staticmethod
     def from_uiobject(uiobject):
 
