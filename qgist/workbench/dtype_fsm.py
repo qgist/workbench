@@ -70,7 +70,10 @@ class dtype_fsm_class:
         if last_workbench is not None and last_workbench not in self._workbench_dict.keys():
             raise ValueError('last_workbench does not exist')
 
-        self._workbench_dict = {item['name']: dtype_workbench_class(**item) for item in workbench_list}
+        self._workbench_dict = {
+            item['name']: dtype_workbench_class(mainwindow = mainwindow, **item)
+            for item in workbench_list
+            }
         self._active_workbench = None
 
         self.keys = self._workbench_dict.keys

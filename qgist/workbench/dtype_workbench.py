@@ -60,6 +60,7 @@ class dtype_workbench_class:
         mainwindow_state = None,
         toolbars_list = None,
         dockwidgets_list = None,
+        mainwindow = None,
         ):
 
         if not isinstance(name, str):
@@ -75,6 +76,9 @@ class dtype_workbench_class:
         else:
             raise TypeError('mainwindow_state must either be str or bytes')
 
+        if not isinstance(mainwindow, QMainWindow):
+            raise TypeError('mainwindow must be a QGis mainwindow')
+
         if not isinstance(toolbars_list, list):
             raise TypeError('toolbars_list must be a list')
         if not isinstance(dockwidgets_list, list):
@@ -83,13 +87,20 @@ class dtype_workbench_class:
             raise TypeError('items in toolbars_list must be dicts')
         if any([not isinstance(item, dict) for item in dockwidgets_list]):
             raise TypeError('items in dockwidgets_list must be dicts')
+
+        tmp_toolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         self._toolbars_dict = {
             b.name_internal: b
-            for b in (dtype_uielement_class(**a) for a in toolbars_list)
+            for b in (dtype_uielement_class(
+                uiobject = tmp_toolbars_dict.get(a['name_internal'], None), **a
+                ) for a in toolbars_list)
             }
+        tmp_dockwidgets_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
         self._dockwidgets_dict = {
             b.name_internal: b
-            for b in (dtype_uielement_class(**a) for a in dockwidgets_list)
+            for b in (dtype_uielement_class(
+                uiobject = tmp_dockwidgets_dict.get(a['name_internal'], None), **a
+                ) for a in dockwidgets_list)
             }
 
         self.toolbars_keys = self._toolbars_dict.keys
@@ -166,7 +177,7 @@ class dtype_workbench_class:
 
         for name_internal, uiobject in uiobjects_dict.items():
             try:
-                uielements_dict[name_internal].push_state_to_uiobject(uiobject)
+                uielements_dict[name_internal].push_state_to_uiobject()
             except KeyError:
                 uielement = dtype_uielement_class.from_uiobject(uiobject)
                 uielements_dict[uielement.name_internal] = uielement
@@ -177,9 +188,9 @@ class dtype_workbench_class:
     def _get_uielements_from_mainwindow(mainwindow, uielement_type):
 
         return {
-            toolbar.objectName(): toolbar
-            for toolbar in mainwindow.findChildren(uielement_type)
-            if toolbar.parent().objectName() == 'QgisApp'
+            uielement.objectName(): uielement
+            for uielement in mainwindow.findChildren(uielement_type)
+            if uielement.parent().objectName() == 'QgisApp'
             }
 
     @staticmethod
@@ -187,7 +198,7 @@ class dtype_workbench_class:
 
         for name_internal, uiobject in uiobjects_dict.items():
             try:
-                uielements_dict[name_internal].pull_state_from_uiobject(uiobject)
+                uielements_dict[name_internal].pull_state_from_uiobject()
             except KeyError:
                 uielement = dtype_uielement_class.from_uiobject(uiobject)
                 uielements_dict[uielement.name_internal] = uielement
@@ -239,4 +250,5 @@ class dtype_workbench_class:
             mainwindow_state = mainwindow_state,
             toolbars_list = toolbars_list,
             dockwidgets_list = dockwidgets_list,
+            mainwindow = mainwindow,
             )

@@ -44,7 +44,7 @@ class dtype_uielement_class:
         name_internal = '',
         name_translated = '',
         visibility = True,
-        existence = True,
+        uiobject = None,
         ):
 
         if not isinstance(name_internal, str):
@@ -61,7 +61,14 @@ class dtype_uielement_class:
             raise TypeError('visibility must be bool')
         self._visibility = visibility
 
-        self.existence = existence # type check in setter
+        if uiobject is not None:
+            if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
+                raise TypeError('uiobject must be either QToolBar or QDockWidget')
+            self._uiobject = uiobject
+        else:
+            self._uiobject = None
+
+        self._existence = uiobject is not None
 
     def as_dict(self):
 
@@ -69,24 +76,31 @@ class dtype_uielement_class:
             name_internal = self._name_internal,
             name_translated = self._name_translated,
             visibility = self._visibility,
-            existence = self._existence,
             )
 
-    def pull_state_from_uiobject(self, uiobject):
+    def pull_state_from_uiobject(self):
 
-        if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
-            raise TypeError('uiobject must be either QToolBar or QDockWidget')
+        if not self._existence:
+            return
 
-        self.existence = True # type check in setter
-        self._visibility = uiobject.isVisible()
+        self._visibility = self._uiobject.isVisible()
 
-    def push_state_to_uiobject(self, uiobject):
+    def push_state_to_uiobject(self):
 
-        if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
-            raise TypeError('uiobject must be either QToolBar or QDockWidget')
+        if not self._existence:
+            return
 
-        self.existence = True # type check in setter
-        uiobject.setVisible(self._visibility)
+        self._uiobject.setVisible(self._visibility)
+
+    def setVisible(self, value):
+
+        if not isinstance(value, bool):
+            raise TypeError('value must be bool')
+
+        if not self._existence:
+            return
+
+        self._uiobject.setVisible(value)
 
     @property
     def existence(self):
@@ -96,10 +110,7 @@ class dtype_uielement_class:
     @existence.setter
     def existence(self, value):
 
-        if not isinstance(value, bool):
-            raise TypeError('existence must be bool')
-
-        self._existence = value
+        raise AttributeError('existence must not be changed')
 
     @property
     def name_internal(self):
@@ -144,5 +155,5 @@ class dtype_uielement_class:
             name_internal = uiobject.objectName(),
             name_translated = uiobject.windowTitle(),
             visibility = uiobject.isVisible(),
-            existence = True,
+            uiobject = uiobject,
             )
