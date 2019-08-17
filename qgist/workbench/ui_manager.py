@@ -98,6 +98,7 @@ class ui_manager_class(ui_manager_base_class):
         self._ui_dict['list_workbenches'].currentRowChanged.connect(self._list_workbenches_currentrowchanged)
 
         self._update_workbenches()
+        self._uptdate_items()
 
     def _list_workbenches_currentrowchanged(self):
 
@@ -111,7 +112,7 @@ class ui_manager_class(ui_manager_base_class):
 
         self._fsm.activate_workbench(new_name, self._mainwindow)
         self._combobox_workbench.setCurrentText(self._fsm.active_workbench)
-        # self._update_workbenches()
+
         self._uptdate_items()
 
     def _toolbutton_new_clicked(self):
@@ -127,6 +128,7 @@ class ui_manager_class(ui_manager_base_class):
 
         self._fsm.new_workbench(new_name, self._mainwindow)
         self._update_workbenches()
+        self._uptdate_items()
 
     def _toolbutton_delete_clicked(self):
 
@@ -134,6 +136,7 @@ class ui_manager_class(ui_manager_base_class):
 
         self._fsm.delete_workbench(name, self._mainwindow)
         self._update_workbenches()
+        self._uptdate_items()
 
     def _toolbutton_save_clicked(self):
 
