@@ -149,6 +149,22 @@ class ui_manager_class(ui_manager_base_class):
 
         self._combobox_workbench_update()
 
+    def _uptdate_items(self):
+
+        self._ui_dict['list_dockwidgets'].setEnabled(False)
+        self._ui_dict['list_toolbars'].setEnabled(False)
+        self._ui_dict['list_dockwidgets'].clear()
+        self._ui_dict['list_toolbars'].clear()
+
+        for item in self._fsm[self._fsm.active_workbench].dockwidgets_keys():
+            pass
+
+        for item in self._fsm[self._fsm.active_workbench].toolbars_keys():
+            pass
+
+        self._ui_dict['list_dockwidgets'].setEnabled(True)
+        self._ui_dict['list_toolbars'].setEnabled(True)
+
     def _workbench_index_to_name(self, index):
 
         return list(sorted(self._fsm.keys()))[index]
