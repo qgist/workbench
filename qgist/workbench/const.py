@@ -28,6 +28,7 @@ specific language governing rights and limitations under the License.
 # CONST
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+CONFIG_FN = 'workbench.json'
 PLUGIN_ICON_FN = 'workbench.svg'
 PLUGIN_NAME = 'QgistWorkBench'
 WORKBENCH_WIDGET_WIDTH = 150
