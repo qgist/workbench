@@ -157,6 +157,12 @@ class ui_manager_class(ui_manager_base_class):
 
     def _uptdate_items(self):
 
+        def make_wrapper(uielement):
+            def wrapper():
+                # ... uielement
+                pass
+            return wrapper
+
         def make_widgetitems(source, target):
             for uielement in source:
                 item_checkbox = QCheckBox(
@@ -167,6 +173,7 @@ class ui_manager_class(ui_manager_base_class):
                     )
                 item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)
                 item_checkbox.setEnabled(uielement.existence)
+                item_checkbox.stateChanged.connect(make_wrapper(uielement))
                 target.setItemWidget(QListWidgetItem(target), item_checkbox)
 
         self._ui_dict['list_dockwidgets'].setEnabled(False)
