@@ -92,6 +92,32 @@ class dtype_workbench_class:
             for b in (dtype_uielement_class(**a) for a in dockwidgets_list)
             }
 
+        self.toolbars_keys = self._toolbars_dict.keys
+        self.dockwidgets_keys = self._dockwidgets_dict.keys
+
+    def __getitem__(self, value):
+
+        if not isinstance(value, tuple):
+            raise ValueError('not enough parameters: two expected')
+        if len(value) != 2:
+            raise ValueError('wrong number of parameters: two expected')
+
+        item_type, item_name = value
+
+        if not isinstance(item_type, str):
+            raise TypeError('item_type must be str')
+        if item_type not in ('toolbars', 'dockwidgets'):
+            raise ValueError('unknown item_type')
+        if not isinstance(item_name, str):
+            raise TypeError('item_name must be str')
+
+        target_dict = getattr(self, '_{NAME:s}_dict'.format(NAME = item_name))
+
+        if item_name not in target_dict.keys():
+            raise ValueError('item_name is not a known item')
+
+        return target_dict[item_name]
+
     def activate(self, mainwindow):
 
         if not isinstance(mainwindow, QMainWindow):

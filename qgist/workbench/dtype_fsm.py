@@ -82,6 +82,15 @@ class dtype_fsm_class:
         else:
             self.activate_workbench(tuple(self._workbench_dict.keys())[0], mainwindow)
 
+    def __getitem__(self, name):
+
+        if not isinstance(name, str):
+            raise TypeError('name must be str')
+        if name not in self._workbench_dict.keys():
+            raise ValueError('name is not a known workbench')
+
+        return self._workbench_dict[name]
+
     def __len__(self):
 
         return len(self._workbench_dict)
