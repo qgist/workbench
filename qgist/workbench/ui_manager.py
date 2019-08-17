@@ -162,9 +162,7 @@ class ui_manager_class(ui_manager_base_class):
         self._ui_dict['list_dockwidgets'].clear()
         self._ui_dict['list_toolbars'].clear()
 
-        for name in self._fsm[self._fsm.active_workbench].dockwidgets_keys():
-
-            uielement = self._fsm[self._fsm.active_workbench]['dockwidgets', name]
+        for uielement in self._fsm[self._fsm.active_workbench].dockwidgets():
 
             item_checkbox = QCheckBox(uielement.name_translated)
             item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)
@@ -174,9 +172,7 @@ class ui_manager_class(ui_manager_base_class):
                 QListWidgetItem(self._ui_dict['list_dockwidgets']), item_checkbox
                 )
 
-        for name in self._fsm[self._fsm.active_workbench].toolbars_keys():
-
-            uielement = self._fsm[self._fsm.active_workbench]['toolbars', name]
+        for uielement in self._fsm[self._fsm.active_workbench].toolbars():
 
             item_checkbox = QCheckBox(uielement.name_translated)
             item_checkbox.setCheckState(Qt.Checked if uielement.visibility else Qt.Unchecked)

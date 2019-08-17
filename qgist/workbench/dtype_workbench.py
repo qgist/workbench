@@ -153,6 +153,14 @@ class dtype_workbench_class:
             dockwidgets_list = [item.as_dict() for item in self._dockwidgets_dict.values()],
             )
 
+    def dockwidgets(self):
+
+        return (self._dockwidgets_dict[name] for name in sorted(self.dockwidgets_keys()))
+
+    def toolbars(self):
+
+        return (self._toolbars_dict[name] for name in sorted(self.toolbars_keys()))
+
     @staticmethod
     def _activate_uielements(uiobjects_dict, uielements_dict):
 
