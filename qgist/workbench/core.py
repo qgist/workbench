@@ -176,6 +176,7 @@ class workbench:
 
         self._ui_dict['action_manage'].triggered.connect(self._open_manager)
         self._ui_dict['toolbutton_manage'].clicked.connect(self._open_manager)
+        self._ui_dict['toolbutton_save'].clicked.connect(self._save_workbench)
 
     def _combobox_workbench_activated(self):
 
@@ -215,3 +216,7 @@ class workbench:
                 ).exec_()
         finally:
             self._ui_dict['combobox_workbench'].setEnabled(True)
+
+    def _save_workbench(self):
+
+        self._fsm.save_workbench(self._fsm.active_workbench, self._mainwindow)
