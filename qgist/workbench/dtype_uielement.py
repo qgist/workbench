@@ -60,22 +60,22 @@ class dtype_uielement_class:
         ):
 
         if not isinstance(name_internal, str):
-            raise QgistTypeError(translate('global', 'internal name must be str'))
+            raise QgistTypeError(translate('global', '"internal_name" must be str. (dtype_uielement)'))
         if len(name_internal) == 0:
-            raise QgistValueError(translate('global', 'unnamed UI element'))
+            raise QgistValueError(translate('global', 'Unnamed UI element. (dtype_uielement)'))
         self._name_internal = name_internal
 
         if not isinstance(name_translated, str):
-            raise QgistTypeError(translate('global', 'translated name must be str'))
+            raise QgistTypeError(translate('global', '"translated_name" must be str. (dtype_uielement)'))
         self._name_translated = name_translated
 
         if not isinstance(visibility, bool):
-            raise QgistTypeError(translate('global', 'visibility must be bool'))
+            raise QgistTypeError(translate('global', '"visibility" must be bool. (dtype_uielement)'))
         self._visibility = visibility
 
         if uiobject is not None:
             if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
-                raise QgistTypeError(translate('global', 'uiobject must be either QToolBar or QDockWidget'))
+                raise QgistTypeError(translate('global', '"uiobject" must be either QToolBar or QDockWidget. (dtype_uielement)'))
             self._uiobject = uiobject
         else:
             self._uiobject = None
@@ -112,7 +112,7 @@ class dtype_uielement_class:
     def setVisible(self, value):
 
         if not isinstance(value, bool):
-            raise QgistTypeError(translate('global', 'value must be bool'))
+            raise QgistTypeError(translate('global', '"value" must be bool. (dtype_uielement setVisible)'))
 
         if not self._existence:
             return
@@ -128,9 +128,9 @@ class dtype_uielement_class:
     def existence(self, value):
 
         if not isinstance(value, bool):
-            raise QgistTypeError(translate('global', 'value must be bool'))
+            raise QgistTypeError(translate('global', '"value" must be bool. (dtype_uielement existence)'))
         if value:
-            raise QgistValueError(translate('global', 'value can only be set to false'))
+            raise QgistValueError(translate('global', '"value" can only be set to false. (dtype_uielement existence)'))
 
         self._existence = False
         self._uiobject = None
@@ -143,7 +143,7 @@ class dtype_uielement_class:
     @name_internal.setter
     def name_internal(self, value):
 
-        raise QgistAttributeError(translate('global', 'name_internal must not be changed'))
+        raise QgistAttributeError(translate('global', '"name_internal" must not be changed. (dtype_uielement name_internal)'))
 
     @property
     def name_translated(self):
@@ -153,7 +153,7 @@ class dtype_uielement_class:
     @name_translated.setter
     def name_translated(self, value):
 
-        raise QgistAttributeError(translate('global', 'name_translated must not be changed'))
+        raise QgistAttributeError(translate('global', '"name_translated" must not be changed. (dtype_uielement name_internal)'))
 
     @property
     def visibility(self):
@@ -164,7 +164,7 @@ class dtype_uielement_class:
     def visibility(self, value):
 
         if not isinstance(value, bool):
-            raise QgistTypeError(translate('global', 'visibility must be bool'))
+            raise QgistTypeError(translate('global', '"visibility" must be bool. (dtype_uielement visibility)'))
 
         self._visibility = value
 
@@ -172,7 +172,7 @@ class dtype_uielement_class:
     def from_uiobject(uiobject):
 
         if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
-            raise QgistTypeError(translate('global', 'uiobject must be either QToolBar or QDockWidget'))
+            raise QgistTypeError(translate('global', '"uiobject" must be either QToolBar or QDockWidget. (dtype_uielement from_uiobject)'))
 
         return dtype_uielement_class(
             name_internal = str(uiobject.objectName()),
