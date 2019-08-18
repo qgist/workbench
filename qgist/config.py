@@ -48,6 +48,9 @@ from .const import (
     QGIS_CONFIG_FLD,
     QGIST_CONFIG_FLD,
     )
+from .error import (
+    QgistConfigKeyError,
+    )
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -110,7 +113,7 @@ class config_class:
         if not isinstance(name, str):
             raise TypeError('name must be str')
         if name not in self._data.keys():
-            raise ValueError('unknown name')
+            raise QgistConfigKeyError('unknown configuration field name')
 
         return copy.deepcopy(self._data[name])
 
@@ -123,6 +126,13 @@ class config_class:
 
         self._data[name] = value
         self._save()
+
+    def get(self, name, default):
+
+        try:
+            return self[name]
+        except QgistConfigKeyError:
+            return default
 
     @staticmethod
     def _check_value(value):
