@@ -53,6 +53,7 @@ from .error import (
     QgistTypeError,
     QgistValueError,
     )
+from .util import translate
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -63,19 +64,19 @@ def get_config_path():
 
     root_fld = QgsApplication.qgisSettingsDirPath()
     if os.path.exists(root_fld) and not os.path.isdir(root_fld):
-        raise QgistValueError('qgis settings path does not point to a directory')
+        raise QgistValueError(translate('global', 'qgis settings path does not point to a directory'))
     if not os.path.exists(root_fld):
-        raise QgistValueError('qgis settings path does not exist') # TODO create?
+        raise QgistValueError(translate('global', 'qgis settings path does not exist')) # TODO create?
 
     root_qgis_fld = os.path.join(root_fld, QGIS_CONFIG_FLD)
     if os.path.exists(root_qgis_fld) and not os.path.isdir(root_qgis_fld):
-        raise QgistValueError('qgis plugin configuration path exists but is not a directory')
+        raise QgistValueError(translate('global', 'qgis plugin configuration path exists but is not a directory'))
     if not os.path.exists(root_qgis_fld):
         os.mkdir(root_qgis_fld)
 
     root_qgis_qgist_fld = os.path.join(root_qgis_fld, QGIST_CONFIG_FLD)
     if os.path.exists(root_qgis_qgist_fld) and not os.path.isdir(root_qgis_qgist_fld):
-        raise QgistValueError('qgist configuration path exists but is not a directory')
+        raise QgistValueError(translate('global', 'qgist configuration path exists but is not a directory'))
     if not os.path.exists(root_qgis_qgist_fld):
         os.mkdir(root_qgis_qgist_fld)
 
@@ -91,40 +92,40 @@ class config_class:
     def __init__(self, fn):
 
         if not isinstance(fn, str):
-            raise QgistTypeError('fn must be str')
+            raise QgistTypeError(translate('global', 'fn must be str'))
 
         self._fn = fn
 
         if not os.path.exists(fn):
             if not os.path.exists(os.path.dirname(fn)):
-                raise QgistValueError('parent of fn must exists')
+                raise QgistValueError(translate('global', 'parent of fn must exists'))
             if not os.path.isdir(os.path.dirname(fn)):
-                raise QgistValueError('parent of fn must be a directory')
+                raise QgistValueError(translate('global', 'parent of fn must be a directory'))
             self._data = {}
             self._save()
         else:
             if not os.path.isfile(fn):
-                raise QgistValueError('fn must be a file')
+                raise QgistValueError(translate('global', 'fn must be a file'))
             with open(fn, 'r', encoding = 'utf-8') as f:
                 self._data = json.loads(f.read())
             if not isinstance(self._data, dict):
-                raise QgistTypeError('configuration data must be a dict')
+                raise QgistTypeError(translate('global', 'configuration data must be a dict'))
 
     def __getitem__(self, name):
 
         if not isinstance(name, str):
-            raise QgistTypeError('name must be str')
+            raise QgistTypeError(translate('global', 'name must be str'))
         if name not in self._data.keys():
-            raise QgistConfigKeyError('unknown configuration field name')
+            raise QgistConfigKeyError(translate('global', 'unknown configuration field name'))
 
         return copy.deepcopy(self._data[name])
 
     def __setitem__(self, name, value):
 
         if not isinstance(name, str):
-            raise QgistTypeError('name must be str')
+            raise QgistTypeError(translate('global', 'name must be str'))
         if not config_class._check_value(value):
-            raise QgistTypeError('value contains not allowed types')
+            raise QgistTypeError(translate('global', 'value contains not allowed types'))
 
         self._data[name] = value
         self._save()
@@ -170,7 +171,7 @@ class config_class:
                     break
                 attempt += 1
             if not attempt_ok:
-                raise QgistValueError('could not backup old configuration before saving new - too many old backups')
+                raise QgistValueError(translate('global', 'could not backup old configuration before saving new - too many old backups'))
             os.rename(self._fn, backup_fn)
 
         with open(self._fn, 'w', encoding = 'utf-8') as f:
