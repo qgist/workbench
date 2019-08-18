@@ -56,6 +56,7 @@ from ..error import (
     QgistTypeError,
     QgistValueError,
     )
+from ..msg import msg_critical
 from ..util import translate
 
 
