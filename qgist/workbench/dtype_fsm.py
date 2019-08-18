@@ -109,12 +109,12 @@ class dtype_fsm_class:
     def activate_workbench(self, name, mainwindow, force = False):
 
         if not isinstance(name, str):
-            raise QgistTypeError(translate('global', 'dtype_fsm activate: name must be str'))
+            raise QgistTypeError(translate('global', '"name" must be str. (dtype_fsm activate)'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError(translate('global', 'dtype_fsm activate: mainwindow must be a QGis mainwindow'))
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm activate)'))
 
         if name not in self._workbench_dict.keys():
-            raise QgistValueError(translate('global', 'dtype_fsm activate: name is not a known workbench'))
+            raise QgistValueError(translate('global', '"name" is not a known workbench. (dtype_fsm activate)'))
         if self._active_workbench == name and not force:
             return
 
