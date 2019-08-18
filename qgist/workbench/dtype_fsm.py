@@ -187,12 +187,12 @@ class dtype_fsm_class:
     def save_workbench(self, name, mainwindow):
 
         if not isinstance(name, str):
-            raise QgistTypeError('name must be str')
+            raise QgistTypeError(translate('global', '"name" must be str. (dtype_fsm save)'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm save)'))
 
         if self._active_workbench != name:
-            raise QgistValueError('workbench must be active for being saved')
+            raise QgistValueError(translate('global', '"workbench" must be active for being saved. (dtype_fsm save)'))
 
         self._workbench_dict[name].save(mainwindow)
 
