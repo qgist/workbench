@@ -45,6 +45,7 @@ from PyQt5.QtGui import (
 from PyQt5.QtWidgets import (
     QDialog,
     QHBoxLayout,
+    QLabel,
     QListWidget,
     QToolButton,
     QVBoxLayout,
@@ -74,7 +75,7 @@ class ui_manager_base_class(QDialog):
 
         self._ui_dict = {
             'layout_0_v_root': QVBoxLayout(), # dialog
-            'layout_1_h_toolbar': QHBoxLayout(), # toolbar - for bottons
+            'layout_1_h_toolbar': QHBoxLayout(), # toolbar - for buttons
             'layout_1_h_lists': QHBoxLayout(), # central - for list of workbenches left and lists of ui right
             'layout_2_v_uielements': QVBoxLayout(), # right - ui element lists (toolbars and dockwidgets)
             }
@@ -84,8 +85,13 @@ class ui_manager_base_class(QDialog):
 
         self._ui_dict['list_workbenches'] = ui_manager_base_class._get_workbenchlist()
         self._ui_dict['layout_1_h_lists'].addWidget(self._ui_dict['list_workbenches'])
+
+        self._ui_dict['label_toolbars'] = QLabel(translate('global', 'Toolbars'))
+        self._ui_dict['layout_2_v_uielements'].addWidget(self._ui_dict['label_toolbars'])
         self._ui_dict['list_toolbars'] = ui_manager_base_class._get_toolbarlist()
         self._ui_dict['layout_2_v_uielements'].addWidget(self._ui_dict['list_toolbars'])
+        self._ui_dict['label_dockwidgets'] = QLabel(translate('global', 'Dockwidgets'))
+        self._ui_dict['layout_2_v_uielements'].addWidget(self._ui_dict['label_dockwidgets'])
         self._ui_dict['list_dockwidgets'] = ui_manager_base_class._get_dockwidgetlist()
         self._ui_dict['layout_2_v_uielements'].addWidget(self._ui_dict['list_dockwidgets'])
         self._ui_dict['layout_1_h_lists'].addLayout(self._ui_dict['layout_2_v_uielements'])
