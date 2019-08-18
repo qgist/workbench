@@ -144,5 +144,25 @@ class config_class:
 
     def _save(self):
 
+        backup_fn = None
+        if os.path.exists(self._fn):
+            backup_fn = self._fn + '.backup'
+            max_attempts = 100
+            attempt = 0
+            attempt_ok = False
+            while attempt < max_attempts:
+                backup_fn_numbered = '{NAME:s}{NUMBER:02d}'.format(NAME = backup_fn, NUMBER = attempt)
+                if not os.path.exists(backup_fn_numbered):
+                    attempt_ok = True
+                    backup_fn = backup_fn_numbered
+                    break
+                attempt += 1
+            if not attempt_ok:
+                raise ValueError('could not backup old configuration before saving new - too many old backups')
+            os.rename(self._fn, backup_fn)
+
         with open(self._fn, 'w', encoding = 'utf-8') as f:
             f.write(json.dumps(self._data, indent = 4, sort_keys = True))
+
+        if backup_fn is not None:
+            os.unlink(backup_fn)
