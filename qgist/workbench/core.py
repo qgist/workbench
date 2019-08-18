@@ -167,8 +167,6 @@ class workbench:
         QGis Plugin Interface Routine
         """
 
-        # TODO save config to disk
-
         for cleanup_action in self._ui_cleanup:
             cleanup_action()
 
