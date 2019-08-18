@@ -52,6 +52,10 @@ from PyQt5.QtWidgets import (
 
 from .dtype_fsm import dtype_fsm_class
 from .ui_manager_base import ui_manager_base_class
+from ..error improt (
+    QgistTypeError,
+    QgistValueError,
+    )
 from ..util import translate
 
 
@@ -64,19 +68,19 @@ class ui_manager_class(ui_manager_base_class):
     def __init__(self, plugin_root_fld, mainwindow, combobox_workbench, combobox_workbench_update, fsm):
 
         if not isinstance(plugin_root_fld, str):
-            raise TypeError('plugin_root_fld must be str')
+            raise QgistTypeError('plugin_root_fld must be str')
         if not os.path.exists(plugin_root_fld):
-            raise ValueError('plugin_root_fld must exists')
+            raise QgistValueError('plugin_root_fld must exists')
         if not os.path.isdir(plugin_root_fld):
-            raise ValueError('plugin_root_fld must be a directory')
+            raise QgistValueError('plugin_root_fld must be a directory')
         if not isinstance(mainwindow, QMainWindow):
-            raise TypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError('mainwindow must be a QGis mainwindow')
         if not isinstance(combobox_workbench, QComboBox):
-            raise TypeError('combobox_workbench must be a QGis mainwindow')
+            raise QgistTypeError('combobox_workbench must be a QGis mainwindow')
         if not hasattr(combobox_workbench_update, '__call__'):
-            raise TypeError('combobox_workbench_update must be callable')
+            raise QgistTypeError('combobox_workbench_update must be callable')
         if not isinstance(fsm, dtype_fsm_class):
-            raise TypeError('fsm must be a workbench finite state machine')
+            raise QgistTypeError('fsm must be a workbench finite state machine')
 
         super().__init__(plugin_root_fld)
 
