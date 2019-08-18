@@ -74,19 +74,19 @@ class ui_manager_class(ui_manager_base_class):
     def __init__(self, plugin_root_fld, mainwindow, combobox_workbench, combobox_workbench_update, fsm):
 
         if not isinstance(plugin_root_fld, str):
-            raise QgistTypeError(translate('global', 'plugin_root_fld must be str'))
+            raise QgistTypeError(translate('global', '"plugin_root_fld" must be str. (ui_manager)'))
         if not os.path.exists(plugin_root_fld):
-            raise QgistValueError(translate('global', 'plugin_root_fld must exists'))
+            raise QgistValueError(translate('global', '"plugin_root_fld" must exists. (ui_manager)'))
         if not os.path.isdir(plugin_root_fld):
-            raise QgistValueError(translate('global', 'plugin_root_fld must be a directory'))
+            raise QgistValueError(translate('global', '"plugin_root_fld" must be a directory. (ui_manager)'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError(translate('global', 'mainwindow must be a QGis mainwindow'))
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow. (ui_manager)'))
         if not isinstance(combobox_workbench, QComboBox):
-            raise QgistTypeError(translate('global', 'combobox_workbench must be a QGis mainwindow'))
+            raise QgistTypeError(translate('global', '"combobox_workbench" must be a QGis mainwindow. (ui_manager)'))
         if not hasattr(combobox_workbench_update, '__call__'):
-            raise QgistTypeError(translate('global', 'combobox_workbench_update must be callable'))
+            raise QgistTypeError(translate('global', '"combobox_workbench_update" must be callable. (ui_manager)'))
         if not isinstance(fsm, dtype_fsm_class):
-            raise QgistTypeError(translate('global', 'fsm must be a workbench finite state machine'))
+            raise QgistTypeError(translate('global', '"fsm" must be a workbench finite state machine. (ui_manager)'))
 
         super().__init__(plugin_root_fld)
 
