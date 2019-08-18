@@ -34,6 +34,50 @@ import os
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# IMPORT (QGIS)
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+from qgis.core import QgsApplication
+
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# IMPORT (Internal)
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+from .const import (
+    QGIS_CONFIG_FLD,
+    QGIST_CONFIG_FLD,
+    )
+
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# ROUTINES
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+def get_config_path():
+
+    root_fld = QgsApplication.qgisSettingsDirPath()
+    if os.path.exists(root_fld) and not os.path.isdir(root_fld):
+        raise ValueError('qgis settings path does not point to a directory')
+    if not os.path.exists(root_fld):
+        raise ValueError('qgis settings path does not exist') # TODO create?
+
+    root_qgis_fld = os.path.join(root_fld, QGIS_CONFIG_FLD)
+    if os.path.exists(root_qgis_fld) and not os.path.isdir(root_qgis_fld):
+        raise ValueError('qgis plugin configuration path exists but is not a directory')
+    if not os.path.exists(root_qgis_fld):
+        os.mkdir(root_qgis_fld)
+
+    root_qgis_qgist_fld = os.path.join(root_qgis_fld, QGIST_CONFIG_FLD)
+    if os.path.exists(root_qgis_qgist_fld) and not os.path.isdir(root_qgis_qgist_fld):
+        raise ValueError('qgist configuration path exists but is not a directory')
+    if not os.path.exists(root_qgis_qgist_fld):
+        os.mkdir(root_qgis_qgist_fld)
+
+    return root_qgis_qgist_fld
+
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # CLASS
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

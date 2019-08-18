@@ -53,12 +53,17 @@ from PyQt5.QtWidgets import (
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 from .const import (
+    CONFIG_FN,
     PLUGIN_ICON_FN,
     PLUGIN_NAME,
     WORKBENCH_WIDGET_WIDTH,
     )
 from .dtype_fsm import dtype_fsm_class
 from .ui_manager import ui_manager_class
+from ..config import (
+    config_class,
+    get_config_path,
+    )
 from ..const import (
     ICON_FLD,
     TRANSLATION_FLD,
@@ -176,6 +181,7 @@ class workbench:
         self._ui_dict['combobox_workbench'].setEnabled(True)
         self._iface.initializationCompleted.disconnect(self._connect_ui)
 
+        self._config = config_class(os.path.join(get_config_path(), CONFIG_FN))
         self._fsm = dtype_fsm_class(list(), self._mainwindow) # TODO load from config, zero-init issue ...
 
         self._combobox_workbench_updade()
