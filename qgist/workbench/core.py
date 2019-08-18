@@ -89,13 +89,13 @@ class workbench:
     def __init__(self, iface, plugin_root_fld):
 
         if not hasattr(iface, 'mainWindow'):
-            raise QgistTypeError('iface must be a QGIS iface object')
+            raise QgistTypeError(translate('global', 'iface must be a QGIS iface object'))
         if not isinstance(plugin_root_fld, str):
-            raise QgistTypeError('plugin_root_fld must be str')
+            raise QgistTypeError(translate('global', 'plugin_root_fld must be str'))
         if not os.path.exists(plugin_root_fld):
-            raise QgistValueError('plugin_root_fld must exists')
+            raise QgistValueError(translate('global', 'plugin_root_fld must exists'))
         if not os.path.isdir(plugin_root_fld):
-            raise QgistValueError('plugin_root_fld must be a directory')
+            raise QgistValueError(translate('global', 'plugin_root_fld must be a directory'))
 
         self._iface = iface
         self._plugin_root_fld = plugin_root_fld
@@ -118,7 +118,7 @@ class workbench:
         self._ui_dict['action_manage'] = QAction(translate('global', '&Workbench Management'))
         self._ui_dict['action_manage'].setEnabled(False)
 
-        workBenchMenuText = translate('global', 'Qgist Work&Bench')
+        workBenchMenuText = translate('global', 'Qgist Work&bench')
         self._iface.addPluginToMenu(workBenchMenuText, self._ui_dict['action_manage'])
         self._ui_cleanup.append(
             lambda: self._iface.removePluginMenu(workBenchMenuText, self._ui_dict['action_manage'])
