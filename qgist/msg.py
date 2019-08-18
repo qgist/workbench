@@ -46,11 +46,11 @@ from .util import translate
 
 def msg_critical(exception, widget = None):
 
-    _msg('critical', translate('global', 'Critical error'), exception, widget = None)
+    _msg('critical', translate('global', 'Critical error'), exception, widget)
 
 def msg_warning(exception, widget = None):
 
-    _msg('warning', translate('global', 'Warning'), exception, widget = None)
+    _msg('warning', translate('global', 'Warning'), exception, widget)
 
 def _msg(msg_type, msg_title, exception, widget = None):
 
