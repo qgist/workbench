@@ -41,32 +41,32 @@
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="110"/>
         <source>New workbench</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Werkbank</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="111"/>
         <source>Delete workbench</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkbank löschen</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/core.py" line="138"/>
         <source>Save workbenche</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkbank speichern</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/core.py" line="131"/>
         <source>Reset workbench</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkbank zurücksetzen</translation>
     </message>
     <message>
         <location filename="../qgist/msg.py" line="49"/>
         <source>Critical error</source>
-        <translation type="unfinished"></translation>
+        <translation>Kritischer Fehler</translation>
     </message>
     <message>
         <location filename="../qgist/msg.py" line="53"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/dtype_fsm.py" line="60"/>
@@ -241,7 +241,7 @@
     <message>
         <location filename="../qgist/workbench/core.py" line="121"/>
         <source>Qgist Work&amp;bench</source>
-        <translation type="unfinished"></translation>
+        <translation>Qgist Werk&amp;bank</translation>
     </message>
     <message>
         <location filename="../qgist/msg.py" line="58"/>
