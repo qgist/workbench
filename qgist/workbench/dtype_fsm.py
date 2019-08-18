@@ -143,14 +143,14 @@ class dtype_fsm_class:
     def delete_workbench(self, name, mainwindow):
 
         if not isinstance(name, str):
-            raise QgistTypeError('name must be str')
+            raise QgistTypeError(translate('global', '"name" must be str. (dtype_fsm delete)'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow. (dtype_fsm delete)'))
 
         if name not in self._workbench_dict.keys():
-            raise QgistValueError('name is not a known workbench')
+            raise QgistValueError(translate('global', '"name" is not a known workbench. (dtype_fsm delete)'))
         if len(self) <= 1:
-            raise QgistValueError('only one workbench left, can not be deleted')
+            raise QgistValueError(translate('global', 'only one workbench left, can not be deleted. (dtype_fsm delete)'))
         if name == self._active_workbench:
             other_name = tuple(self._workbench_dict.keys() - set((name,)))[0]
             self.activate_workbench(other_name, mainwindow)
