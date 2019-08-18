@@ -55,12 +55,12 @@ def msg_warning(exception, widget = None):
 def _msg(msg_type, msg_title, exception, widget = None):
 
     if not isinstance(exception, Exception):
-        raise QgistTypeError('exception must be of type Exception')
+        raise QgistTypeError(translate('global', '"exception" must be of type Exception. (msg)'))
     if not isinstance(widget, QWidget) and widget is not None:
-        raise QgistTypeError('widget must be of type QWidget or None')
+        raise QgistTypeError(translate('global', '"widget" must be of type QWidget or None. (msg)'))
 
     if len(exception.args) == 0:
-        msg = translate('global', 'Internal error. No description can be provided. Please file a bug.')
+        msg = translate('global', 'Internal error. No description can be provided. Please file a bug. (msg)')
     else:
         msg = str(exception.args[0])
 
