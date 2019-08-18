@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de" sourcelanguage="en">
+<!DOCTYPE TS>
+<TS version="2.1" language="de" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="74"/>
         <source>Workbench Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkbank-Konfiguration</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/dtype_fsm.py" line="86"/>
         <source>user default</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerstandard</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/core.py" line="118"/>
         <source>&amp;Workbench Management</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Werkbank-Verwaltung</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/core.py" line="145"/>
         <source>Manage workbenches</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkbänke verwalten</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/ui_manager.py" line="134"/>
         <source>Name of new workbench</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der neuen Werkbank</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="89"/>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkzeugleisten</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="93"/>
         <source>Dockwidgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Andockbare Fenster</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="110"/>
