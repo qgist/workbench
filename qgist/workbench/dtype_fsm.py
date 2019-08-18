@@ -57,17 +57,17 @@ class dtype_fsm_class:
     def __init__(self, workbench_list, mainwindow, active_workbench = None, config = None):
 
         if not isinstance(workbench_list, list):
-            raise QgistTypeError('workbench_list must be a list')
+            raise QgistTypeError(translate('global', '"workbench_list" must be a list. (dtype_fsm)'))
         if any([not isinstance(item, dict) for item in workbench_list]):
-            raise QgistTypeError('items in workbench_list must be dicts')
+            raise QgistTypeError(translate('global', 'Items in workbench_list must be dicts. (dtype_fsm)'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm)'))
         if not isinstance(active_workbench, str) and active_workbench is not None:
-            raise QgistTypeError('active_workbench must be a str or None')
+            raise QgistTypeError(translate('global', '"active_workbench" must be a str or None. (dtype_fsm)'))
         if active_workbench is not None and len(workbench_list) == 0:
-            raise QgistValueError('active_workbench is not None while workbench_list is empty')
+            raise QgistValueError(translate('global', '"active_workbench" is not None while "workbench_list" is empty. (dtype_fsm)'))
         if not isinstance(config, config_class) and config is not None:
-            raise QgistTypeError('config must be a config_class object or None')
+            raise QgistTypeError(translate('global', '"config" must be a "config_class" object or None. (dtype_fsm)'))
 
         self._config = config
 
@@ -76,7 +76,7 @@ class dtype_fsm_class:
             for item in workbench_list
             }
         if active_workbench is not None and active_workbench not in self._workbench_dict.keys():
-            raise QgistValueError('active_workbench does not exist')
+            raise QgistValueError(translate('global', '"active_workbench" does not exist. (dtype_fsm)'))
 
         self._active_workbench = None
 
@@ -92,9 +92,9 @@ class dtype_fsm_class:
     def __getitem__(self, name):
 
         if not isinstance(name, str):
-            raise QgistTypeError('name must be str')
+            raise QgistTypeError(translate('global', '"name" must be str. (dtype_fsm item)'))
         if name not in self._workbench_dict.keys():
-            raise QgistValueError('name is not a known workbench')
+            raise QgistValueError(translate('global', '"name" is not a known workbench. (dtype_fsm item)'))
 
         return self._workbench_dict[name]
 
@@ -109,12 +109,12 @@ class dtype_fsm_class:
     def activate_workbench(self, name, mainwindow, force = False):
 
         if not isinstance(name, str):
-            raise QgistTypeError('name must be str')
+            raise QgistTypeError(translate('global', 'dtype_fsm activate: name must be str'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', 'dtype_fsm activate: mainwindow must be a QGis mainwindow'))
 
         if name not in self._workbench_dict.keys():
-            raise QgistValueError('name is not a known workbench')
+            raise QgistValueError(translate('global', 'dtype_fsm activate: name is not a known workbench'))
         if self._active_workbench == name and not force:
             return
 
