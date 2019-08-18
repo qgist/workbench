@@ -1,5 +1,5 @@
 # QGIST WORKBENCH
-# QGis Plugin for Organizing Toolbars
+# QGIS Plugin for Organizing Toolbars and Dockwidgets
 # https://github.com/qgist/workbench
 #
 #     makefile: Project makefile
