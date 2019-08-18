@@ -28,14 +28,17 @@ specific language governing rights and limitations under the License.
 # EXCEPTIONS
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-class QgistConfigKeyError(Exception):
+class QgistAttributeError(AttributeError):
+    pass
+
+class QgistConfigKeyError(KeyError):
     pass
 
 class QgistTranslationError(Exception):
     pass
 
-class QgistTypeError(Exception):
+class QgistTypeError(TypeError):
     pass
 
-class QgistValueError(Exception):
+class QgistValueError(ValueError):
     pass
