@@ -80,12 +80,12 @@ def setupTranslation(translationsPath):
         try:
             localePath = getTranslationPath('en')
         except:
-            return None
+            return None, None
 
     translator = QTranslator()
     translator.load(localePath)
     QCoreApplication.installTranslator(translator)
-    return translator
+    return translator, localePath
 
 def translate(context, key):
     """

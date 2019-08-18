@@ -108,7 +108,7 @@ class workbench:
         QGis Plugin Interface Routine
         """
 
-        setupTranslation(os.path.join(
+        self._translator, self._translator_path = setupTranslation(os.path.join(
             self._plugin_root_fld, TRANSLATION_FLD
             ))
 
