@@ -245,13 +245,21 @@ class workbench:
         self._ui_dict['combobox_workbench'].setEnabled(False)
 
         try:
-            ui_manager_class(
+            manager = ui_manager_class(
                 self._plugin_root_fld,
                 self._mainwindow,
                 self._ui_dict['combobox_workbench'],
                 self._combobox_workbench_updade,
                 self._fsm,
-                ).exec_()
+                )
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self._mainwindow)
+            return
+        finally:
+            self._ui_dict['combobox_workbench'].setEnabled(True)
+
+        try:
+            manager.exec_()
         finally:
             self._ui_dict['combobox_workbench'].setEnabled(True)
 
