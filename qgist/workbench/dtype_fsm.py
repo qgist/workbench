@@ -162,17 +162,17 @@ class dtype_fsm_class:
     def rename_workbench(self, old_name, new_name, mainwindow):
 
         if not isinstance(old_name, str):
-            raise QgistTypeError('old_name must be str')
+            raise QgistTypeError(translate('global', '"old_name" must be str. (dtype_fsm rename)'))
         if not isinstance(new_name, str):
-            raise QgistTypeError('new_name must be str')
+            raise QgistTypeError(translate('global', '"new_name" must be str. (dtype_fsm rename)'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm rename)'))
         if old_name not in self._workbench_dict.keys():
-            raise QgistValueError('old_name is not a known workbench')
+            raise QgistValueError(translate('global', '"old_name" is not a known workbench. (dtype_fsm rename)'))
         if new_name in self._workbench_dict.keys():
-            raise QgistValueError('new_name is a known workbench, i.e. already exists')
+            raise QgistValueError(translate('global', '"new_name" is a known workbench, i.e. already exists. (dtype_fsm rename)'))
         if len(new_name) == 0:
-            raise QgistValueError('new_name is empty')
+            raise QgistValueError(translate('global', '"new_name" is empty. (dtype_fsm rename)'))
         if old_name == new_name:
             return
 
