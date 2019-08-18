@@ -110,6 +110,7 @@ class workbench:
         self._ui_cleanup = []
 
         self._ui_dict['action_manage'] = QAction(translate('global', '&Workbench Management'))
+        self._ui_dict['action_manage'].setEnabled(False)
 
         workBenchMenuText = translate('global', 'Qgist Work&Bench')
         self._iface.addPluginToMenu(workBenchMenuText, self._ui_dict['action_manage'])
@@ -122,22 +123,26 @@ class workbench:
         #     self._plugin_root_fld, ICON_FLD, 'Save.svg'
         #     )))
         self._ui_dict['toolbutton_reset'].setToolTip(translate('global', 'Reset workbench'))
+        self._ui_dict['toolbutton_reset'].setEnabled(False)
 
         self._ui_dict['toolbutton_save'] = QToolButton()
         self._ui_dict['toolbutton_save'].setIcon(QIcon(os.path.join(
             self._plugin_root_fld, ICON_FLD, 'Save.svg'
             )))
         self._ui_dict['toolbutton_save'].setToolTip(translate('global', 'Save workbenche'))
+        self._ui_dict['toolbutton_save'].setEnabled(False)
 
         self._ui_dict['toolbutton_manage'] = QToolButton()
         self._ui_dict['toolbutton_manage'].setIcon(QIcon(os.path.join(
             self._plugin_root_fld, ICON_FLD, PLUGIN_ICON_FN
             )))
         self._ui_dict['toolbutton_manage'].setToolTip(translate('global', 'Manage workbenches'))
+        self._ui_dict['toolbutton_manage'].setEnabled(False)
 
         self._ui_dict['combobox_workbench'] = QComboBox()
         self._ui_dict['combobox_workbench'].setMaximumWidth(WORKBENCH_WIDGET_WIDTH)
         self._ui_dict['combobox_workbench'].setToolTip(PLUGIN_NAME)
+        self._ui_dict['combobox_workbench'].setEnabled(False)
 
         self._ui_dict['layout_0_v_root'] = QHBoxLayout()
         self._ui_dict['layout_0_v_root'].setContentsMargins(0, 0, 10, 0) # 10 px margin on right side
@@ -158,8 +163,6 @@ class workbench:
             ])
 
         self._wait_for_mainwindow = True
-        self._ui_dict['action_manage'].setEnabled(False)
-        self._ui_dict['combobox_workbench'].setEnabled(False)
         self._iface.initializationCompleted.connect(self._connect_ui)
 
     def unload(self):
@@ -175,9 +178,13 @@ class workbench:
         if not self._wait_for_mainwindow:
             return
         self._wait_for_mainwindow = False
+        self._iface.initializationCompleted.disconnect(self._connect_ui)
+
         self._ui_dict['action_manage'].setEnabled(True)
         self._ui_dict['combobox_workbench'].setEnabled(True)
-        self._iface.initializationCompleted.disconnect(self._connect_ui)
+        self._ui_dict['toolbutton_reset'].setEnabled(True)
+        self._ui_dict['toolbutton_manage'].setEnabled(True)
+        self._ui_dict['toolbutton_save'].setEnabled(True)
 
         config = config_class(os.path.join(get_config_path(), CONFIG_FN))
         self._fsm = dtype_fsm_class(
