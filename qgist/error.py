@@ -33,3 +33,9 @@ class QgistConfigKeyError(Exception):
 
 class QgistTranslationError(Exception):
     pass
+
+class QgistTypeError(Exception):
+    pass
+
+class QgistValueError(Exception):
+    pass
