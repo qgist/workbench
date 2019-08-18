@@ -1,4 +1,4 @@
-# QGIST Work Bench
+# QGIST Workbench
 
 ## Synopsis
 
