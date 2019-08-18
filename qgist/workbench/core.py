@@ -219,7 +219,11 @@ class workbench:
 
         new_name = str(self._ui_dict['combobox_workbench'].currentText())
         if new_name != self._fsm.active_workbench:
-            self._fsm.activate_workbench(new_name, self._mainwindow)
+            try:
+                self._fsm.activate_workbench(new_name, self._mainwindow)
+            except Qgist_ALL_Errors as e:
+                msg_critical(e, self._mainwindow)
+                return
 
     def _combobox_workbench_updade(self):
 
