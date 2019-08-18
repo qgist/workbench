@@ -28,5 +28,8 @@ specific language governing rights and limitations under the License.
 # EXCEPTIONS
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+class QgistConfigKeyError(Exception):
+    pass
+
 class QgistTranslationError(Exception):
     pass

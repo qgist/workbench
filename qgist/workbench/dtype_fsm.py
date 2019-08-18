@@ -39,6 +39,7 @@ from PyQt5.QtWidgets import (
 
 from .dtype_workbench import dtype_workbench_class
 from ..util import translate
+from ..config import config_class
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -47,7 +48,7 @@ from ..util import translate
 
 class dtype_fsm_class:
 
-    def __init__(self, workbench_list, mainwindow, last_workbench = None):
+    def __init__(self, workbench_list, mainwindow, active_workbench = None, config = None):
 
         if not isinstance(workbench_list, list):
             raise TypeError('workbench_list must be a list')
@@ -55,25 +56,30 @@ class dtype_fsm_class:
             raise TypeError('items in workbench_list must be dicts')
         if not isinstance(mainwindow, QMainWindow):
             raise TypeError('mainwindow must be a QGis mainwindow')
-        if not isinstance(last_workbench, str) and last_workbench is not None:
-            raise TypeError('last_workbench must be a str or None')
-        if last_workbench is not None and len(workbench_list) == 0:
-            raise ValueError('last_workbench is not None while workbench_list is empty')
-        if last_workbench is not None and last_workbench not in self._workbench_dict.keys():
-            raise ValueError('last_workbench does not exist')
+        if not isinstance(active_workbench, str) and active_workbench is not None:
+            raise TypeError('active_workbench must be a str or None')
+        if active_workbench is not None and len(workbench_list) == 0:
+            raise ValueError('active_workbench is not None while workbench_list is empty')
+        if not isinstance(config, config_class) and config is not None:
+            raise TypeError('config must be a config_class object or None')
+
+        self._config = config
 
         self._workbench_dict = {
             item['name']: dtype_workbench_class(mainwindow = mainwindow, **item)
             for item in workbench_list
             }
+        if active_workbench is not None and active_workbench not in self._workbench_dict.keys():
+            raise ValueError('active_workbench does not exist')
+
         self._active_workbench = None
 
         self.keys = self._workbench_dict.keys
 
         if len(self) == 0:
             self.new_workbench(translate('global', 'user default'), mainwindow)
-        elif last_workbench is not None:
-            self.activate_workbench(last_workbench, mainwindow)
+        elif active_workbench is not None:
+            self.activate_workbench(active_workbench, mainwindow)
         else:
             self.activate_workbench(tuple(self._workbench_dict.keys())[0], mainwindow)
 
@@ -109,6 +115,8 @@ class dtype_fsm_class:
         self._workbench_dict[name].activate(mainwindow)
         self._active_workbench = name
 
+        self._update_config()
+
     def new_workbench(self, name, mainwindow):
 
         if not isinstance(name, str):
@@ -123,6 +131,8 @@ class dtype_fsm_class:
 
         self._workbench_dict[name] = dtype_workbench_class.from_mainwindow(name, mainwindow)
         self._active_workbench = name
+
+        self._update_config()
 
     def delete_workbench(self, name, mainwindow):
 
@@ -140,6 +150,8 @@ class dtype_fsm_class:
             self.activate_workbench(other_name, mainwindow)
 
         self._workbench_dict.pop(name)
+
+        self._update_config()
 
     def rename_workbench(self, old_name, new_name, mainwindow):
 
@@ -164,6 +176,8 @@ class dtype_fsm_class:
         if self._active_workbench == old_name:
             self._active_workbench = new_name
 
+        self._update_config()
+
     def save_workbench(self, name, mainwindow):
 
         if not isinstance(name, str):
@@ -175,6 +189,16 @@ class dtype_fsm_class:
             raise ValueError('workbench must be active for being saved')
 
         self._workbench_dict[name].save(mainwindow)
+
+        self._update_config()
+
+    def _update_config(self):
+
+        if self._config is None:
+            return
+
+        self._config['workbench_list'] = self.as_list()
+        self._config['active_workbench'] = self._active_workbench
 
     @property
     def active_workbench(self):
