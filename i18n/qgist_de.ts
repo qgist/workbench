@@ -3,12 +3,12 @@
 <context>
     <name>global</name>
     <message>
-        <location filename="../qgist/workbench/core.py" line="115"/>
+        <location filename="../qgist/workbench/core.py" line="121"/>
         <source>Qgist Work&amp;Bench</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="120"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="134"/>
         <source>New work bench</source>
         <translation type="unfinished"></translation>
     </message>
@@ -18,22 +18,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/dtype_fsm.py" line="80"/>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="86"/>
         <source>user default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/core.py" line="112"/>
+        <location filename="../qgist/workbench/core.py" line="118"/>
         <source>&amp;Workbench Management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/core.py" line="139"/>
+        <location filename="../qgist/workbench/core.py" line="145"/>
         <source>Manage workbenches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="120"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="134"/>
         <source>Name of new workbench</source>
         <translation type="unfinished"></translation>
     </message>
@@ -58,13 +58,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/core.py" line="132"/>
+        <location filename="../qgist/workbench/core.py" line="138"/>
         <source>Save workbenche</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/core.py" line="125"/>
+        <location filename="../qgist/workbench/core.py" line="131"/>
         <source>Reset workbench</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/msg.py" line="49"/>
+        <source>Critical error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/msg.py" line="53"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/msg.py" line="63"/>
+        <source>Internal error. No description can be provided. Please file a bug.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
