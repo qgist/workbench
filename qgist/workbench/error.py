@@ -28,5 +28,5 @@ specific language governing rights and limitations under the License.
 # EXCEPTIONS
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# class QgistUnnamedUiELement(Exception):
-#     pass
+class QgistWorkbenchNameError(Exception):
+    pass

@@ -50,6 +50,7 @@ from PyQt5.QtWidgets import (
 # IMPORT (Internal)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+from .error import QgistWorkbenchNameError
 from .dtype_fsm import dtype_fsm_class
 from .ui_manager_base import ui_manager_base_class
 from ..error import (
@@ -57,7 +58,10 @@ from ..error import (
     QgistTypeError,
     QgistValueError,
     )
-from ..msg import msg_critical
+from ..msg import (
+    msg_critical,
+    msg_warning,
+    )
 from ..util import translate
 
 
@@ -136,9 +140,17 @@ class ui_manager_class(ui_manager_base_class):
         if not user_ok:
             return
 
-        self._fsm.new_workbench(new_name, self._mainwindow)
-        self._update_workbenches()
-        self._uptdate_items()
+        try:
+            self._fsm.new_workbench(new_name, self._mainwindow)
+            self._update_workbenches()
+            self._uptdate_items()
+        except QgistWorkbenchNameError as e:
+            msg_warning(e, self)
+            return
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self)
+            self.reject()
+            return
 
     def _toolbutton_delete_clicked(self):
 

@@ -37,6 +37,7 @@ from PyQt5.QtWidgets import (
 # IMPORT (Internal)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+from .error import QgistWorkbenchNameError
 from .dtype_workbench import dtype_workbench_class
 from ..config import config_class
 from ..error import (
@@ -130,9 +131,9 @@ class dtype_fsm_class:
             raise QgistTypeError('mainwindow must be a QGis mainwindow')
 
         if name in self._workbench_dict.keys():
-            raise QgistValueError('name is a known workbench, i.e. already exists')
+            raise QgistWorkbenchNameError('name is a known workbench, i.e. already exists')
         if len(name) == 0:
-            raise QgistValueError('name is empty')
+            raise QgistWorkbenchNameError('name is empty')
 
         self._workbench_dict[name] = dtype_workbench_class.from_mainwindow(name, mainwindow)
         self._active_workbench = name
