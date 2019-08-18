@@ -1,4 +1,4 @@
-# QGIST WORK BENCH
+# QGIST WORKBENCH
 # QGis Plugin for Organizing Toolbars
 # https://github.com/qgist/workbench
 #

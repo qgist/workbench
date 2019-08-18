@@ -1,4 +1,4 @@
-; QGIST WORK BENCH
+; QGIST WORKBENCH
 ; QGis Plugin for Organizing Toolbars
 ; https://github.com/qgist/workbench
 ;
@@ -19,7 +19,7 @@
 ; </LICENSE_BLOCK>
 
 [general]
-name=QGIST Work Bench
+name=QGIST Workbench
 description=Organizing Toolbars
 version=0.0.1
 qgisMinimumVersion=3.0
@@ -32,4 +32,4 @@ tracker=https://github.com/qgist/workbench/issues
 repository=https://github.com/qgist/workbench
 experimental=True
 deprecated=False
-icon=icons/workbench.png
+icon=icons/workbench.svg
