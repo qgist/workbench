@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de" sourcelanguage="en">
+<!DOCTYPE TS>
+<TS version="2.1" language="de" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
@@ -140,12 +141,12 @@
     <message>
         <location filename="../qgist/workbench/dtype_fsm.py" line="134"/>
         <source>&quot;name&quot; is a known workbench, i.e. already exists. (dtype_fsm new)</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;name&quot; (Name) ist eine bekannte Werkbank, existiert also schon. (dtype_fsm new)</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/dtype_fsm.py" line="136"/>
         <source>&quot;name&quot; is empty. (dtype_fsm new)</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;name&quot; (Name) ist leer. (dtype_fsm new)</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/dtype_fsm.py" line="146"/>
