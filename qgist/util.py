@@ -57,12 +57,7 @@ from .error import QgistTranslationError
 def setupTranslation(translationsPath):
     """
     Setup translation system for current Qgis Plugin.
-    TODO: add support for regions
-    * English for US
-    * English for UK
-    * Italian
-    * French
-    * Russian
+    TODO: add support for regions (e.g. English for US and UK)
     """
 
     def getTranslationPath(language):
@@ -91,7 +86,6 @@ def setupTranslation(translationsPath):
     translator.load(localePath)
     QCoreApplication.installTranslator(translator)
     return translator
-
 
 def translate(context, key):
     """
