@@ -47,7 +47,7 @@ from PyQt5.QtWidgets import (
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 from .dtype_uielement import dtype_uielement_class
-from ..error improt (
+from ..error import (
     QgistTypeError,
     QgistValueError,
     )

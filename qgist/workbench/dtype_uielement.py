@@ -38,7 +38,7 @@ from PyQt5.QtWidgets import (
 # IMPORT (Internal)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from ..error improt (
+from ..error import (
     QgistAttributeError,
     QgistTypeError,
     QgistValueError,

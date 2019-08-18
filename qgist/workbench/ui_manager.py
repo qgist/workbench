@@ -52,7 +52,7 @@ from PyQt5.QtWidgets import (
 
 from .dtype_fsm import dtype_fsm_class
 from .ui_manager_base import ui_manager_base_class
-from ..error improt (
+from ..error import (
     QgistTypeError,
     QgistValueError,
     )

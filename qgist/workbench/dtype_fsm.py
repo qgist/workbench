@@ -39,7 +39,7 @@ from PyQt5.QtWidgets import (
 
 from .dtype_workbench import dtype_workbench_class
 from ..config import config_class
-from ..error improt (
+from ..error import (
     QgistAttributeError,
     QgistTypeError,
     QgistValueError,

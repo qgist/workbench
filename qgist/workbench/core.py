@@ -68,6 +68,11 @@ from ..const import (
     ICON_FLD,
     TRANSLATION_FLD,
     )
+from ..error import (
+    QgistAttributeError,
+    QgistTypeError,
+    QgistValueError,
+    )
 from ..util import (
     translate,
     setupTranslation,
