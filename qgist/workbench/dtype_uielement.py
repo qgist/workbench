@@ -163,8 +163,8 @@ class dtype_uielement_class:
             raise TypeError('uiobject must be either QToolBar or QDockWidget')
 
         return dtype_uielement_class(
-            name_internal = uiobject.objectName(),
-            name_translated = uiobject.windowTitle(),
-            visibility = uiobject.isVisible(),
+            name_internal = str(uiobject.objectName()),
+            name_translated = str(uiobject.windowTitle()),
+            visibility = bool(uiobject.isVisible()),
             uiobject = uiobject,
             )
