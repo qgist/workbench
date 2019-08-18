@@ -68,6 +68,11 @@ class dtype_uielement_class:
         else:
             self._uiobject = None
 
+        if self._uiobject is not None:
+            actual_name_translated = uiobject.windowTitle()
+            if self._name_translated != actual_name_translated:
+                self._name_translated = actual_name_translated
+
         self._existence = uiobject is not None
 
     def as_dict(self):
