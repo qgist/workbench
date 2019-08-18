@@ -51,6 +51,7 @@ from ..error import (
     QgistTypeError,
     QgistValueError,
     )
+from ..util import translate
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -68,9 +69,9 @@ class dtype_workbench_class:
         ):
 
         if not isinstance(name, str):
-            raise QgistTypeError('name must be str')
+            raise QgistTypeError(translate('global', 'name must be str'))
         if len(name) == 0:
-            raise QgistValueError('name must not be empty')
+            raise QgistValueError(translate('global', 'name must not be empty'))
         self._name = name
 
         if isinstance(mainwindow_state, str):
@@ -78,19 +79,19 @@ class dtype_workbench_class:
         elif isinstance(mainwindow_state, bytes):
             self._mainwindow_state = base64.decodebytes(mainwindow_state)
         else:
-            raise QgistTypeError('mainwindow_state must either be str or bytes')
+            raise QgistTypeError(translate('global', 'mainwindow_state must either be str or bytes'))
 
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', 'mainwindow must be a QGis mainwindow'))
 
         if not isinstance(toolbars_list, list):
-            raise QgistTypeError('toolbars_list must be a list')
+            raise QgistTypeError(translate('global', 'toolbars_list must be a list'))
         if not isinstance(dockwidgets_list, list):
-            raise QgistTypeError('dockwidgets_list must be a list')
+            raise QgistTypeError(translate('global', 'dockwidgets_list must be a list'))
         if any([not isinstance(item, dict) for item in toolbars_list]):
-            raise QgistTypeError('items in toolbars_list must be dicts')
+            raise QgistTypeError(translate('global', 'items in toolbars_list must be dicts'))
         if any([not isinstance(item, dict) for item in dockwidgets_list]):
-            raise QgistTypeError('items in dockwidgets_list must be dicts')
+            raise QgistTypeError(translate('global', 'items in dockwidgets_list must be dicts'))
 
         tmp_toolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         self._toolbars_dict = {
@@ -113,30 +114,30 @@ class dtype_workbench_class:
     def __getitem__(self, value):
 
         if not isinstance(value, tuple):
-            raise QgistValueError('not enough parameters: two expected')
+            raise QgistValueError(translate('global', 'not enough parameters: two expected'))
         if len(value) != 2:
-            raise QgistValueError('wrong number of parameters: two expected')
+            raise QgistValueError(translate('global', 'wrong number of parameters: two expected'))
 
         item_type, item_name = value
 
         if not isinstance(item_type, str):
-            raise QgistTypeError('item_type must be str')
+            raise QgistTypeError(translate('global', 'item_type must be str'))
         if item_type not in ('toolbars', 'dockwidgets'):
-            raise QgistValueError('unknown item_type')
+            raise QgistValueError(translate('global', 'unknown item_type'))
 
         target_dict = getattr(self, '_{NAME:s}_dict'.format(NAME = item_type))
 
         if not isinstance(item_name, str):
-            raise QgistTypeError('item_name must be str')
+            raise QgistTypeError(translate('global', 'item_name must be str'))
         if item_name not in target_dict.keys():
-            raise QgistValueError('item_name is not a known item')
+            raise QgistValueError(translate('global', 'item_name is not a known item'))
 
         return target_dict[item_name]
 
     def activate(self, mainwindow):
 
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', 'mainwindow must be a QGis mainwindow'))
 
         qtoolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         qdockwidgets_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
@@ -149,7 +150,7 @@ class dtype_workbench_class:
     def save(self, mainwindow):
 
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', 'mainwindow must be a QGis mainwindow'))
 
         qtoolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         qdockwidgets_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
@@ -218,9 +219,9 @@ class dtype_workbench_class:
     def name(self, value):
 
         if not isinstance(name, str):
-            raise QgistTypeError('new value of name must be a str')
+            raise QgistTypeError(translate('global', 'new value of name must be a str'))
         if len(name) == 0:
-            raise QgistValueError('new value of name is empty')
+            raise QgistValueError(translate('global', 'new value of name is empty'))
 
         self._name = value
 
@@ -231,7 +232,7 @@ class dtype_workbench_class:
         ):
 
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', 'mainwindow must be a QGis mainwindow'))
 
         toolbars_list = [
             dtype_uielement_class.from_uiobject(uiobject).as_dict()
