@@ -110,7 +110,13 @@ class dtype_uielement_class:
     @existence.setter
     def existence(self, value):
 
-        raise AttributeError('existence must not be changed')
+        if not isinstance(value, bool):
+            raise TypeError('value must be bool')
+        if value:
+            raise ValueError('value can only be set to false')
+
+        self._existence = False
+        self._uiobject = None
 
     @property
     def name_internal(self):
