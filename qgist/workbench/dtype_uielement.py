@@ -35,6 +35,17 @@ from PyQt5.QtWidgets import (
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# IMPORT (Internal)
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+from ..error improt (
+    QgistAttributeError,
+    QgistTypeError,
+    QgistValueError,
+    )
+
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # CLASS
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -48,22 +59,22 @@ class dtype_uielement_class:
         ):
 
         if not isinstance(name_internal, str):
-            raise TypeError('internal name must be str')
+            raise QgistTypeError('internal name must be str')
         if len(name_internal) == 0:
-            raise ValueError('unnamed UI element')
+            raise QgistValueError('unnamed UI element')
         self._name_internal = name_internal
 
         if not isinstance(name_translated, str):
-            raise TypeError('translated name must be str')
+            raise QgistTypeError('translated name must be str')
         self._name_translated = name_translated
 
         if not isinstance(visibility, bool):
-            raise TypeError('visibility must be bool')
+            raise QgistTypeError('visibility must be bool')
         self._visibility = visibility
 
         if uiobject is not None:
             if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
-                raise TypeError('uiobject must be either QToolBar or QDockWidget')
+                raise QgistTypeError('uiobject must be either QToolBar or QDockWidget')
             self._uiobject = uiobject
         else:
             self._uiobject = None
@@ -100,7 +111,7 @@ class dtype_uielement_class:
     def setVisible(self, value):
 
         if not isinstance(value, bool):
-            raise TypeError('value must be bool')
+            raise QgistTypeError('value must be bool')
 
         if not self._existence:
             return
@@ -116,9 +127,9 @@ class dtype_uielement_class:
     def existence(self, value):
 
         if not isinstance(value, bool):
-            raise TypeError('value must be bool')
+            raise QgistTypeError('value must be bool')
         if value:
-            raise ValueError('value can only be set to false')
+            raise QgistValueError('value can only be set to false')
 
         self._existence = False
         self._uiobject = None
@@ -131,7 +142,7 @@ class dtype_uielement_class:
     @name_internal.setter
     def name_internal(self, value):
 
-        raise AttributeError('name_internal must not be changed')
+        raise QgistAttributeError('name_internal must not be changed')
 
     @property
     def name_translated(self):
@@ -141,7 +152,7 @@ class dtype_uielement_class:
     @name_translated.setter
     def name_translated(self, value):
 
-        raise AttributeError('name_translated must not be changed')
+        raise QgistAttributeError('name_translated must not be changed')
 
     @property
     def visibility(self):
@@ -152,7 +163,7 @@ class dtype_uielement_class:
     def visibility(self, value):
 
         if not isinstance(value, bool):
-            raise TypeError('visibility must be bool')
+            raise QgistTypeError('visibility must be bool')
 
         self._visibility = value
 
@@ -160,7 +171,7 @@ class dtype_uielement_class:
     def from_uiobject(uiobject):
 
         if not (isinstance(uiobject, QToolBar) or isinstance(uiobject, QDockWidget)):
-            raise TypeError('uiobject must be either QToolBar or QDockWidget')
+            raise QgistTypeError('uiobject must be either QToolBar or QDockWidget')
 
         return dtype_uielement_class(
             name_internal = str(uiobject.objectName()),
