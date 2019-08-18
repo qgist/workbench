@@ -69,9 +69,9 @@ class dtype_workbench_class:
         ):
 
         if not isinstance(name, str):
-            raise QgistTypeError(translate('global', '"name" must be str'))
+            raise QgistTypeError(translate('global', '"name" must be str. (dtype_workbench)'))
         if len(name) == 0:
-            raise QgistValueError(translate('global', '"name" must not be empty'))
+            raise QgistValueError(translate('global', '"name" must not be empty. (dtype_workbench)'))
         self._name = name
 
         if isinstance(mainwindow_state, str):
@@ -79,19 +79,19 @@ class dtype_workbench_class:
         elif isinstance(mainwindow_state, bytes):
             self._mainwindow_state = base64.decodebytes(mainwindow_state)
         else:
-            raise QgistTypeError(translate('global', '"mainwindow_state" must either be str or bytes'))
+            raise QgistTypeError(translate('global', '"mainwindow_state" must either be str or bytes. (dtype_workbench)'))
 
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow'))
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow. (dtype_workbench)'))
 
         if not isinstance(toolbars_list, list):
-            raise QgistTypeError(translate('global', '"toolbars_list" must be a list'))
+            raise QgistTypeError(translate('global', '"toolbars_list" must be a list. (dtype_workbench)'))
         if not isinstance(dockwidgets_list, list):
-            raise QgistTypeError(translate('global', '"dockwidgets_list" must be a list'))
+            raise QgistTypeError(translate('global', '"dockwidgets_list" must be a list. (dtype_workbench)'))
         if any([not isinstance(item, dict) for item in toolbars_list]):
-            raise QgistTypeError(translate('global', 'Items in "toolbars_list" must be dicts'))
+            raise QgistTypeError(translate('global', 'Items in "toolbars_list" must be dicts. (dtype_workbench)'))
         if any([not isinstance(item, dict) for item in dockwidgets_list]):
-            raise QgistTypeError(translate('global', 'Items in "dockwidgets_list" must be dicts'))
+            raise QgistTypeError(translate('global', 'Items in "dockwidgets_list" must be dicts. (dtype_workbench)'))
 
         tmp_toolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         self._toolbars_dict = {
@@ -114,30 +114,30 @@ class dtype_workbench_class:
     def __getitem__(self, value):
 
         if not isinstance(value, tuple):
-            raise QgistValueError(translate('global', 'Not enough parameters, two expected'))
+            raise QgistValueError(translate('global', 'Not enough parameters, two expected. (dtype_workbench item)'))
         if len(value) != 2:
-            raise QgistValueError(translate('global', 'Wrong number of parameters, two expected'))
+            raise QgistValueError(translate('global', 'Wrong number of parameters, two expected. (dtype_workbench item)'))
 
         item_type, item_name = value
 
         if not isinstance(item_type, str):
-            raise QgistTypeError(translate('global', '"item_type" must be str'))
+            raise QgistTypeError(translate('global', '"item_type" must be str. (dtype_workbench item)'))
         if item_type not in ('toolbars', 'dockwidgets'):
-            raise QgistValueError(translate('global', 'Unknown "item_type"'))
+            raise QgistValueError(translate('global', 'Unknown "item_type". (dtype_workbench item)'))
 
         target_dict = getattr(self, '_{NAME:s}_dict'.format(NAME = item_type))
 
         if not isinstance(item_name, str):
-            raise QgistTypeError(translate('global', '"item_name" must be str'))
+            raise QgistTypeError(translate('global', '"item_name" must be str. (dtype_workbench item)'))
         if item_name not in target_dict.keys():
-            raise QgistValueError(translate('global', '"item_name" is not a known item'))
+            raise QgistValueError(translate('global', '"item_name" is not a known item. (dtype_workbench item)'))
 
         return target_dict[item_name]
 
     def activate(self, mainwindow):
 
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow'))
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow. (dtype_workbench activate)'))
 
         qtoolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         qdockwidgets_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
@@ -150,7 +150,7 @@ class dtype_workbench_class:
     def save(self, mainwindow):
 
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow'))
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow. (dtype_workbench save)'))
 
         qtoolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         qdockwidgets_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
@@ -219,9 +219,9 @@ class dtype_workbench_class:
     def name(self, value):
 
         if not isinstance(name, str):
-            raise QgistTypeError(translate('global', 'New value of "name" must be a str'))
+            raise QgistTypeError(translate('global', 'New value of "name" must be a str. (dtype_workbench name)'))
         if len(name) == 0:
-            raise QgistValueError(translate('global', 'New value of "name" must not be empty'))
+            raise QgistValueError(translate('global', 'New value of "name" must not be empty. (dtype_workbench name)'))
 
         self._name = value
 
@@ -232,7 +232,7 @@ class dtype_workbench_class:
         ):
 
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow'))
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow. (dtype_workbench from_mainwindow)'))
 
         toolbars_list = [
             dtype_uielement_class.from_uiobject(uiobject).as_dict()
