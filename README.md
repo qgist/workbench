@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-QGIST Work Bench is a QGis plugin for organizing toolbars.
+QGIST Workbench is a QGIS plugin for organizing toolbars and dockwidgets.
 It is part of a larger effort, the [QGIST project](http://www.qgist.org).
 
 ## Branches
