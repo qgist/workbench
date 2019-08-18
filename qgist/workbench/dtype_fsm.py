@@ -126,14 +126,14 @@ class dtype_fsm_class:
     def new_workbench(self, name, mainwindow):
 
         if not isinstance(name, str):
-            raise QgistTypeError('name must be str')
+            raise QgistTypeError(translate('global', '"name" must be str. (dtype_fsm new)'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm new)'))
 
         if name in self._workbench_dict.keys():
-            raise QgistWorkbenchNameError('name is a known workbench, i.e. already exists')
+            raise QgistWorkbenchNameError(translate('global', '"name" is a known workbench, i.e. already exists. (dtype_fsm new)'))
         if len(name) == 0:
-            raise QgistWorkbenchNameError('name is empty')
+            raise QgistWorkbenchNameError(translate('global', '"name" is empty. (dtype_fsm new)'))
 
         self._workbench_dict[name] = dtype_workbench_class.from_mainwindow(name, mainwindow)
         self._active_workbench = name
