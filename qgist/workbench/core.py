@@ -72,6 +72,7 @@ from ..error import (
     QgistTypeError,
     QgistValueError,
     )
+from ..msg import msg_critical
 from ..util import (
     translate,
     setupTranslation,
@@ -184,7 +185,12 @@ class workbench:
         self._wait_for_mainwindow = False
         self._iface.initializationCompleted.disconnect(self._connect_ui)
 
-        config = config_class(os.path.join(get_config_path(), CONFIG_FN))
+        try:
+            config = config_class(os.path.join(get_config_path(), CONFIG_FN))
+        except (QgistTypeError, QgistValueError) as e:
+            msg_critical(e, self._mainwindow)
+            return
+
         self._fsm = dtype_fsm_class(
             workbench_list = config.get('workbench_list', list()),
             mainwindow = self._mainwindow,
