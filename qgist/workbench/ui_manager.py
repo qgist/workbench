@@ -74,19 +74,19 @@ class ui_manager_class(ui_manager_base_class):
     def __init__(self, plugin_root_fld, mainwindow, combobox_workbench, combobox_workbench_update, fsm):
 
         if not isinstance(plugin_root_fld, str):
-            raise QgistTypeError('plugin_root_fld must be str')
+            raise QgistTypeError(translate('global', 'plugin_root_fld must be str'))
         if not os.path.exists(plugin_root_fld):
-            raise QgistValueError('plugin_root_fld must exists')
+            raise QgistValueError(translate('global', 'plugin_root_fld must exists'))
         if not os.path.isdir(plugin_root_fld):
-            raise QgistValueError('plugin_root_fld must be a directory')
+            raise QgistValueError(translate('global', 'plugin_root_fld must be a directory'))
         if not isinstance(mainwindow, QMainWindow):
-            raise QgistTypeError('mainwindow must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', 'mainwindow must be a QGis mainwindow'))
         if not isinstance(combobox_workbench, QComboBox):
-            raise QgistTypeError('combobox_workbench must be a QGis mainwindow')
+            raise QgistTypeError(translate('global', 'combobox_workbench must be a QGis mainwindow'))
         if not hasattr(combobox_workbench_update, '__call__'):
-            raise QgistTypeError('combobox_workbench_update must be callable')
+            raise QgistTypeError(translate('global', 'combobox_workbench_update must be callable'))
         if not isinstance(fsm, dtype_fsm_class):
-            raise QgistTypeError('fsm must be a workbench finite state machine')
+            raise QgistTypeError(translate('global', 'fsm must be a workbench finite state machine'))
 
         super().__init__(plugin_root_fld)
 
@@ -133,7 +133,7 @@ class ui_manager_class(ui_manager_base_class):
 
         new_name, user_ok = QInputDialog.getText(
             self,
-            translate('global', 'New work bench'),
+            translate('global', 'New workbench'),
             translate('global', 'Name of new workbench')
             )
 
