@@ -3,37 +3,32 @@
 <context>
     <name>global</name>
     <message>
-        <location filename="../qgist/workbench/core.py" line="109"/>
+        <location filename="../qgist/workbench/core.py" line="115"/>
         <source>Qgist Work&amp;Bench</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager_base.py" line="104"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="120"/>
         <source>New work bench</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager_base.py" line="105"/>
-        <source>Delete work bench</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qgist/workbench/ui_manager_base.py" line="73"/>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="74"/>
         <source>Workbench Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/dtype_fsm.py" line="82"/>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="80"/>
         <source>user default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/core.py" line="107"/>
+        <location filename="../qgist/workbench/core.py" line="112"/>
         <source>&amp;Workbench Management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/core.py" line="125"/>
+        <location filename="../qgist/workbench/core.py" line="139"/>
         <source>Manage workbenches</source>
         <translation type="unfinished"></translation>
     </message>
@@ -43,8 +38,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/core.py" line="119"/>
-        <source>Save work benche</source>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="89"/>
+        <source>Toolbars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="93"/>
+        <source>Dockwidgets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="110"/>
+        <source>New workbench</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="111"/>
+        <source>Delete workbench</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/core.py" line="132"/>
+        <source>Save workbenche</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/core.py" line="125"/>
+        <source>Reset workbench</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
