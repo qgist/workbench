@@ -156,16 +156,26 @@ class ui_manager_class(ui_manager_base_class):
 
         name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
 
-        self._fsm.delete_workbench(name, self._mainwindow)
-        self._update_workbenches()
-        self._uptdate_items()
+        try:
+            self._fsm.delete_workbench(name, self._mainwindow)
+            self._update_workbenches()
+            self._uptdate_items()
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self)
+            self.reject()
+            return
 
     def _toolbutton_save_clicked(self):
 
         name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
 
-        self._fsm.save_workbench(name, self._mainwindow)
-        self._update_workbenches()
+        try:
+            self._fsm.save_workbench(name, self._mainwindow)
+            self._update_workbenches()
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self)
+            self.reject()
+            return
 
     def _update_workbenches(self):
 
