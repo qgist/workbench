@@ -187,16 +187,15 @@ class workbench:
 
         try:
             config = config_class(os.path.join(get_config_path(), CONFIG_FN))
+            self._fsm = dtype_fsm_class(
+                workbench_list = config.get('workbench_list', list()),
+                mainwindow = self._mainwindow,
+                active_workbench = config.get('active_workbench', None),
+                config = config,
+                )
         except (QgistTypeError, QgistValueError) as e:
             msg_critical(e, self._mainwindow)
             return
-
-        self._fsm = dtype_fsm_class(
-            workbench_list = config.get('workbench_list', list()),
-            mainwindow = self._mainwindow,
-            active_workbench = config.get('active_workbench', None),
-            config = config,
-            )
 
         self._combobox_workbench_updade()
         self._ui_dict['combobox_workbench'].activated.connect(self._combobox_workbench_activated)
