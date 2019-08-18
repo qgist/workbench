@@ -69,6 +69,7 @@ from ..const import (
     TRANSLATION_FLD,
     )
 from ..error import (
+    Qgist_ALL_Errors,
     QgistTypeError,
     QgistValueError,
     )
@@ -193,7 +194,7 @@ class workbench:
                 active_workbench = config.get('active_workbench', None),
                 config = config,
                 )
-        except (QgistTypeError, QgistValueError) as e:
+        except Qgist_ALL_Errors as e:
             msg_critical(e, self._mainwindow)
             return
 

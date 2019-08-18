@@ -42,3 +42,9 @@ class QgistTypeError(TypeError):
 
 class QgistValueError(ValueError):
     pass
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# ALL EXCEPTIONS
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Qgist_ALL_Errors = tuple([v for k, v in globals().items() if k.startswith('Qgist')])
