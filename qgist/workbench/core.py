@@ -257,8 +257,16 @@ class workbench:
 
     def _reset_workbench(self):
 
-        self._fsm.activate_workbench(self._fsm.active_workbench, self._mainwindow, force = True)
+        try:
+            self._fsm.activate_workbench(self._fsm.active_workbench, self._mainwindow, force = True)
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self._mainwindow)
+            return
 
     def _save_workbench(self):
 
-        self._fsm.save_workbench(self._fsm.active_workbench, self._mainwindow)
+        try:
+            self._fsm.save_workbench(self._fsm.active_workbench, self._mainwindow)
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self._mainwindow)
+            return
