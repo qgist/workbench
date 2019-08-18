@@ -214,4 +214,4 @@ class dtype_fsm_class:
     @active_workbench.setter
     def active_workbench(self, value):
 
-        raise QgistAttributeError('active_workbench must not be changed')
+        raise QgistAttributeError(translate('global', '"active_workbench" must not be changed. (dtype_fsm active)'))
