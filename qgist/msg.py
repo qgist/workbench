@@ -46,6 +46,14 @@ from .util import translate
 
 def msg_critical(exception, widget = None):
 
+    _msg('critical', translate('global', 'Critical error'), exception, widget = None)
+
+def msg_warning(exception, widget = None):
+
+    _msg('warning', translate('global', 'Warning'), exception, widget = None)
+
+def _msg(msg_type, msg_title, exception, widget = None):
+
     if not isinstance(exception, Exception):
         raise QgistTypeError('exception must be of type Exception')
     if not isinstance(widget, QWidget) and widget is not None:
@@ -56,9 +64,9 @@ def msg_critical(exception, widget = None):
     else:
         msg = str(exception.args[0])
 
-    QMessageBox.critical(
+    getattr(QMessageBox, msg_type)(
         widget,
-        translate('global', 'Critical error'),
+        msg_title,
         msg,
         QMessageBox.Ok
         )
