@@ -53,6 +53,7 @@ from PyQt5.QtWidgets import (
 from .dtype_fsm import dtype_fsm_class
 from .ui_manager_base import ui_manager_base_class
 from ..error import (
+    Qgist_ALL_Errors,
     QgistTypeError,
     QgistValueError,
     )
@@ -115,10 +116,14 @@ class ui_manager_class(ui_manager_base_class):
         if new_name == self._fsm.active_workbench:
             return
 
-        self._fsm.activate_workbench(new_name, self._mainwindow)
-        self._combobox_workbench.setCurrentText(self._fsm.active_workbench)
-
-        self._uptdate_items()
+        try:
+            self._fsm.activate_workbench(new_name, self._mainwindow)
+            self._combobox_workbench.setCurrentText(self._fsm.active_workbench)
+            self._uptdate_items()
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self)
+            self.reject()
+            return
 
     def _toolbutton_new_clicked(self):
 
