@@ -184,12 +184,6 @@ class workbench:
         self._wait_for_mainwindow = False
         self._iface.initializationCompleted.disconnect(self._connect_ui)
 
-        self._ui_dict['action_manage'].setEnabled(True)
-        self._ui_dict['combobox_workbench'].setEnabled(True)
-        self._ui_dict['toolbutton_reset'].setEnabled(True)
-        self._ui_dict['toolbutton_manage'].setEnabled(True)
-        self._ui_dict['toolbutton_save'].setEnabled(True)
-
         config = config_class(os.path.join(get_config_path(), CONFIG_FN))
         self._fsm = dtype_fsm_class(
             workbench_list = config.get('workbench_list', list()),
@@ -205,6 +199,12 @@ class workbench:
         self._ui_dict['toolbutton_manage'].clicked.connect(self._open_manager)
         self._ui_dict['toolbutton_save'].clicked.connect(self._save_workbench)
         self._ui_dict['toolbutton_reset'].clicked.connect(self._reset_workbench)
+
+        self._ui_dict['action_manage'].setEnabled(True)
+        self._ui_dict['combobox_workbench'].setEnabled(True)
+        self._ui_dict['toolbutton_reset'].setEnabled(True)
+        self._ui_dict['toolbutton_manage'].setEnabled(True)
+        self._ui_dict['toolbutton_save'].setEnabled(True)
 
     def _combobox_workbench_activated(self):
 
