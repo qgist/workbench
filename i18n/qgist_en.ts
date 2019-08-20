@@ -48,7 +48,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/core.py" line="138"/>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="112"/>
         <source>Save workbenche</source>
         <translation type="unfinished"></translation>
     </message>
@@ -515,6 +515,11 @@
     <message>
         <location filename="../qgist/workbench/dtype_uielement.py" line="156"/>
         <source>&quot;name_translated&quot; must not be changed. (dtype_uielement name_translated)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/core.py" line="138"/>
+        <source>Save workbench</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

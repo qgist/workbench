@@ -135,7 +135,7 @@ class workbench:
         self._ui_dict['toolbutton_save'].setIcon(QIcon(os.path.join(
             self._plugin_root_fld, ICON_FLD, 'Save.svg'
             )))
-        self._ui_dict['toolbutton_save'].setToolTip(translate('global', 'Save workbenche'))
+        self._ui_dict['toolbutton_save'].setToolTip(translate('global', 'Save workbench'))
         self._ui_dict['toolbutton_save'].setEnabled(False)
 
         self._ui_dict['toolbutton_manage'] = QToolButton()
