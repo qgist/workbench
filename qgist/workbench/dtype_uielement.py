@@ -153,7 +153,7 @@ class dtype_uielement_class:
     @name_translated.setter
     def name_translated(self, value):
 
-        raise QgistAttributeError(translate('global', '"name_translated" must not be changed. (dtype_uielement name_internal)'))
+        raise QgistAttributeError(translate('global', '"name_translated" must not be changed. (dtype_uielement name_translated)'))
 
     @property
     def visibility(self):

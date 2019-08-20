@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en" sourcelanguage="en">
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
@@ -374,11 +373,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/dtype_uielement.py" line="156"/>
-        <source>&quot;name_translated&quot; must not be changed. (dtype_uielement name_internal)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../qgist/workbench/dtype_uielement.py" line="167"/>
         <source>&quot;visibility&quot; must be bool. (dtype_uielement visibility)</source>
         <translation type="unfinished"></translation>
@@ -516,6 +510,11 @@
     <message>
         <location filename="../qgist/workbench/dtype_workbench.py" line="235"/>
         <source>&quot;mainwindow&quot; must be a QGIS mainwindow. (dtype_workbench from_mainwindow)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_uielement.py" line="156"/>
+        <source>&quot;name_translated&quot; must not be changed. (dtype_uielement name_translated)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
