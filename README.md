@@ -5,6 +5,8 @@
 QGIST Workbench is a QGIS plugin for organizing toolbars and dockwidgets.
 It is part of a larger effort, the [QGIST project](http://www.qgist.org).
 
+Workbenches can be switched within a QGIS profile. Change your QGIS user interface for different parts of your workflow as you move forward!
+
 ## Screenshots
 
 ![Example workbench 1 configuration](https://github.com/qgist/workbench/blob/master/docs/workbench_01_config.png?raw=true "Example workbench 1 configuration")
