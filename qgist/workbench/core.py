@@ -125,9 +125,9 @@ class workbench:
             )
 
         self._ui_dict['toolbutton_reset'] = QToolButton()
-        # self._ui_dict['toolbutton_reset'].setIcon(QIcon(os.path.join(
-        #     self._plugin_root_fld, ICON_FLD, 'Save.svg'
-        #     )))
+        self._ui_dict['toolbutton_reset'].setIcon(QIcon(os.path.join(
+            self._plugin_root_fld, ICON_FLD, 'Reset.svg'
+            )))
         self._ui_dict['toolbutton_reset'].setToolTip(translate('global', 'Reset workbench'))
         self._ui_dict['toolbutton_reset'].setEnabled(False)
 
