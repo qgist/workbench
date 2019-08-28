@@ -117,6 +117,9 @@ class workbench:
 
         self._ui_dict['action_manage'] = QAction(translate('global', '&Workbench Management'))
         self._ui_dict['action_manage'].setEnabled(False)
+        self._ui_dict['action_manage'].setIcon(QIcon(os.path.join(
+            self._plugin_root_fld, ICON_FLD, PLUGIN_ICON_FN
+            )))
 
         workBenchMenuText = translate('global', 'Qgist Work&bench')
         self._iface.addPluginToMenu(workBenchMenuText, self._ui_dict['action_manage'])
@@ -125,9 +128,9 @@ class workbench:
             )
 
         self._ui_dict['toolbutton_reset'] = QToolButton()
-        # self._ui_dict['toolbutton_reset'].setIcon(QIcon(os.path.join(
-        #     self._plugin_root_fld, ICON_FLD, 'Save.svg'
-        #     )))
+        self._ui_dict['toolbutton_reset'].setIcon(QIcon(os.path.join(
+            self._plugin_root_fld, ICON_FLD, 'Reset.svg'
+            )))
         self._ui_dict['toolbutton_reset'].setToolTip(translate('global', 'Reset workbench'))
         self._ui_dict['toolbutton_reset'].setEnabled(False)
 
@@ -135,7 +138,7 @@ class workbench:
         self._ui_dict['toolbutton_save'].setIcon(QIcon(os.path.join(
             self._plugin_root_fld, ICON_FLD, 'Save.svg'
             )))
-        self._ui_dict['toolbutton_save'].setToolTip(translate('global', 'Save workbenche'))
+        self._ui_dict['toolbutton_save'].setToolTip(translate('global', 'Save workbench'))
         self._ui_dict['toolbutton_save'].setEnabled(False)
 
         self._ui_dict['toolbutton_manage'] = QToolButton()

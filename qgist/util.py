@@ -68,7 +68,7 @@ def setupTranslation(translationsPath):
             raise QgistTranslationError('Translation not found: %s' % outPath)
         return outPath
 
-    userLocale = QSettings().value('locale/userLocale')
+    userLocale = str(QSettings().value('locale/userLocale'))
     if '_' in userLocale:
         language, region = userLocale.split('_')
     else:
