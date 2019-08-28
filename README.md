@@ -7,13 +7,13 @@ It is part of a larger effort, the [QGIST project](http://www.qgist.org).
 
 ## Screenshots
 
-![Example workbench 1 configuration](https://github.com/qgist/workbench/docs/workbench_01_config?raw=true "Example workbench 1 configuration")
+![Example workbench 1 configuration](https://github.com/qgist/workbench/blob/master/docs/workbench_01_config?raw=true "Example workbench 1 configuration")
 
-![Example workbench 1 in QGIS](https://github.com/qgist/workbench/docs/workbench_01_qgis?raw=true "Example workbench 1 in QGIS")
+![Example workbench 1 in QGIS](https://github.com/qgist/workbench/blob/master/docs/workbench_01_qgis?raw=true "Example workbench 1 in QGIS")
 
-![Example workbench 2 configuration](https://github.com/qgist/workbench/docs/workbench_02_config?raw=true "Example workbench 2 configuration")
+![Example workbench 2 configuration]https://github.com/qgist/workbench/blob/master/docs/workbench_02_config?raw=true "Example workbench 2 configuration")
 
-![Example workbench 2 in QGIS](https://github.com/qgist/workbench/docs/workbench_02_qgis?raw=true "Example workbench 1 in QGIS")
+![Example workbench 2 in QGIS](https://github.com/qgist/workbench/blob/master/docs/workbench_02_qgis?raw=true "Example workbench 1 in QGIS")
 
 ## Branches
 
