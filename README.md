@@ -9,13 +9,9 @@ Workbenches can be switched within a QGIS profile. Change your QGIS user interfa
 
 ## Screenshots
 
-![Example workbench 1 configuration](https://github.com/qgist/workbench/blob/master/docs/workbench_01_config.png?raw=true "Example workbench 1 configuration")
+![Example workbench 1 configuration](https://github.com/qgist/workbench/blob/master/docs/workbench_01.png?raw=true "Example workbench 1 configuration")
 
-![Example workbench 1 in QGIS](https://github.com/qgist/workbench/blob/master/docs/workbench_01_qgis.png?raw=true "Example workbench 1 in QGIS")
-
-![Example workbench 2 configuration](https://github.com/qgist/workbench/blob/master/docs/workbench_02_config.png?raw=true "Example workbench 2 configuration")
-
-![Example workbench 2 in QGIS](https://github.com/qgist/workbench/blob/master/docs/workbench_02_qgis.png?raw=true "Example workbench 1 in QGIS")
+![Example workbench 2 configuration](https://github.com/qgist/workbench/blob/master/docs/workbench_02.png?raw=true "Example workbench 2 configuration")
 
 ## Branches
 
