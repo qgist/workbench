@@ -19,5 +19,11 @@
 # </LICENSE_BLOCK>
 
 
+clean:
+	find qgist/ -name '*.pyc' -exec rm -f {} +
+	find qgist/ -name '*.pyo' -exec rm -f {} +
+	find qgist/ -name '*~' -exec rm -f {} +
+	find ./ -name '__pycache__' -exec rm -fr {} +
+
 translate:
 	python3 -c "import makefile; makefile.translate()"
