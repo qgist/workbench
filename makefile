@@ -19,7 +19,13 @@
 # </LICENSE_BLOCK>
 
 
+release:
+	make clean
+	zip -r workbench.zip *
+	gpg --detach-sign -a workbench.zip
+
 clean:
+	-rm workbench.zip*
 	find qgist/ -name '*.pyc' -exec rm -f {} +
 	find qgist/ -name '*.pyo' -exec rm -f {} +
 	find qgist/ -name '*~' -exec rm -f {} +
