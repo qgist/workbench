@@ -21,6 +21,7 @@
 [general]
 name=QGIST Workbench
 description=Organizing Toolbars
+about=QGIST Workbench is a QGIS plugin for organizing toolbars and dockwidgets.
 version=0.0.1
 qgisMinimumVersion=3.0
 author=QGIST project
