@@ -19,13 +19,16 @@
 # </LICENSE_BLOCK>
 
 
+plugin = workbench
+
 release:
 	make clean
-	zip -r workbench.zip *
-	gpg --detach-sign -a workbench.zip
+	mkdir -p release/$(plugin)
+	cp --parents -a $$(git ls-tree -r $$(git rev-parse --abbrev-ref HEAD) --name-only) release/$(plugin)/
+	cd release/; zip -r $(plugin).zip $(plugin); gpg --detach-sign -a $(plugin).zip
 
 clean:
-	-rm workbench.zip*
+	-rm -r release
 	find qgist/ -name '*.pyc' -exec rm -f {} +
 	find qgist/ -name '*.pyo' -exec rm -f {} +
 	find qgist/ -name '*~' -exec rm -f {} +

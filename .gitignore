@@ -6,3 +6,4 @@ __pycache__
 notes.md
 *.zip
 *.zip.asc
+release/
