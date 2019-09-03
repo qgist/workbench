@@ -50,7 +50,9 @@ from .dtype_uielement import dtype_uielement_class
 from ..error import (
     QgistTypeError,
     QgistValueError,
+    Qgist_ALL_Errors,
     )
+from ..msg import msg_warning
 from ..util import translate
 
 
@@ -181,21 +183,33 @@ class dtype_workbench_class:
     def _activate_uielements(uiobjects_dict, uielements_dict):
 
         for name_internal, uiobject in uiobjects_dict.items():
-            try:
+            if name_internal in uielements_dict.keys():
                 uielements_dict[name_internal].push_state_to_uiobject()
-            except KeyError:
-                uielement = dtype_uielement_class.from_uiobject(uiobject)
-                uielements_dict[uielement.name_internal] = uielement
+            else:
+                """try/except-block fixes #7, Certain other plugins inhibit
+                the start of Workbench because of unnamed UI elements"""
+                try:
+                    uielement = dtype_uielement_class.from_uiobject(uiobject)
+                    uielements_dict[uielement.name_internal] = uielement
+                except Qgist_ALL_Errors as e:
+                    msg_warning(e)
         for name_internal in (uielements_dict.keys() - uiobjects_dict.keys()):
             uielements_dict[name_internal].existence = False
 
     @staticmethod
     def _get_uielements_from_mainwindow(mainwindow, uielement_type):
 
+        def get_parent(el):
+            """Fixes #6, Certain other plugins crash Workbench:
+            Their UI's parent is exposed as a property instead of a method"""
+            if hasattr(el.parent, '__call__'):
+                return el.parent()
+            return el.parent
+
         return {
             uielement.objectName(): uielement
             for uielement in mainwindow.findChildren(uielement_type)
-            if uielement.parent().objectName() == 'QgisApp'
+            if get_parent(uielement).objectName() == 'QgisApp'
             }
 
     @staticmethod
