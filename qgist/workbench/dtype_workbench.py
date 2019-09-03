@@ -192,10 +192,17 @@ class dtype_workbench_class:
     @staticmethod
     def _get_uielements_from_mainwindow(mainwindow, uielement_type):
 
+        def get_parent(el):
+            """Fixes #6, Certain other plugins crash Workbench:
+            Their UI's parent is exposed as a property instead of a method"""
+            if hasattr(el.parent, '__call__'):
+                return el.parent()
+            return el.parent
+
         return {
             uielement.objectName(): uielement
             for uielement in mainwindow.findChildren(uielement_type)
-            if uielement.parent().objectName() == 'QgisApp'
+            if get_parent(uielement).objectName() == 'QgisApp'
             }
 
     @staticmethod
