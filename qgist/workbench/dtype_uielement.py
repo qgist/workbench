@@ -38,6 +38,7 @@ from PyQt5.QtWidgets import (
 # IMPORT (Internal)
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+from .error import QgistUnnamedElementError
 from ..error import (
     QgistAttributeError,
     QgistTypeError,
@@ -62,7 +63,7 @@ class dtype_uielement_class:
         if not isinstance(name_internal, str):
             raise QgistTypeError(translate('global', '"internal_name" must be str. (dtype_uielement)'))
         if len(name_internal) == 0:
-            raise QgistValueError(translate('global', 'Unnamed UI element. (dtype_uielement)'))
+            raise QgistUnnamedElementError(translate('global', 'Unnamed UI element. (dtype_uielement)'))
         self._name_internal = name_internal
 
         if not isinstance(name_translated, str):
