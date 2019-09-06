@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de" sourcelanguage="en">
+<!DOCTYPE TS>
+<TS version="2.1" language="de" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
@@ -530,7 +531,7 @@
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="132"/>
         <source>Warn if UI elements can not be uniquely identified</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnen, wenn UI-Elemente nicht eindeutig identifiziert werden können</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/dtype_fsm.py" line="231"/>
@@ -545,7 +546,7 @@
     <message>
         <location filename="../qgist/workbench/ui_manager.py" line="193"/>
         <source>New name of workbench</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuer Name für Werkbank</translation>
     </message>
 </context>
 </TS>
