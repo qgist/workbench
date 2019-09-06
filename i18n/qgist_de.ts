@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de" sourcelanguage="en">
+<!DOCTYPE TS>
+<TS version="2.1" language="de" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
@@ -46,11 +47,6 @@
         <location filename="../qgist/workbench/ui_manager_base.py" line="112"/>
         <source>Delete workbench</source>
         <translation>Werkbank löschen</translation>
-    </message>
-    <message>
-        <location filename="../qgist/workbench/ui_manager_base.py" line="113"/>
-        <source>Save workbenche</source>
-        <translation>Werkbank speichern</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/core.py" line="135"/>
@@ -520,7 +516,7 @@
     <message>
         <location filename="../qgist/workbench/core.py" line="142"/>
         <source>Save workbench</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkbank speichern</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/dtype_workbench.py" line="77"/>
@@ -533,7 +529,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager_base.py" line="131"/>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="132"/>
         <source>Warn if UI elements can not be uniquely identified</source>
         <translation type="unfinished"></translation>
     </message>
@@ -541,6 +537,11 @@
         <location filename="../qgist/workbench/dtype_fsm.py" line="231"/>
         <source>&quot;config&quot; must not be changed. (dtype_fsm config)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="114"/>
+        <source>Rename workbench</source>
+        <translation>Werkbank umbenennen</translation>
     </message>
 </context>
 </TS>
