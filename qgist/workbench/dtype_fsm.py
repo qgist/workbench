@@ -219,3 +219,13 @@ class dtype_fsm_class:
     def active_workbench(self, value):
 
         raise QgistAttributeError(translate('global', '"active_workbench" must not be changed. (dtype_fsm active)'))
+
+    @property
+    def config(self):
+
+        return self._config
+
+    @config.setter
+    def config(self, value):
+
+        raise QgistAttributeError(translate('global', '"config" must not be changed. (dtype_fsm config)'))
