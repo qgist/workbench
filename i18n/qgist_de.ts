@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de" sourcelanguage="en">
+<!DOCTYPE TS><TS version="2.0" language="de" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
@@ -209,7 +208,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/dtype_fsm.py" line="221"/>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="252"/>
         <source>&quot;active_workbench&quot; must not be changed. (dtype_fsm active)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -529,12 +528,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager_base.py" line="132"/>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="134"/>
         <source>Warn if UI elements can not be uniquely identified</source>
         <translation>Warnen, wenn UI-Elemente nicht eindeutig identifiziert werden können</translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/dtype_fsm.py" line="231"/>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="262"/>
         <source>&quot;config&quot; must not be changed. (dtype_fsm config)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -547,6 +546,51 @@
         <location filename="../qgist/workbench/ui_manager.py" line="193"/>
         <source>New name of workbench</source>
         <translation>Neuer Name für Werkbank</translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="208"/>
+        <source>&quot;workbench_dict&quot; must be dict. (dtype_fsm import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="210"/>
+        <source>&quot;workbench_dict&quot; does not contain a name. (dtype_fsm import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="212"/>
+        <source>&quot;mainwindow&quot; must be a QGis mainwindow. (dtype_fsm import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="217"/>
+        <source>&quot;name&quot; is a known workbench, i.e. already exists. (dtype_fsm import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="219"/>
+        <source>&quot;name&quot; is empty. (dtype_fsm import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="230"/>
+        <source>&quot;name&quot; must be str. (dtype_fsm export)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="232"/>
+        <source>&quot;name&quot; is not a known workbench. (dtype_fsm export)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="115"/>
+        <source>Import workbench</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager_base.py" line="116"/>
+        <source>Export workbench</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
