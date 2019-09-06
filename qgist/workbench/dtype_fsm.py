@@ -202,6 +202,15 @@ class dtype_fsm_class:
 
         self._update_config()
 
+    def export_workbench(self, name):
+
+        if not isinstance(name, str):
+            raise QgistTypeError(translate('global', '"name" must be str. (dtype_fsm export)'))
+        if name not in self._workbench_dict.keys():
+            raise QgistValueError(translate('global', '"name" is not a known workbench. (dtype_fsm export)'))
+
+        return self._workbench_dict[name].as_dict()
+
     def _update_config(self):
 
         if self._config is None:
