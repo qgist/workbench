@@ -112,6 +112,8 @@ class ui_manager_base_class(QDialog):
             ('delete', translate('global', 'Delete workbench'), 'Delete.svg'),
             ('save', translate('global', 'Save workbench'), 'Save.svg'),
             ('rename', translate('global', 'Rename workbench'), 'Rename.svg'),
+            ('import', translate('global', 'Import workbench'), 'Import.svg'),
+            ('export', translate('global', 'Export workbench'), 'Export.svg'),
             ]:
 
             toolbutton = QToolButton()
