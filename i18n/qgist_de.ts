@@ -23,7 +23,7 @@
         <translation>Werkbänke verwalten</translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="134"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="144"/>
         <source>Name of new workbench</source>
         <translation>Name der neuen Werkbank</translation>
     </message>
@@ -535,6 +535,11 @@
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="131"/>
         <source>Warn if UI elements can not be uniquely identified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/dtype_fsm.py" line="231"/>
+        <source>&quot;config&quot; must not be changed. (dtype_fsm config)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
