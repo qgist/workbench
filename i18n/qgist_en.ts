@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en" sourcelanguage="en">
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
@@ -541,6 +540,11 @@
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="114"/>
         <source>Rename workbench</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager.py" line="193"/>
+        <source>New name of workbench</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
