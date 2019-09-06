@@ -110,7 +110,8 @@ class ui_manager_base_class(QDialog):
         for name, title, icon in [
             ('new', translate('global', 'New workbench'), 'FileNew.svg'),
             ('delete', translate('global', 'Delete workbench'), 'Delete.svg'),
-            ('save', translate('global', 'Save workbenche'), 'Save.svg'),
+            ('save', translate('global', 'Save workbench'), 'Save.svg'),
+            ('rename', translate('global', 'Rename workbench'), 'Rename.svg'),
             ]:
 
             toolbutton = QToolButton()
