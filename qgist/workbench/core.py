@@ -59,6 +59,7 @@ from .const import (
     WORKBENCH_WIDGET_WIDTH,
     )
 from .dtype_fsm import dtype_fsm_class
+from .error import QgistUnnamedElementError
 from .ui_manager import ui_manager_class
 from ..config import (
     config_class,
@@ -278,6 +279,6 @@ class workbench:
 
         try:
             self._fsm.save_workbench(self._fsm.active_workbench, self._mainwindow)
-        except Qgist_ALL_Errors as e:
+        except Qgist_ALL_Errors + (QgistUnnamedElementError,) as e:
             msg_critical(e, self._mainwindow)
             return

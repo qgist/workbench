@@ -72,7 +72,7 @@ class dtype_fsm_class:
         self._config = config
 
         self._workbench_dict = {
-            item['name']: dtype_workbench_class(mainwindow = mainwindow, **item)
+            item['name']: dtype_workbench_class(mainwindow = mainwindow, config = self._config, **item)
             for item in workbench_list
             }
         if active_workbench is not None and active_workbench not in self._workbench_dict.keys():
@@ -135,7 +135,11 @@ class dtype_fsm_class:
         if len(name) == 0:
             raise QgistWorkbenchNameError(translate('global', '"name" is empty. (dtype_fsm new)'))
 
-        self._workbench_dict[name] = dtype_workbench_class.from_mainwindow(name, mainwindow)
+        self._workbench_dict[name] = dtype_workbench_class.from_mainwindow(
+            name = name,
+            mainwindow = mainwindow,
+            config = self._config,
+            )
         self._active_workbench = name
 
         self._update_config()
@@ -215,3 +219,13 @@ class dtype_fsm_class:
     def active_workbench(self, value):
 
         raise QgistAttributeError(translate('global', '"active_workbench" must not be changed. (dtype_fsm active)'))
+
+    @property
+    def config(self):
+
+        return self._config
+
+    @config.setter
+    def config(self, value):
+
+        raise QgistAttributeError(translate('global', '"config" must not be changed. (dtype_fsm config)'))

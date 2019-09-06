@@ -110,6 +110,16 @@ class ui_manager_class(ui_manager_base_class):
         self._update_workbenches()
         self._uptdate_items()
 
+        if self._fsm.config is None:
+            self._ui_dict['checkbox_unnamedwarning'].setEnabled(False)
+        else:
+            self._ui_dict['checkbox_unnamedwarning'].setCheckState(
+                Qt.Checked if self._fsm.config.get('show_unnamed_warning', False) else Qt.Unchecked
+                )
+            def change_unnamedwarning():
+                self._fsm.config['show_unnamed_warning'] = bool(self._ui_dict['checkbox_unnamedwarning'].isChecked())
+            self._ui_dict['checkbox_unnamedwarning'].stateChanged.connect(change_unnamedwarning)
+
     def _list_workbenches_currentrowchanged(self):
 
         if not bool(self._ui_dict['list_workbenches'].isEnabled()):
