@@ -43,6 +43,7 @@ from PyQt5.QtGui import (
     QIcon,
     )
 from PyQt5.QtWidgets import (
+    QCheckBox,
     QDialog,
     QHBoxLayout,
     QLabel,
@@ -126,6 +127,9 @@ class ui_manager_base_class(QDialog):
             toolbar_layout.addWidget(toolbutton)
 
         toolbar_layout.addStretch()
+
+        ui_dict['checkbox_unnamedwarning'] = QCheckBox(translate('global', 'Warn if UI elements can not be uniquely identified'))
+        toolbar_layout.addWidget(ui_dict['checkbox_unnamedwarning'])
 
     @staticmethod
     def _get_workbenchlist():
