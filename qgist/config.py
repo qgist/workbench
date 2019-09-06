@@ -179,3 +179,38 @@ class config_class:
 
         if backup_fn is not None:
             os.unlink(backup_fn)
+
+    @staticmethod
+    def import_config(fn):
+
+        if not isinstance(fn, str):
+            raise QgistTypeError(translate('global', '"fn" must be str. (config import)'))
+        if not os.path.exists(fn):
+            raise QgistValueError(translate('global', '"fn" must exists. (config import)'))
+        if not os.path.isfile(fn):
+            raise QgistValueError(translate('global', '"fn" must be a file. (config import)'))
+
+        with open(fn, 'r', encoding = 'utf-8') as f:
+            raw = f.read()
+
+        try:
+            value = json.loads(raw)
+        except:
+            raise QgistValueError(translate('global', '"fn" does not contain valid JSON. (config import)'))
+
+        return value
+
+    @staticmethod
+    def export_config(fn, value):
+
+        if not isinstance(fn, str):
+            raise QgistTypeError(translate('global', '"fn" must be str. (config export)'))
+        if not os.path.exists(os.path.dirname(fn)):
+            raise QgistValueError(translate('global', 'Parent of "fn" must exists. (config export)'))
+        if not os.path.isdir(os.path.dirname(fn)):
+            raise QgistValueError(translate('global', 'Parent of "fn" must be a directory. (config export)'))
+        if not config_class._check_value(value):
+            raise QgistTypeError(translate('global', '"value" contains not allowed types. (config export)'))
+
+        with open(fn, 'w', encoding = 'utf-8') as f:
+            f.write(json.dumps(svalue, indent = 4, sort_keys = True))
