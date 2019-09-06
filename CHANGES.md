@@ -2,7 +2,7 @@
 
 ## 0.0.3 (2019-XX-XX)
 
-* [TBD]
+* Implemented #8: Warnings because of unnamed UI elements are turned off by default. If required, they can be activated in the configuration.
 
 ## 0.0.2 (2019-09-03)
 
