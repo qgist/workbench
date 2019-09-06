@@ -100,7 +100,7 @@ class ui_manager_class(ui_manager_base_class):
 
     def _connect_ui(self):
 
-        for item in ('new', 'delete', 'save'):
+        for item in ('new', 'delete', 'save', 'rename'):
             self._ui_dict['toolbutton_{NAME:s}'.format(NAME = item)].clicked.connect(
                 getattr(self, '_toolbutton_{NAME:s}_clicked'.format(NAME = item))
                 )
@@ -182,6 +182,30 @@ class ui_manager_class(ui_manager_base_class):
         try:
             self._fsm.save_workbench(name, self._mainwindow)
             self._update_workbenches()
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self)
+            self.reject()
+            return
+
+    def _toolbutton_rename_clicked(self):
+
+        old_name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
+        new_name, user_ok = QInputDialog.getText(
+            self,
+            translate('global', 'Rename workbench'),
+            translate('global', 'New name of workbench')
+            )
+
+        if not user_ok:
+            return
+
+        try:
+            self._fsm.rename_workbench(old_name, new_name, self._mainwindow)
+            self._update_workbenches()
+            self._uptdate_items()
+        except QgistWorkbenchNameError as e:
+            msg_warning(e, self)
+            return
         except Qgist_ALL_Errors as e:
             msg_critical(e, self)
             self.reject()

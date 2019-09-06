@@ -172,11 +172,11 @@ class dtype_fsm_class:
         if not isinstance(mainwindow, QMainWindow):
             raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm rename)'))
         if old_name not in self._workbench_dict.keys():
-            raise QgistValueError(translate('global', '"old_name" is not a known workbench. (dtype_fsm rename)'))
+            raise QgistWorkbenchNameError(translate('global', '"old_name" is not a known workbench. (dtype_fsm rename)'))
         if new_name in self._workbench_dict.keys():
-            raise QgistValueError(translate('global', '"new_name" is a known workbench, i.e. already exists. (dtype_fsm rename)'))
+            raise QgistWorkbenchNameError(translate('global', '"new_name" is a known workbench, i.e. already exists. (dtype_fsm rename)'))
         if len(new_name) == 0:
-            raise QgistValueError(translate('global', '"new_name" is empty. (dtype_fsm rename)'))
+            raise QgistWorkbenchNameError(translate('global', '"new_name" is empty. (dtype_fsm rename)'))
         if old_name == new_name:
             return
 

@@ -255,9 +255,9 @@ class dtype_workbench_class:
     @name.setter
     def name(self, value):
 
-        if not isinstance(name, str):
+        if not isinstance(value, str):
             raise QgistTypeError(translate('global', 'New value of "name" must be a str. (dtype_workbench name)'))
-        if len(name) == 0:
+        if len(value) == 0:
             raise QgistValueError(translate('global', 'New value of "name" must not be empty. (dtype_workbench name)'))
 
         self._name = value
