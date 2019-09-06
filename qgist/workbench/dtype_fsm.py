@@ -202,6 +202,28 @@ class dtype_fsm_class:
 
         self._update_config()
 
+    def import_workbench(self, workbench_dict, mainwindow):
+
+        if not isinstance(workbench_dict, str):
+            raise QgistTypeError(translate('global', '"workbench_dict" must be dict. (dtype_fsm import)'))
+        if 'name' not in workbench_dict.keys():
+            raise QgistValueError(translate('global', '"workbench_dict" does not contain a name. (dtype_fsm import)'))
+        if not isinstance(mainwindow, QMainWindow):
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm import)'))
+
+        name = workbench_dict['name']
+
+        if name in self._workbench_dict.keys():
+            raise QgistWorkbenchNameError(translate('global', '"name" is a known workbench, i.e. already exists. (dtype_fsm import)'))
+        if len(name) == 0:
+            raise QgistWorkbenchNameError(translate('global', '"name" is empty. (dtype_fsm import)'))
+
+        self._workbench_dict[name] = dtype_workbench_class(
+            mainwindow = mainwindow, config = self._config, **workbench_dict
+            )
+
+        self._update_config()
+
     def export_workbench(self, name):
 
         if not isinstance(name, str):
