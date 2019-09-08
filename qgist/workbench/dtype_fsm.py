@@ -204,7 +204,7 @@ class dtype_fsm_class:
 
     def import_workbench(self, workbench_dict, mainwindow):
 
-        if not isinstance(workbench_dict, str):
+        if not isinstance(workbench_dict, dict):
             raise QgistTypeError(translate('global', '"workbench_dict" must be dict. (dtype_fsm import)'))
         if 'name' not in workbench_dict.keys():
             raise QgistValueError(translate('global', '"workbench_dict" does not contain a name. (dtype_fsm import)'))
