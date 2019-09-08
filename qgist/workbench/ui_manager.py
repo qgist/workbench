@@ -41,6 +41,7 @@ from PyQt5.QtCore import (
 from PyQt5.QtWidgets import (
     QCheckBox,
     QComboBox,
+    QFileDialog,
     QInputDialog,
     QListWidgetItem,
     QMainWindow,
@@ -53,8 +54,10 @@ from PyQt5.QtWidgets import (
 from .error import QgistWorkbenchNameError
 from .dtype_fsm import dtype_fsm_class
 from .ui_manager_base import ui_manager_base_class
+from ..config import config_class
 from ..error import (
     Qgist_ALL_Errors,
+    QgistConfigFormatError,
     QgistTypeError,
     QgistValueError,
     )
@@ -100,7 +103,7 @@ class ui_manager_class(ui_manager_base_class):
 
     def _connect_ui(self):
 
-        for item in ('new', 'delete', 'save'):
+        for item in ('new', 'delete', 'save', 'rename', 'import', 'export'):
             self._ui_dict['toolbutton_{NAME:s}'.format(NAME = item)].clicked.connect(
                 getattr(self, '_toolbutton_{NAME:s}_clicked'.format(NAME = item))
                 )
@@ -109,6 +112,16 @@ class ui_manager_class(ui_manager_base_class):
 
         self._update_workbenches()
         self._uptdate_items()
+
+        if self._fsm.config is None:
+            self._ui_dict['checkbox_unnamedwarning'].setEnabled(False)
+        else:
+            self._ui_dict['checkbox_unnamedwarning'].setCheckState(
+                Qt.Checked if self._fsm.config.get('show_unnamed_warning', False) else Qt.Unchecked
+                )
+            def change_unnamedwarning():
+                self._fsm.config['show_unnamed_warning'] = bool(self._ui_dict['checkbox_unnamedwarning'].isChecked())
+            self._ui_dict['checkbox_unnamedwarning'].stateChanged.connect(change_unnamedwarning)
 
     def _list_workbenches_currentrowchanged(self):
 
@@ -172,6 +185,74 @@ class ui_manager_class(ui_manager_base_class):
         try:
             self._fsm.save_workbench(name, self._mainwindow)
             self._update_workbenches()
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self)
+            self.reject()
+            return
+
+    def _toolbutton_rename_clicked(self):
+
+        old_name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
+        new_name, user_ok = QInputDialog.getText(
+            self,
+            translate('global', 'Rename workbench'),
+            translate('global', 'New name of workbench')
+            )
+
+        if not user_ok:
+            return
+
+        try:
+            self._fsm.rename_workbench(old_name, new_name, self._mainwindow)
+            self._update_workbenches()
+            self._uptdate_items()
+        except QgistWorkbenchNameError as e:
+            msg_warning(e, self)
+            return
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self)
+            self.reject()
+            return
+
+    def _toolbutton_import_clicked(self):
+
+        fn, user_ok = QFileDialog.getOpenFileName(
+            self,
+            translate('global', 'Import workbench from file'),
+            '',
+            'JSON files (*.json);;All Files (*)',
+            options = QFileDialog.Options(),
+            )
+        if not user_ok:
+            return
+
+        try:
+            self._fsm.import_workbench(config_class.import_config(fn), self._mainwindow)
+            self._update_workbenches()
+            self._uptdate_items()
+        except (QgistWorkbenchNameError, QgistConfigFormatError) as e:
+            msg_warning(e, self)
+            return
+        except Qgist_ALL_Errors as e:
+            msg_critical(e, self)
+            self.reject()
+            return
+
+    def _toolbutton_export_clicked(self):
+
+        fn, user_ok = QFileDialog.getSaveFileName(
+            self,
+            translate('global', 'Export workbench to file'),
+            '',
+            'JSON files (*.json);;All Files (*)',
+            options = QFileDialog.Options(),
+            )
+        if not user_ok:
+            return
+
+        try:
+            name = self._workbench_index_to_name(self._ui_dict['list_workbenches'].currentRow())
+            config_class.export_config(fn, self._fsm.export_workbench(name))
         except Qgist_ALL_Errors as e:
             msg_critical(e, self)
             self.reject()

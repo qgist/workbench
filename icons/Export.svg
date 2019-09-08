@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   width="16px"
+   height="16px"
+   viewBox="0 0 16 16"
+   enable-background="new 0 0 16 16"
+   xml:space="preserve"
+   id="svg30"
+   sodipodi:docname="Export.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"><metadata
+   id="metadata34"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1028"
+   id="namedview32"
+   showgrid="false"
+   inkscape:zoom="14.75"
+   inkscape:cx="-14.915254"
+   inkscape:cy="8"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg30" />
+<defs
+   id="defs2">
+</defs>
+
+
+
+
+<g
+   id="g22"
+   transform="rotate(32.86063,2.3788184,8.3013469)">
+	<path
+   d="M 7.132,8.388 C 7.38,7.363 7.813,4.962 6.905,3.456 6.261,2.39 5.15,1.826 3.692,1.826 2.541,1.826 1.454,2.168 0.933,2.361 L 0.49,1.564 C 1.048,1.191 2.474,0.375 4.264,0.375 c 1.333,0 2.616,0.448 3.814,1.332 2.64,1.946 2.009,5.657 1.773,6.681 z"
+   id="path18"
+   inkscape:connector-curvature="0"
+   style="fill:#007d7d" />
+	<path
+   d="m 4.265,0.75 c 1.251,0 2.459,0.423 3.592,1.258 2.255,1.663 1.932,4.763 1.692,6.004 H 7.603 C 7.854,6.785 8.09,4.696 7.226,3.262 6.511,2.077 5.289,1.451 3.692,1.451 2.68,1.451 1.715,1.702 1.107,1.903 L 0.989,1.69 C 1.629,1.309 2.815,0.75 4.265,0.75 M 4.265,0 C 1.785,0 0,1.454 0,1.454 l 0.765,1.377 c 0,0 1.42,-0.63 2.927,-0.63 1.084,0 2.214,0.326 2.892,1.448 1.081,1.793 0.06,5.113 0.06,5.113 h 3.501 c 0,0 1.479,-4.909 -1.843,-7.358 C 6.875,0.353 5.485,0 4.265,0 Z"
+   id="path20"
+   inkscape:connector-curvature="0"
+   style="fill:#ffffff" />
+</g><g
+   id="g28"
+   transform="rotate(32.86063,2.3788184,8.3013469)">
+	<polygon
+   points="11.114,8.157 8.086,11.28 5.332,8.145 7.292,8.157 "
+   id="polygon24"
+   style="fill:#007d7d" />
+	<path
+   d="m 6.165,8.525 1.13,0.007 h 2.353 0.581 L 8.1,10.728 6.165,8.525 M 4.498,7.764 8.072,11.833 12,7.782 H 9.647 7.295 Z"
+   id="path26"
+   inkscape:connector-curvature="0"
+   style="fill:#ffffff" />
+</g>
+</svg>

@@ -72,7 +72,7 @@ class dtype_fsm_class:
         self._config = config
 
         self._workbench_dict = {
-            item['name']: dtype_workbench_class(mainwindow = mainwindow, **item)
+            item['name']: dtype_workbench_class(mainwindow = mainwindow, config = self._config, **item)
             for item in workbench_list
             }
         if active_workbench is not None and active_workbench not in self._workbench_dict.keys():
@@ -135,7 +135,11 @@ class dtype_fsm_class:
         if len(name) == 0:
             raise QgistWorkbenchNameError(translate('global', '"name" is empty. (dtype_fsm new)'))
 
-        self._workbench_dict[name] = dtype_workbench_class.from_mainwindow(name, mainwindow)
+        self._workbench_dict[name] = dtype_workbench_class.from_mainwindow(
+            name = name,
+            mainwindow = mainwindow,
+            config = self._config,
+            )
         self._active_workbench = name
 
         self._update_config()
@@ -168,11 +172,11 @@ class dtype_fsm_class:
         if not isinstance(mainwindow, QMainWindow):
             raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm rename)'))
         if old_name not in self._workbench_dict.keys():
-            raise QgistValueError(translate('global', '"old_name" is not a known workbench. (dtype_fsm rename)'))
+            raise QgistWorkbenchNameError(translate('global', '"old_name" is not a known workbench. (dtype_fsm rename)'))
         if new_name in self._workbench_dict.keys():
-            raise QgistValueError(translate('global', '"new_name" is a known workbench, i.e. already exists. (dtype_fsm rename)'))
+            raise QgistWorkbenchNameError(translate('global', '"new_name" is a known workbench, i.e. already exists. (dtype_fsm rename)'))
         if len(new_name) == 0:
-            raise QgistValueError(translate('global', '"new_name" is empty. (dtype_fsm rename)'))
+            raise QgistWorkbenchNameError(translate('global', '"new_name" is empty. (dtype_fsm rename)'))
         if old_name == new_name:
             return
 
@@ -198,6 +202,37 @@ class dtype_fsm_class:
 
         self._update_config()
 
+    def import_workbench(self, workbench_dict, mainwindow):
+
+        if not isinstance(workbench_dict, dict):
+            raise QgistTypeError(translate('global', '"workbench_dict" must be dict. (dtype_fsm import)'))
+        if 'name' not in workbench_dict.keys():
+            raise QgistValueError(translate('global', '"workbench_dict" does not contain a name. (dtype_fsm import)'))
+        if not isinstance(mainwindow, QMainWindow):
+            raise QgistTypeError(translate('global', '"mainwindow" must be a QGis mainwindow. (dtype_fsm import)'))
+
+        name = workbench_dict['name']
+
+        if name in self._workbench_dict.keys():
+            raise QgistWorkbenchNameError(translate('global', '"name" is a known workbench, i.e. already exists. (dtype_fsm import)'))
+        if len(name) == 0:
+            raise QgistWorkbenchNameError(translate('global', '"name" is empty. (dtype_fsm import)'))
+
+        self._workbench_dict[name] = dtype_workbench_class(
+            mainwindow = mainwindow, config = self._config, **workbench_dict
+            )
+
+        self._update_config()
+
+    def export_workbench(self, name):
+
+        if not isinstance(name, str):
+            raise QgistTypeError(translate('global', '"name" must be str. (dtype_fsm export)'))
+        if name not in self._workbench_dict.keys():
+            raise QgistValueError(translate('global', '"name" is not a known workbench. (dtype_fsm export)'))
+
+        return self._workbench_dict[name].as_dict()
+
     def _update_config(self):
 
         if self._config is None:
@@ -215,3 +250,13 @@ class dtype_fsm_class:
     def active_workbench(self, value):
 
         raise QgistAttributeError(translate('global', '"active_workbench" must not be changed. (dtype_fsm active)'))
+
+    @property
+    def config(self):
+
+        return self._config
+
+    @config.setter
+    def config(self, value):
+
+        raise QgistAttributeError(translate('global', '"config" must not be changed. (dtype_fsm config)'))

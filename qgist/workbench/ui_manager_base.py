@@ -43,6 +43,7 @@ from PyQt5.QtGui import (
     QIcon,
     )
 from PyQt5.QtWidgets import (
+    QCheckBox,
     QDialog,
     QHBoxLayout,
     QLabel,
@@ -109,7 +110,10 @@ class ui_manager_base_class(QDialog):
         for name, title, icon in [
             ('new', translate('global', 'New workbench'), 'FileNew.svg'),
             ('delete', translate('global', 'Delete workbench'), 'Delete.svg'),
-            ('save', translate('global', 'Save workbenche'), 'Save.svg'),
+            ('save', translate('global', 'Save workbench'), 'Save.svg'),
+            ('rename', translate('global', 'Rename workbench'), 'Rename.svg'),
+            ('import', translate('global', 'Import workbench'), 'Import.svg'),
+            ('export', translate('global', 'Export workbench'), 'Export.svg'),
             ]:
 
             toolbutton = QToolButton()
@@ -126,6 +130,9 @@ class ui_manager_base_class(QDialog):
             toolbar_layout.addWidget(toolbutton)
 
         toolbar_layout.addStretch()
+
+        ui_dict['checkbox_unnamedwarning'] = QCheckBox(translate('global', 'Warn if UI elements can not be uniquely identified'))
+        toolbar_layout.addWidget(ui_dict['checkbox_unnamedwarning'])
 
     @staticmethod
     def _get_workbenchlist():

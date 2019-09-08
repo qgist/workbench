@@ -47,6 +47,8 @@ from PyQt5.QtWidgets import (
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 from .dtype_uielement import dtype_uielement_class
+from .error import QgistUnnamedElementError
+from ..config import config_class
 from ..error import (
     QgistTypeError,
     QgistValueError,
@@ -68,7 +70,13 @@ class dtype_workbench_class:
         toolbars_list = None,
         dockwidgets_list = None,
         mainwindow = None,
+        config = None,
         ):
+
+        if not isinstance(config, config_class) and config is not None:
+            raise QgistTypeError(translate('global', '"config" must be a "config_class" object or None. (dtype_workbench)'))
+
+        self._config = config
 
         if not isinstance(name, str):
             raise QgistTypeError(translate('global', '"name" must be str. (dtype_workbench)'))
@@ -144,8 +152,18 @@ class dtype_workbench_class:
         qtoolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         qdockwidgets_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
 
-        dtype_workbench_class._activate_uielements(qtoolbars_dict, self._toolbars_dict)
-        dtype_workbench_class._activate_uielements(qdockwidgets_dict, self._dockwidgets_dict)
+        show_unnamed_warning = False if self._config is None else self._config.get('show_unnamed_warning', False)
+
+        dtype_workbench_class._activate_uielements(
+            uiobjects_dict = qtoolbars_dict,
+            uielements_dict = self._toolbars_dict,
+            show_unnamed_warning = show_unnamed_warning,
+            )
+        dtype_workbench_class._activate_uielements(
+            uiobjects_dict = qdockwidgets_dict,
+            uielements_dict = self._dockwidgets_dict,
+            show_unnamed_warning = show_unnamed_warning,
+            )
 
         mainwindow.restoreState(self._mainwindow_state)
 
@@ -180,7 +198,7 @@ class dtype_workbench_class:
         return (self._toolbars_dict[name] for name in sorted(self.toolbars_keys()))
 
     @staticmethod
-    def _activate_uielements(uiobjects_dict, uielements_dict):
+    def _activate_uielements(uiobjects_dict, uielements_dict, show_unnamed_warning):
 
         for name_internal, uiobject in uiobjects_dict.items():
             if name_internal in uielements_dict.keys():
@@ -191,6 +209,11 @@ class dtype_workbench_class:
                 try:
                     uielement = dtype_uielement_class.from_uiobject(uiobject)
                     uielements_dict[uielement.name_internal] = uielement
+                except QgistUnnamedElementError as e:
+                    """implementing #8, enabling the user to disable warnings
+                    which are mainly caused by other plugins"""
+                    if show_unnamed_warning:
+                        msg_warning(e)
                 except Qgist_ALL_Errors as e:
                     msg_warning(e)
         for name_internal in (uielements_dict.keys() - uiobjects_dict.keys()):
@@ -232,9 +255,9 @@ class dtype_workbench_class:
     @name.setter
     def name(self, value):
 
-        if not isinstance(name, str):
+        if not isinstance(value, str):
             raise QgistTypeError(translate('global', 'New value of "name" must be a str. (dtype_workbench name)'))
-        if len(name) == 0:
+        if len(value) == 0:
             raise QgistValueError(translate('global', 'New value of "name" must not be empty. (dtype_workbench name)'))
 
         self._name = value
@@ -243,10 +266,14 @@ class dtype_workbench_class:
     def from_mainwindow(
         name = '',
         mainwindow = None,
+        config = None,
         ):
 
+        # name is checked by dtype_workbench_class.__init__
         if not isinstance(mainwindow, QMainWindow):
             raise QgistTypeError(translate('global', '"mainwindow" must be a QGIS mainwindow. (dtype_workbench from_mainwindow)'))
+        if not isinstance(config, config_class) and config is not None:
+            raise QgistTypeError(translate('global', '"config" must be a "config_class" object or None. (dtype_workbench from_mainwindow)'))
 
         toolbars_list = [
             dtype_uielement_class.from_uiobject(uiobject).as_dict()
@@ -270,4 +297,5 @@ class dtype_workbench_class:
             toolbars_list = toolbars_list,
             dockwidgets_list = dockwidgets_list,
             mainwindow = mainwindow,
+            config = config,
             )

@@ -49,6 +49,7 @@ from .const import (
     QGIST_CONFIG_FLD,
     )
 from .error import (
+    QgistConfigFormatError,
     QgistConfigKeyError,
     QgistTypeError,
     QgistValueError,
@@ -107,7 +108,11 @@ class config_class:
             if not os.path.isfile(fn):
                 raise QgistValueError(translate('global', '"fn" must be a file. (config)'))
             with open(fn, 'r', encoding = 'utf-8') as f:
-                self._data = json.loads(f.read())
+                data = f.read()
+            try:
+                self._data = json.loads(data)
+            except:
+                raise QgistConfigFormatError(translate('global', 'Config does not contain valid JSON. (config)'))
             if not isinstance(self._data, dict):
                 raise QgistTypeError(translate('global', 'Configuration data must be a dict. (config)'))
 
@@ -179,3 +184,38 @@ class config_class:
 
         if backup_fn is not None:
             os.unlink(backup_fn)
+
+    @staticmethod
+    def import_config(fn):
+
+        if not isinstance(fn, str):
+            raise QgistTypeError(translate('global', '"fn" must be str. (config import)'))
+        if not os.path.exists(fn):
+            raise QgistValueError(translate('global', '"fn" must exists. (config import)'))
+        if not os.path.isfile(fn):
+            raise QgistValueError(translate('global', '"fn" must be a file. (config import)'))
+
+        with open(fn, 'r', encoding = 'utf-8') as f:
+            raw = f.read()
+
+        try:
+            value = json.loads(raw)
+        except:
+            raise QgistConfigFormatError(translate('global', '"fn" does not contain valid JSON. (config import)'))
+
+        return value
+
+    @staticmethod
+    def export_config(fn, value):
+
+        if not isinstance(fn, str):
+            raise QgistTypeError(translate('global', '"fn" must be str. (config export)'))
+        if not os.path.exists(os.path.dirname(fn)):
+            raise QgistValueError(translate('global', 'Parent of "fn" must exists. (config export)'))
+        if not os.path.isdir(os.path.dirname(fn)):
+            raise QgistValueError(translate('global', 'Parent of "fn" must be a directory. (config export)'))
+        if not config_class._check_value(value):
+            raise QgistTypeError(translate('global', '"value" contains not allowed types. (config export)'))
+
+        with open(fn, 'w', encoding = 'utf-8') as f:
+            f.write(json.dumps(value, indent = 4, sort_keys = True))

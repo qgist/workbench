@@ -31,6 +31,9 @@ specific language governing rights and limitations under the License.
 class QgistAttributeError(AttributeError):
     pass
 
+class QgistConfigFormatError(KeyError):
+    pass
+
 class QgistConfigKeyError(KeyError):
     pass
 
