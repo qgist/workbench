@@ -57,6 +57,7 @@ from .ui_manager_base import ui_manager_base_class
 from ..config import config_class
 from ..error import (
     Qgist_ALL_Errors,
+    QgistConfigFormatError,
     QgistTypeError,
     QgistValueError,
     )
@@ -229,7 +230,7 @@ class ui_manager_class(ui_manager_base_class):
             self._fsm.import_workbench(config_class.import_config(fn), self._mainwindow)
             self._update_workbenches()
             self._uptdate_items()
-        except QgistWorkbenchNameError as e:
+        except (QgistWorkbenchNameError, QgistConfigFormatError) as e:
             msg_warning(e, self)
             return
         except Qgist_ALL_Errors as e:
