@@ -213,4 +213,4 @@ class config_class:
             raise QgistTypeError(translate('global', '"value" contains not allowed types. (config export)'))
 
         with open(fn, 'w', encoding = 'utf-8') as f:
-            f.write(json.dumps(svalue, indent = 4, sort_keys = True))
+            f.write(json.dumps(value, indent = 4, sort_keys = True))
