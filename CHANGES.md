@@ -1,6 +1,6 @@
 # Changes
 
-## 0.0.3 (2019-XX-XX)
+## 0.0.3 (2019-09-08)
 
 * Implemented #1: Workbenches can be renamed.
 * Implemented #2: Workbenches can be imported and exported.
