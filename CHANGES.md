@@ -1,5 +1,9 @@
 # Changes
 
+## 0.0.4 (2019-XX-XX)
+
+* [TBD]
+
 ## 0.0.3 (2019-09-08)
 
 * Implemented #1: Workbenches can be renamed.
