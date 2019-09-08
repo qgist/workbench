@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en" sourcelanguage="en">
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
@@ -24,7 +23,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="144"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="147"/>
         <source>Name of new workbench</source>
         <translation type="unfinished"></translation>
     </message>
@@ -254,72 +253,72 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="67"/>
+        <location filename="../qgist/config.py" line="68"/>
         <source>QGIS settings path does not point to a directory. (config path)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="69"/>
+        <location filename="../qgist/config.py" line="70"/>
         <source>QGIS settings path does not exist. (config path)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="73"/>
+        <location filename="../qgist/config.py" line="74"/>
         <source>QGIS plugin configuration path exists but is not a directory. (config path)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="79"/>
+        <location filename="../qgist/config.py" line="80"/>
         <source>QGIST configuration path exists but is not a directory. (config path)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="95"/>
+        <location filename="../qgist/config.py" line="96"/>
         <source>&quot;fn&quot; must be str. (config)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="101"/>
+        <location filename="../qgist/config.py" line="102"/>
         <source>Parent of &quot;fn&quot; must exists. (config)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="103"/>
+        <location filename="../qgist/config.py" line="104"/>
         <source>Parent of &quot;fn&quot; must be a directory. (config)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="108"/>
+        <location filename="../qgist/config.py" line="109"/>
         <source>&quot;fn&quot; must be a file. (config)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="112"/>
+        <location filename="../qgist/config.py" line="117"/>
         <source>Configuration data must be a dict. (config)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="117"/>
+        <location filename="../qgist/config.py" line="122"/>
         <source>&quot;name&quot; must be str. (config getitem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="119"/>
+        <location filename="../qgist/config.py" line="124"/>
         <source>Unknown configuration field &quot;name&quot;. (config getitem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="126"/>
+        <location filename="../qgist/config.py" line="131"/>
         <source>&quot;name&quot; must be str. (config setitem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="128"/>
+        <location filename="../qgist/config.py" line="133"/>
         <source>&quot;value&quot; contains not allowed types. (config setitem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/config.py" line="174"/>
+        <location filename="../qgist/config.py" line="179"/>
         <source>Could not backup old configuration before saving new - too many old backups. (config save)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -379,37 +378,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="77"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="80"/>
         <source>&quot;plugin_root_fld&quot; must be str. (ui_manager)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="79"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="82"/>
         <source>&quot;plugin_root_fld&quot; must exists. (ui_manager)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="81"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="84"/>
         <source>&quot;plugin_root_fld&quot; must be a directory. (ui_manager)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="83"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="86"/>
         <source>&quot;mainwindow&quot; must be a QGIS mainwindow. (ui_manager)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="85"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="88"/>
         <source>&quot;combobox_workbench&quot; must be a QGis mainwindow. (ui_manager)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="87"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="90"/>
         <source>&quot;combobox_workbench_update&quot; must be callable. (ui_manager)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="89"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="92"/>
         <source>&quot;fsm&quot; must be a workbench finite state machine. (ui_manager)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -544,7 +543,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qgist/workbench/ui_manager.py" line="193"/>
+        <location filename="../qgist/workbench/ui_manager.py" line="196"/>
         <source>New name of workbench</source>
         <translation type="unfinished"></translation>
     </message>
@@ -591,6 +590,61 @@
     <message>
         <location filename="../qgist/workbench/ui_manager_base.py" line="116"/>
         <source>Export workbench</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="115"/>
+        <source>Config does not contain valid JSON. (config)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="192"/>
+        <source>&quot;fn&quot; must be str. (config import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="194"/>
+        <source>&quot;fn&quot; must exists. (config import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="196"/>
+        <source>&quot;fn&quot; must be a file. (config import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="204"/>
+        <source>&quot;fn&quot; does not contain valid JSON. (config import)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="212"/>
+        <source>&quot;fn&quot; must be str. (config export)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="214"/>
+        <source>Parent of &quot;fn&quot; must exists. (config export)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="216"/>
+        <source>Parent of &quot;fn&quot; must be a directory. (config export)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/config.py" line="218"/>
+        <source>&quot;value&quot; contains not allowed types. (config export)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager.py" line="219"/>
+        <source>Import workbench from file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qgist/workbench/ui_manager.py" line="243"/>
+        <source>Export workbench to file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
