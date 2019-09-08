@@ -49,6 +49,7 @@ from .const import (
     QGIST_CONFIG_FLD,
     )
 from .error import (
+    QgistConfigFormatError,
     QgistConfigKeyError,
     QgistTypeError,
     QgistValueError,
@@ -107,7 +108,11 @@ class config_class:
             if not os.path.isfile(fn):
                 raise QgistValueError(translate('global', '"fn" must be a file. (config)'))
             with open(fn, 'r', encoding = 'utf-8') as f:
-                self._data = json.loads(f.read())
+                data = f.read()
+            try:
+                self._data = json.loads(data)
+            except:
+                raise QgistConfigFormatError(translate('global', 'Config does not contain valid JSON. (config)'))
             if not isinstance(self._data, dict):
                 raise QgistTypeError(translate('global', 'Configuration data must be a dict. (config)'))
 
@@ -196,7 +201,7 @@ class config_class:
         try:
             value = json.loads(raw)
         except:
-            raise QgistValueError(translate('global', '"fn" does not contain valid JSON. (config import)'))
+            raise QgistConfigFormatError(translate('global', '"fn" does not contain valid JSON. (config import)'))
 
         return value
 
