@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de" sourcelanguage="en">
+<!DOCTYPE TS>
+<TS version="2.1" language="de" sourcelanguage="en">
 <context>
     <name>global</name>
     <message>
@@ -640,12 +641,12 @@
     <message>
         <location filename="../qgist/workbench/ui_manager.py" line="219"/>
         <source>Import workbench from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Importiere Werkbank aus Datei</translation>
     </message>
     <message>
         <location filename="../qgist/workbench/ui_manager.py" line="243"/>
         <source>Export workbench to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportiere Werkbank in Datei</translation>
     </message>
 </context>
 </TS>
