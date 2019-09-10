@@ -3,6 +3,7 @@
 ## 0.0.4 (2019-XX-XX)
 
 * Fixed #9: Workbenches can be saved even if other plugins contain unnamed UI elements.
+* Improved: Handle more cases similar to #7 and #9, which could potentially crash `workbench`.
 
 ## 0.0.3 (2019-09-08)
 
