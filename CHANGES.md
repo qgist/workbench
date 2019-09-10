@@ -1,5 +1,9 @@
 # Changes
 
+## 0.0.5 (2019-XX-XX)
+
+* [TBD]
+
 ## 0.0.4 (2019-09-10)
 
 * Fixed #9: Workbenches can be saved even if other plugins contain unnamed UI elements.
