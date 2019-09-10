@@ -295,19 +295,25 @@ class dtype_workbench_class:
         if not isinstance(config, config_class) and config is not None:
             raise QgistTypeError(translate('global', '"config" must be a "config_class" object or None. (dtype_workbench from_mainwindow)'))
 
-        toolbars_list = [
-            dtype_uielement_class.from_uiobject(uiobject).as_dict()
+        def uiobject_to_dict(_uiobject):
+            try:
+                return dtype_uielement_class.from_uiobject(_uiobject).as_dict()
+            except QgistUnnamedElementError:
+                return None
+
+        toolbars_list = [ui_dict for ui_dict in (
+            uiobject_to_dict(uiobject)
             for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(
                 mainwindow, QToolBar
                 ).items()
-            ]
+            ) if ui_dict is not None]
 
-        dockwidgets_list = [
-            dtype_uielement_class.from_uiobject(uiobject).as_dict()
+        dockwidgets_list = [ui_dict for ui_dict in (
+            uiobject_to_dict(uiobject)
             for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(
                 mainwindow, QDockWidget
                 ).items()
-            ]
+            ) if ui_dict is not None]
 
         mainwindow_state = base64.encodebytes(bytes(mainwindow.saveState())).decode('ASCII')
 
