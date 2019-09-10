@@ -175,8 +175,18 @@ class dtype_workbench_class:
         qtoolbars_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QToolBar)
         qdockwidgets_dict = dtype_workbench_class._get_uielements_from_mainwindow(mainwindow, QDockWidget)
 
-        dtype_workbench_class._save_uielements(qtoolbars_dict, self._toolbars_dict)
-        dtype_workbench_class._save_uielements(qdockwidgets_dict, self._dockwidgets_dict)
+        show_unnamed_warning = False if self._config is None else self._config.get('show_unnamed_warning', False)
+
+        dtype_workbench_class._save_uielements(
+            uiobjects_dict = qtoolbars_dict,
+            uielements_dict = self._toolbars_dict,
+            show_unnamed_warning = show_unnamed_warning,
+            )
+        dtype_workbench_class._save_uielements(
+            uiobjects_dict = qdockwidgets_dict,
+            uielements_dict = self._dockwidgets_dict,
+            show_unnamed_warning = show_unnamed_warning,
+            )
 
         self._mainwindow_state = bytes(mainwindow.saveState())
 
@@ -236,14 +246,24 @@ class dtype_workbench_class:
             }
 
     @staticmethod
-    def _save_uielements(uiobjects_dict, uielements_dict):
+    def _save_uielements(uiobjects_dict, uielements_dict, show_unnamed_warning):
 
         for name_internal, uiobject in uiobjects_dict.items():
-            try:
+            if name_internal in uielements_dict.keys():
                 uielements_dict[name_internal].pull_state_from_uiobject()
-            except KeyError:
-                uielement = dtype_uielement_class.from_uiobject(uiobject)
-                uielements_dict[uielement.name_internal] = uielement
+            else:
+                """try/except-block fixes #9, Certain other plugins inhibit
+                saving a workbench because of unnamed UI element"""
+                try:
+                    uielement = dtype_uielement_class.from_uiobject(uiobject)
+                    uielements_dict[uielement.name_internal] = uielement
+                except QgistUnnamedElementError as e:
+                    """implementing #8, enabling the user to disable warnings
+                    which are mainly caused by other plugins"""
+                    if show_unnamed_warning:
+                        msg_warning(e)
+                except Qgist_ALL_Errors as e:
+                    msg_warning(e)
         for name_internal in (uielements_dict.keys() - uiobjects_dict.keys()):
             uielements_dict[name_internal].existence = False
 
@@ -275,19 +295,25 @@ class dtype_workbench_class:
         if not isinstance(config, config_class) and config is not None:
             raise QgistTypeError(translate('global', '"config" must be a "config_class" object or None. (dtype_workbench from_mainwindow)'))
 
-        toolbars_list = [
-            dtype_uielement_class.from_uiobject(uiobject).as_dict()
+        def uiobject_to_dict(_uiobject):
+            try:
+                return dtype_uielement_class.from_uiobject(_uiobject).as_dict()
+            except QgistUnnamedElementError:
+                return None
+
+        toolbars_list = [ui_dict for ui_dict in (
+            uiobject_to_dict(uiobject)
             for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(
                 mainwindow, QToolBar
                 ).items()
-            ]
+            ) if ui_dict is not None]
 
-        dockwidgets_list = [
-            dtype_uielement_class.from_uiobject(uiobject).as_dict()
+        dockwidgets_list = [ui_dict for ui_dict in (
+            uiobject_to_dict(uiobject)
             for _, uiobject in dtype_workbench_class._get_uielements_from_mainwindow(
                 mainwindow, QDockWidget
                 ).items()
-            ]
+            ) if ui_dict is not None]
 
         mainwindow_state = base64.encodebytes(bytes(mainwindow.saveState())).decode('ASCII')
 
